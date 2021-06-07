@@ -1,0 +1,26 @@
+inherit_from: .rubocop_todo.yml
+
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.0.0
+  TargetRailsVersion: 6.1.1
+  Exclude:
+    - "vendor/**/*"
+    - "bin/**/*"
+    - "db/**/*"
+    - "tmp/**/*"
+    - "node_modules/**/*"
+    - "lib/tasks/auto_annotate_models.rake"
+
+AsciiComments:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

@@ -45,8 +45,8 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     authentication: :plain,
-    user_name: ENV['DEVISE_USERNAME'],
-    password: ENV['DEVISE_PASSWORD']
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD']
   }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

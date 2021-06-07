@@ -16,6 +16,8 @@ gem 'dotenv-rails'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
+gem 'devise'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end

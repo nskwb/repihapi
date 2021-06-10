@@ -15,6 +15,7 @@
       <nav>
           <% if user_signed_in? %>
             <%= link_to 'トップ', root_path %>
+            <%= link_to 'ユーザー一覧', users_path %>
             <%= link_to 'マイページ', user_path(current_user) %>
             <%= link_to 'プロフィール変更', edit_user_registration_path %>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>

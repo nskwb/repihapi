@@ -20,6 +20,9 @@ gem 'devise'
 
 gem 'faker'
 
+gem 'carrierwave'
+gem 'file_validators'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end

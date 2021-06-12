@@ -17,8 +17,8 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
 gem 'devise'
-
 gem 'faker'
+gem 'kaminari'
 
 gem 'carrierwave'
 gem 'file_validators'

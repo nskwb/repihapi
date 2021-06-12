@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   root 'pages#index'
   devise_for :users, controllers: { confirmations: 'users/confirmations',
                                     registrations: 'users/registrations',

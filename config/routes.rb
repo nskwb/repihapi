@@ -10,5 +10,9 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
 
-  resources :users, only: %i[index show]
+  resources :users do
+    resource :relationships, only: %i[create destroy]
+    get :follows, on: :member
+    get :followers, on: :member
+  end
 end

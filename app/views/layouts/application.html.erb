@@ -12,16 +12,16 @@
 
   <body>
     <header class="text-gray-600 body-font">
-      <div class="container py-2 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+      <div class="container px-4 py-2 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-          <span class="mx-3 text-xl">REPIHAPI</span>
+          <span class="mx-3 text-3xl">REPIHAPI</span>
         </a>
         <nav class="ml-auto flex flex-wrap items-center justify-center">
           <% if user_signed_in? %>
-              <%= link_to 'ホーム', root_path, class: "py-2 px-4 m-2" %>
+              <%= link_to 'ホーム', root_path, class: "py-2 px-4 m-2 hover:text-gray-900" %>
               <%= link_to 'ユーザー一覧', users_path, class: "py-2 px-4 m-2  hover:text-gray-900" %>
-              <%= link_to 'マイページ', user_path(current_user), class: "py-2 px-4 m-2  hover:text-gray-900" %>
-              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "py-2 px-4 m-2  hover:text-gray-900" %>
+              <%= link_to 'マイページ', user_path(current_user), class: "py-2
+              px-4 m-2  hover:text-gray-900" %>
               <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "py-2 px-4 m-2  hover:text-gray-900" %>
             <% else %>
               <%= link_to 'ホーム', root_path, class: "py-2 px-4 m-2 hover:text-gray-900" %>

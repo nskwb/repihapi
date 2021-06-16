@@ -1,19 +1,34 @@
-<% if @user.image? %>
-  <%= image_tag @user.image.url %>
-<% end %>
-<h3>ユーザー名</h3>
-<%= @user.name %>
-<h3>メールアドレス</h3>
-<%= @user.email %>
-
-<p><%=link_to "フォロー", follows_user_path(@user.id) %></p>
-<p><%=link_to "フォロワー", followers_user_path(@user.id) %></p>
-<% if current_user != @user %>
-    <% if @user.followed_by?(current_user) %>
-        <p><%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete %></p>
-    <% else %>
-        <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
+<div class="max-w-md flex flex-col justify-around mx-auto shadow-xl">
+  <div class="w-full mt-10 rounded p-4 text-center">
+    <% if @user.image? %>
+      <div class="flex justify-center">
+        <%= image_tag @user.image.url %>
+      </div>
     <% end %>
-<% end %>
-
-<%= link_to 'ユーザー情報編集', edit_user_registration_path %>
+    <div class="text-gray-700 text-xl font-bold mb-3">
+      <%= @user.name %>
+    </div>
+    <div class="flex items-center justify-center">
+      <p class="w-1/3 font-base py-2 mt-4 mr-3 underline text-green-500 text-base hover:text-green-700">
+        <%=link_to "フォロー中", follows_user_path(@user.id) %>
+      </p>
+      <p class="w-1/3 font-base py-2 mt-4 mr-3 underline text-green-500 text-base hover:text-green-700">
+        <%=link_to "フォロワー", followers_user_path(@user.id) %>
+      </p>
+    </div>
+    <% if current_user != @user %>
+      <% if @user.followed_by?(current_user) %>
+          <p class="mx-auto w-1/3 py-2 rounded border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white mt-3">
+            <%=link_to "フォロー解除", user_relationships_path(@user.id), method: :delete %>
+          </p>
+      <% else %>
+          <p class="mx-auto w-1/3 py-2 rounded border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white mt-3">
+            <%=link_to "フォロー", user_relationships_path(@user.id), method: :post %>
+          </p>
+      <% end %>
+    <% end %>
+    <p class="inline-block justify-center  text-yellow-500 bg-white border border-yellow-500 hover:text-white hover:bg-yellow-500 font-base px-4 py-2 mt-4 rounded text-base">
+      <%= link_to 'ユーザー情報編集', edit_user_registration_path %>
+    </p>
+  </div>
+</div>

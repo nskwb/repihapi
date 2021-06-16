@@ -1,64 +1,86 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="max-w-md flex flex-col justify-center mx-auto shadow-xl">
+  <div class="w-full mt-10 rounded px-4">
+    <h2 class="text-center text-xl">ユーザー編集</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <%if guest_user? %>
-  <h3>ゲストユーザーは変更・削除はできません</h3>
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, disabled: true, readonly: true %>
-    </div>
+      <%if guest_user? %>
+        <h3 class="bg-red-100 border border-red-400 text-red-700 my-4 px-4 py-3 rounded text-center" >ゲストユーザーは変更・削除ができません</h3>
+        <% if @user.image? %>
+          <div class="flex justify-center">
+            <%= image_tag @user.image.url %>
+          </div>
+        <% end %>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", disabled: true, readonly: true %>
-    </div>
+        <div class="field my-4">
+          <%= f.label :name, class: "block text-gray-700 text-base font-light mb-2" %>
+          <%= f.text_field :name, autofocus: true, disabled: true, readonly: true, class: "block w-full px-3 py-2 border border-gray-300 bg-gray-200 shadow-sm rounded" %>
+        </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <div class="field my-4">
+          <%= f.label :email, class: "block text-gray-700 text-base font-light mb-2" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", disabled: true, readonly: true, class: "block w-full px-3 py-2 border bg-gray-200 border-gray-300 shadow-sm rounded" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>
+            Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+          </div>
+        <% end %>
+
+        <div class="field my-4">
+          <%= f.label :image, class: "block text-gray-700 text-base font-light mb-2" %>
+          <%= f.file_field :image, disabled: true %>
+        </div>
+
+        <div class="actions text-center">
+          <%= f.submit "Update", disabled: true, class: "w-full bg-green-500 hover:bg-green-700 font-light py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline text-white text-lg" %>
+        </div>
+
+        <p class="mt-6 block">
+          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,disabled: true, class: "text-gray-700 text-base font-light underline hover:text-black cursor-not-allowed" %>
+        </p>
+      <% else %>
+        <% if @user.image? %>
+          <div class="flex justify-center">
+            <%= image_tag @user.image.url %>
+          </div>
+        <% end %>
+
+        <div class="field my-4">
+          <%= f.label :name, class: "block text-gray-700 text-base font-light mb-2" %>
+          <%= f.text_field :name, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+        </div>
+
+        <div class="field my-4">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>
+            Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+          </div>
+        <% end %>
+
+        <div class="field my-4">
+          <%= f.label :image, class: "block text-gray-700 text-base font-light mb-2" %>
+          <%= f.file_field :image %>
+        </div>
+
+        <div class="actions text-center">
+          <%= f.submit "Update", class: "w-full bg-green-500 hover:bg-green-700 font-light py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline text-white text-lg" %>
+        </div>
+      <% end %>
     <% end %>
 
-    <div class="field">
-      <%= f.label :image %>
-      <%= f.file_field :image, disabled: true %>
+    <p class="block mt-6">
+      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "text-gray-700 text-base font-light underline hover:text-black" %>
+    </p>
+
+    <div class="mt-10 mb-4">
+      <%= link_to "Back", :back, class:"text-lg font-light rounded" %>
     </div>
-
-    <div class="actions">
-      <%= f.submit "Update", disabled: true %>
-    </div>
-
-    <h3>Cancel my account</h3>
-
-    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, disabled: true %></p>
-  <% else %>
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <div class="field">
-      <%= f.label :image %>
-      <%= f.file_field :image %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Update" %>
-    </div>
-    <h3>Cancel my account</h3>
-
-    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-  <% end %>
-<% end %>
-
-
-<%= link_to "Back", :back %>
+  </div>
+</div>

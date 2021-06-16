@@ -1,12 +1,22 @@
 User.create!(name: "Nishikawa Mameta",
              email: "mametacrypto@gmail.com",
-            password: "password")
+            password: "password",
+            confirmed_at: Time.now)
 
-4.times do |n|
-  name  = "ユーザーNo.#{n+1}"
+50.times do |n|
+  name = "ユーザーNo.#{n+1}"
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
   User.create!(name:  name,
                 email: email,
-                password:  password)
+                password:  password,
+                confirmed_at: Time.now)
+end
+
+users = User.order(:created_at).take(3)
+20.times do |n|
+  users.each do |user|
+    user.posts.create!(name: "#{user.name} | #{n+1}回目の投稿",
+                      content: "#{user.name} | #{n+1}回目の投稿のコンテンツだお" )
+  end
 end

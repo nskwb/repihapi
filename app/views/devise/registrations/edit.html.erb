@@ -35,12 +35,8 @@
         </div>
 
         <div class="actions text-center">
-          <%= f.submit "Update", disabled: true, class: "w-full bg-green-500 hover:bg-green-700 font-light py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline text-white text-lg" %>
+          <%= f.submit "Update", disabled: true, class: "w-full bg-green-500 hover:bg-green-700 font-light py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline text-white text-lg cursor-not-allowed" %>
         </div>
-
-        <p class="mt-6 block">
-          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,disabled: true, class: "text-gray-700 text-base font-light underline hover:text-black cursor-not-allowed" %>
-        </p>
       <% else %>
         <% if @user.image? %>
           <div class="flex justify-center">
@@ -75,9 +71,15 @@
       <% end %>
     <% end %>
 
-    <p class="block mt-6">
-      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "text-gray-700 text-base font-light underline hover:text-black" %>
-    </p>
+    <%if guest_user? %>
+      <p class="mt-6 block">
+        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,disabled: true, class: "text-gray-700 text-base font-light underline hover:text-black cursor-not-allowed" %>
+      </p>
+    <% else %>
+      <p class="block mt-6">
+        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "text-gray-700 text-base font-light underline hover:text-black" %>
+      </p>
+    <% end %>
 
     <div class="mt-10 mb-4">
       <%= link_to "Back", :back, class:"text-lg font-light rounded" %>

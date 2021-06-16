@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :image, file_size: { less_than: 5.megabytes },
                     file_content_type: { allow: ['image/jpg', 'image/jpeg', 'image/png'] }
 
+  has_many :posts, dependent: :destroy
+
   has_many :active_relationships, class_name: 'Relationship', foreign_key: :following_id
   has_many :follows, through: :active_relationships, source: :follower
 

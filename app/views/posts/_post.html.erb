@@ -1,4 +1,11 @@
 <li id="post-<%= post.id %>">
-  <%= link_to post.user.name, post.user %>
-  <span class="content"><%= post.content %></span>
+  <span class=""><%= post.name %></span>
+  <span class=""><%= post.content %></span>
+  <% if @user.image? %>
+    <%= image_tag post.image.url %>
+  <% end %>
+  <%= link_to "詳細", post_path(post) %>
+  <% if post.user == current_user %>
+    <%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
 </li>

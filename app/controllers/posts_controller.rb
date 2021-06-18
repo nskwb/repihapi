@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create destroy]
+  before_action :authenticate_user!, only: %i[index create destroy]
   before_action :correct_user, only: :destroy
 
-  def index; end
+  def index
+    @posts = Post.page(params[:page]).per(15)
+  end
 
   def new
     @post = current_user.posts.build if user_signed_in?

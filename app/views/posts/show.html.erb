@@ -1,5 +1,11 @@
 <span class=""><%= @post.name %></span>
-  <span class=""><%= @post.content %></span>
+<span class=""><%= @post.content %></span>
+
   <% if @post.image? %>
     <%= image_tag @post.image.url %>
   <% end %>
+
+<span class=""><%= @post.protein %></span>
+<span class=""><%= @post.fat %></span>
+<span class=""><%= @post.carbo %></span>
+<span class=""><%= @post.calorie %></span>

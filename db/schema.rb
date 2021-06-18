@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_072845) do
+ActiveRecord::Schema.define(version: 2021_06_18_073712) do
 
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 2021_06_16_072845) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "protein", null: false
+    t.float "fat", null: false
+    t.float "carbo", null: false
+    t.integer "calorie", null: false
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end

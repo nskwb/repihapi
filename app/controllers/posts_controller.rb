@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = '投稿が作成されました'
-      redirect_to request.referer || root_url
+      redirect_to root_url
     else
       render 'posts/new'
     end

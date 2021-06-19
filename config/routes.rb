@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
   root 'posts#index'
   get 'posts/show'
   get 'relationships/create'

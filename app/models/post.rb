@@ -13,5 +13,5 @@ class Post < ApplicationRecord
   validates :carbo, presence: true
   validates :calorie, presence: true
 
-  mount_uploader :image, ImageUploader
+  \mount_uploader :image, ImageUploader
 end

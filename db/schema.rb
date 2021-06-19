@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_073712) do
+ActiveRecord::Schema.define(version: 2021_06_19_055303) do
 
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.text "content"
+    t.string "name", null: false
+    t.text "content", null: false
     t.string "image"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

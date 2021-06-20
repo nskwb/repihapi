@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(15)
-    @favorite_tweets = @user.favorite_tweets
+    @favorite_posts = @user.favorite_posts
   end
 
   def follows

@@ -9,14 +9,14 @@
     <%= image_tag post.image.url %>
   <% end %>
   <% if user_signed_in? %>
-    <p><span>お気に入り数: </span><%= tweet.favorites.count %></p>
+    <p><span>お気に入り数: </span><%= post.favorites.count %></p>
     <% if post.favorited_by?(current_user) %>
       <%= link_to "お気に入り解除", post_favorites_path(post.id), method: :delete %>
     <% else %>
       <%= link_to "お気に入り", post_favorites_path(post.id), method: :post %>
     <% end %>
   <% else %>
-    <p><span>お気に入り数: </span><%= tweet.favorites.count %></p>
+    <p><span>お気に入り数: </span><%= post.favorites.count %></p>
   <% end %>
 
   <%= link_to "詳細", post_path(post) %>

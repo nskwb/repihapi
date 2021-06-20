@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(15)
-    @favorite_posts = @user.favorite_posts
   end
 
   def follows
@@ -19,5 +18,10 @@ class UsersController < ApplicationController
   def followers
     user = User.find(params[:id])
     @users = user.followers
+  end
+
+  def favorites
+    user = User.find(params[:id])
+    @favorite_posts = user.favorite_posts
   end
 end

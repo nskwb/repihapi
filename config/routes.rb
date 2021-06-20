@@ -15,11 +15,14 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :relationships, only: %i[create destroy]
-    get :follows, on: :member
-    get :followers, on: :member
+    member do
+      get :follows
+      get :followers
+      get :favorites
+    end
   end
 
   resources :posts do
-    resource :favorites, only: [:create, :destroy]
+    resource :favorites, only: %i[create destroy]
   end
 end

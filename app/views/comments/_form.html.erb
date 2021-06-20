@@ -1,0 +1,10 @@
+<%= form_with(model: [@post, @comment],local: true) do |f| %>
+  <div class="">
+    <%= f.label :content, "コメント", class: "" %>
+    <%= f.text_field :content, autofocus: true, class: "" %>
+  </div>
+
+  <div class="">
+    <%= f.submit "送信", class: "" %>
+  </div>
+<% end %>

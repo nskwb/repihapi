@@ -1,6 +1,8 @@
 投稿の詳細ページ
 <%= render @post %>
 
-<%= render 'comments/form', { post: @post, comment: @comment } %>
+<% if current_user.present? %>
+  <%= render 'comments/form', { post: @post, comment: @comment } %>
+<% end %>
 
 <%= render @comments %>

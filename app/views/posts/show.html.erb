@@ -1,7 +1,7 @@
 投稿の詳細ページ
 <%= render @post %>
 
-<% if current_user.present? %>
+<% if user_signed_in? %>
   <%= render 'comments/form', { post: @post, comment: @comment } %>
 <% end %>
 

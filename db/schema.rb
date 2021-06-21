@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_083707) do
+ActiveRecord::Schema.define(version: 2021_06_21_044636) do
 
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content", null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_083707) do
     t.integer "follower_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["following_id", "follower_id"], name: "index_relationships_on_following_id_and_follower_id", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

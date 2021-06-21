@@ -10,7 +10,6 @@ class CommentsController < ApplicationController
     else
       render root_path
     end
-
   end
 
   private

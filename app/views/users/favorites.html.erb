@@ -1,3 +1,5 @@
 <ul class="favorite_posts">
-  <%= render @favorite_posts %>
+  <% @favorite_posts.each do |post| %>
+    <%= render post %>
+  <% end %>
 </ul>

@@ -16,8 +16,8 @@ end
 users = User.order(:created_at).take(3)
 20.times do |n|
   users.each do |user|
-    user.posts.create!(name: "#{user.name} | #{n+1}回目の投稿",
-                      content: "#{user.name} | #{n+1}回目の投稿のコンテンツだお",
+    user.posts.create!(name: "#{n+1}回目の投稿",
+                      content: "#{n+1}回目の投稿のコンテンツだお",
                       protein: 100,
                       fat: 200,
                       carbo: 300,

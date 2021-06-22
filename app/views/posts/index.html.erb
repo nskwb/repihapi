@@ -2,8 +2,11 @@
 
 <%= paginate @posts %>
 
-<ul class="posts">
-  <%= render @posts %>
-</ul>
+<div class="mt-6">
+  <h1 class="text-center text-xl font-base mb-4 text-gray-700">投稿一覧</h1>
+  <ul class="posts grid grid-cols-2 md:grid-cols-4 gap-2">
+    <%= render @posts %>
+  </ul>
+</div>
 
 <%= paginate @posts %>

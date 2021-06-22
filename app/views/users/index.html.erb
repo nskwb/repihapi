@@ -1,7 +1,9 @@
-<h1>All users</h1>
-
-<ul class="users">
-  <%= render @users %>
-</ul>
-
+<div class="mt-6">
+  <h1 class="text-center text-xl font-base mb-4 text-gray-700">ユーザー一覧</h1>
+  <div class="">
+    <ul class="users grid grid-cols-2 md:grid-cols-4 gap-2">
+      <%= render @users %>
+    </ul>
+  </div>
+</div>
 <%= paginate @users %>

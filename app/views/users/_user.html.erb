@@ -1,6 +1,6 @@
 <li>
-  <div class="max-w-xs rounded overflow-hidden border border-gray-300 shadow-md p-4">
-    <%= image_tag 'ユーザー画像.png', class:"w-full" %>
+  <div class="max-w-xs mx-auto rounded overflow-hidden border border-gray-300 shadow-md p-4">
+    <%= render 'shared/user_image', user: user %>
     <div class="py-4 text-center">
       <%= link_to user.name, user, class:"block font-light text-md mb-4 text-gray-700" %>
       <% if current_user != user %>

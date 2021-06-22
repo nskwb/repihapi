@@ -18,7 +18,6 @@
     <% end %>
   <% end %>
   <p><span>お気に入り数: </span><%= @post.favorites.count %></p>
-  <%= link_to "詳細", post_path(@post) %>
   <% if user_signed_in? && @post.user == current_user  %>
     <%= link_to "編集", edit_post_path(@post) %>
     <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" } %>

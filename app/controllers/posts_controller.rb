@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
   before_action :set_query, only: %i[index search]
 
@@ -8,12 +8,14 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = current_user.posts.build if user_signed_in?
+    @post = current_user.posts.build
   end
 
   def create
     @post = current_user.posts.build(post_params)
+    tags = params[:post][:tags].split(',')
     if @post.save
+      @post.save_tags(tags)
       flash[:success] = '投稿が作成されました'
       redirect_to root_url
     else
@@ -44,7 +46,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = '投稿を削除しました'
-    redirect_to request.referer || root_url
+    redirect_to root_url
   end
 
   def search

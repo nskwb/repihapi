@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :image, file_size: { less_than: 5.megabytes },
                     file_content_type: { allow: ['image/jpg', 'image/jpeg', 'image/png'] }

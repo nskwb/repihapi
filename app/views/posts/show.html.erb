@@ -1,12 +1,14 @@
 投稿の詳細ページ
-  <span class=""><%= link_to "この投稿の詳細はこちら", post_path(@post) %></span>
-  <span class="">投稿者: <%= @post.user.name %></span>
   <span class=""><%= @post.name %></span>
+  <span class=""><%= @post.user.name %></span>
   <span class=""><%= @post.content %></span>
   <span class=""><%= @post.protein %>グラム</span>
   <span class=""><%= @post.fat %>グラム</span>
   <span class=""><%= @post.carbo %>グラム</span>
   <span class=""><%= @post.calorie %>グラム</span>
+  <% @post.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
   <% if @post.image? %>
     <%= image_tag @post.image.url %>
   <% end %>

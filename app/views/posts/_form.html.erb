@@ -12,8 +12,8 @@
   <%= f.label :image, class: "block text-gray-700 text-base font-light mb-2" %>
   <%= f.file_field :image %>
 
-  <%= f.label :tags, class: "block text-gray-700 text-base font-light mb-2" %>
-  <%= f.text_field :tag_ids, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+  <%= f.label :tag, class: "block text-gray-700 text-base font-light mb-2" %>
+  <%= f.text_field :tag_names, value: @tags, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
 
   <div class="field">
     <%= f.label :protein, class: "block text-gray-700 text-base font-light mb-2" %>

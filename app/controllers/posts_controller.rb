@@ -13,9 +13,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    tags = params[:post][:tags].split(',')
+    tag_list = params[:post][:tag_names].split(',')
     if @post.save
-      @post.save_tags(tags)
+      @post.save_tags(tag_list)
       flash[:success] = '投稿が作成されました'
       redirect_to root_url
     else
@@ -31,11 +31,15 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    # フォームのタグの部分に初期値として代入する
+    @tags = @post.tags.pluck(:name).join(',')
   end
 
   def update
     @post = Post.find(params[:id])
+    tag_list = params[:post][:tag_names].split(',')
     if @post.update(post_params)
+      @post.save_tags(tag_list)
       flash[:success] = '投稿を更新しました'
       redirect_to post_path
     else

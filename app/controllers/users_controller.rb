@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_query, only: [:index, :search]
-
+  before_action :set_query, only: %i[index search]
 
   def index
     @users = User.page(params[:page]).per(10)

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
-  before_action :set_query, only: [:index, :search]
+  before_action :set_query, only: %i[index search]
 
   def index
     @posts = Post.page(params[:page]).per(15)

@@ -4,7 +4,7 @@
       <%= image_tag post.image.url, class:"w-full" %>
     <% end %>
     <div class="post-info py-4 text-center">
-      <%= link_to post.name, post_path(post), class:"block font-light text-md mb-4 text-gray-700" %>
+      <%= link_to post.name, post_path(post), class:"block h-12 font-light text-md mb-2 text-gray-700" %>
       <% if user_signed_in? && post.user != current_user %>
         <% if post.favorited_by?(current_user) %>
           <%= link_to "お気に入り解除", post_favorites_path(post.id), method: :delete %>

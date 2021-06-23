@@ -1,0 +1,15 @@
+<div class="mt-6">
+  <h1 class="text-center text-xl font-base mb-4 text-gray-700">検索結果</h1>
+  <p class="text-center text-md mb-4 text-gray-700">
+    <%= @q.result.count %>件のレシピが見つかりました
+  </p>
+  <div class="posts">
+    <ul class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <%= render @posts %>
+    </ul>
+  </div>
+
+  <%= paginate @posts %>
+
+  <%= link_to '戻る', posts_path %>
+</div>

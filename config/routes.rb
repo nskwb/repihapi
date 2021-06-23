@@ -20,10 +20,18 @@ Rails.application.routes.draw do
       get :followers
       get :favorites
     end
+
+    collection do
+      get 'search'
+    end
   end
 
   resources :posts do
     resource :favorites, only: %i[create destroy]
     resource :comments, only: :create
+
+    collection do
+      get 'search'
+    end
   end
 end

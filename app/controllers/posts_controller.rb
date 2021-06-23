@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
+  before_action :set_query, only: [:index, :search]
 
   def index
     @posts = Post.page(params[:page]).per(15)
@@ -46,6 +47,10 @@ class PostsController < ApplicationController
     redirect_to request.referer || root_url
   end
 
+  def search
+    @posts = @q.result.page(params[:page]).per(15)
+  end
+
   private
 
   def post_params
@@ -55,5 +60,9 @@ class PostsController < ApplicationController
   def correct_user
     @post = Post.find(params[:id])
     redirect_to request.referer unless @post.user == current_user
+  end
+
+  def set_query
+    @q = Post.ransack(params[:q])
   end
 end

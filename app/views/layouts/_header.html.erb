@@ -10,6 +10,7 @@
         <%= link_to 'マイページ', user_path(current_user), class: "py-2 px-4 hover:text-gray-900" %>
         <%= link_to '新規投稿', new_post_path, class: "py-2 px-4 hover:text-gray-900" %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "py-2 px-4 hover:text-gray-900" %>
+        <%= link_to '通知', notifications_path %>
       <% else %>
         <%= link_to 'サインアップ', new_user_registration_path, class: "py-2 px-4 m-2 hover:text-gray-900" %>
         <%= link_to 'ログイン', new_user_session_path, class: "py-2 px-4 m-2 text-green-600 hover:text-green-900" %>

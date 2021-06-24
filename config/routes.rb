@@ -34,4 +34,6 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
+  resources :notifications, only: :index
 end

@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     comment = current_user.comments.build(comment_params)
     comment.post_id = post.id
     if comment.save
+      post.create_comment_notification(current_user, comment.id)
       redirect_to post_path(post)
     else
       render root_path

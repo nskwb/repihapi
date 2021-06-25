@@ -21,6 +21,9 @@ gem 'faker'
 gem 'kaminari'
 gem 'ransack'
 
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+
 gem 'carrierwave'
 gem 'file_validators'
 gem 'mini_magick'

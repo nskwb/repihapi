@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
@@ -39,13 +39,15 @@ class User < ApplicationRecord
   end
 
   def create_follow_notification(current_user)
-    # temp = Notification.where(['visitor_id = ? and visited_id = ? and action = ?', current_user.id, id, 'follow'])
-    # if temp.blank?
     notification = current_user.active_notifications.build(
       visited_id: id,
       action: 'follow'
     )
     notification.save if notification.valid?
-    # end
+  end
+
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.where('email = ?', data['email']).first
   end
 end

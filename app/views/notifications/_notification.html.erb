@@ -1,1 +1,6 @@
-<%= notification.visitor.name %>が<%= notification.visited.name %>になにかしました
+<li>
+  <div>
+    <%= notification_info(notification) %>
+    <%= "#{time_ago_in_words(notification.created_at)}" %>
+  </div>
+</li>

@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_06_24_020455) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id", "tag_id"], name: "index_post_tags_on_post_id_and_tag_id", unique: true
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
     t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
 

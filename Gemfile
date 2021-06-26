@@ -17,6 +17,7 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
 gem 'devise'
+gem 'devise-i18n'
 gem 'faker'
 gem 'kaminari'
 gem 'ransack'

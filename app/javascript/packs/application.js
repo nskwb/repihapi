@@ -10,6 +10,7 @@ import "channels";
 import "../css/tailwindcss.css";
 import "stylesheets/application";
 import "jquery";
+import "@nathanvda/cocoon";
 
 Rails.start();
 Turbolinks.start();

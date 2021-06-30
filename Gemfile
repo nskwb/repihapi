@@ -29,6 +29,8 @@ gem 'carrierwave'
 gem 'file_validators'
 gem 'mini_magick'
 
+gem 'cocoon'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end

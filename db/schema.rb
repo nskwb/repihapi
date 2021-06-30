@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_055948) do
+ActiveRecord::Schema.define(version: 2021_06_30_023346) do
 
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content", null: false
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2021_06_26_055948) do
   create_table "ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.integer "amount", null: false
-    t.integer "serve", null: false
     t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -76,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_055948) do
     t.float "fat", null: false
     t.float "carbo", null: false
     t.integer "calorie", null: false
+    t.integer "serve", null: false
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2021_06_26_055948) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_tags_on_name"
+    t.index ["name"], name: "index_tags_on_tag_name"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

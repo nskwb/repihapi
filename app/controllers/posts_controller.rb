@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
+    @ingredient = @post.ingredients.build
   end
 
   def create
@@ -60,7 +61,15 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :content, :image, :protein, :fat, :carbo, :calorie)
+    params.require(:post).permit(:name,
+                                 :content,
+                                 :image,
+                                 :serve,
+                                 :protein,
+                                 :fat,
+                                 :carbo,
+                                 :calorie,
+                                 ingredients_attributes: %i[id name amount post_id])
   end
 
   def correct_user

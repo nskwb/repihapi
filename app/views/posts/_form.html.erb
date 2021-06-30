@@ -1,19 +1,31 @@
 <%= form_with(model: @post, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field my-4">
-    <%= f.label :name, class: "block text-gray-700 text-base font-light mb-2" %>
-    <%= f.text_field :name, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-  </div>
 
-  <div class="field">
-    <%= f.text_area :content, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-  </div>
+  <h2>基本情報</h2>
+    <div class="field my-4">
+      <%= f.label :name, class: "block text-gray-700 text-base font-light mb-2" %>
+      <%= f.text_field :name, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+    </div>
 
-  <%= f.label :image, class: "block text-gray-700 text-base font-light mb-2" %>
-  <%= f.file_field :image %>
+    <div class="field">
+      <%= f.text_area :content, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+    </div>
 
-  <%= f.label :tag, class: "block text-gray-700 text-base font-light mb-2" %>
-  <%= f.text_field :tag_names, value: @tags, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+    <%= f.label :image, class: "block text-gray-700 text-base font-light mb-2" %>
+    <%= f.file_field :image %>
+
+    <%= f.label :tag, class: "block text-gray-700 text-base font-light mb-2" %>
+    <%= f.text_field :tag_names, value: @tags, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+
+  <h2>材料</h2>
+    <%= f.number_field :serve %>食分
+
+    <%= f.fields_for :ingredients do |ingf| %>
+      材料名
+      <%= ingf.text_field :name %>
+      量
+      <%= ingf.number_field :amount %>
+    <% end %>
 
   <div class="field">
     <%= f.label :protein, class: "block text-gray-700 text-base font-light mb-2" %>

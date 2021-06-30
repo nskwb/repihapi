@@ -8,6 +8,8 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
   has_many :notifications, dependent: :destroy
 
+  accepts_nested_attributes_for :ingredients, allow_destroy: true
+
   default_scope -> { order(created_at: :desc) }
 
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: true

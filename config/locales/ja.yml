@@ -13,6 +13,9 @@ ja:
         fat: 脂肪
         carbo: 炭水化物
         calorie: カロリー
+      post/ingredients:
+        name: 材料名
+        amount: 量
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

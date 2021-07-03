@@ -17,7 +17,7 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :image,
             file_size: { less_than: 5.megabytes },
-            file_content_type: { allow: %w[image/jpg image/jpeg image/png], }
+            file_content_type: { allow: %w[image/jpg image/jpeg image/png] }
   validates :protein, presence: true
   validates :fat, presence: true
   validates :carbo, presence: true
@@ -54,7 +54,7 @@ class Post < ApplicationRecord
   def create_favorite_notification(current_user)
     temp =
       Notification.where(
-        ['visitor_id = ? and visited_id = ? and post_id = ? and action = ?', current_user.id, user_id, id, 'favorite'],
+        ['visitor_id = ? and visited_id = ? and post_id = ? and action = ?', current_user.id, user_id, id, 'favorite']
       )
     if temp.blank?
       notification = current_user.active_notifications.build(post_id: id, visited_id: user_id, action: 'favorite')
@@ -84,7 +84,7 @@ class Post < ApplicationRecord
         post_id: id,
         comment_id: comment_id,
         visited_id: visited_id,
-        action: 'comment',
+        action: 'comment'
       )
 
     notification.checked = true if notification.visitor_id == notification.visited_id

@@ -1,18 +1,30 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :validatable,
+         :confirmable,
+         :omniauthable,
+         omniauth_providers: [:google_oauth2]
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :image, file_size: { less_than: 5.megabytes },
-                    file_content_type: { allow: ['image/jpg', 'image/jpeg', 'image/png'] }
+  validates :image,
+            file_size: {
+              less_than: 5.megabytes,
+            },
+            file_content_type: {
+              allow: %w[image/jpg image/jpeg image/png],
+            }
 
   has_many :posts, dependent: :destroy
 
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
-
   has_many :comments, dependent: :destroy
+  has_many :meal_records, dependent: :destroy
+  has_many :recorded_posts, through: :meal_records, source: :post
 
   has_many :active_relationships, class_name: 'Relationship', foreign_key: :following_id, dependent: :destroy
   has_many :follows, through: :active_relationships, source: :follower
@@ -39,10 +51,7 @@ class User < ApplicationRecord
   end
 
   def create_follow_notification(current_user)
-    notification = current_user.active_notifications.build(
-      visited_id: id,
-      action: 'follow'
-    )
+    notification = current_user.active_notifications.build(visited_id: id, action: 'follow')
     notification.save if notification.valid?
   end
 

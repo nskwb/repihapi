@@ -26,6 +26,10 @@ class UsersController < ApplicationController
     @favorite_posts = user.favorite_posts
   end
 
+  def meal_records
+    @meal_records = current_user.recorded_posts
+  end
+
   def search
     @users = @q.result.page(params[:page]).per(10)
   end

@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   accepts_nested_attributes_for :ingredients, allow_destroy: true
+  accepts_nested_attributes_for :recipes, allow_destroy: true
 
   default_scope -> { order(created_at: :desc) }
 

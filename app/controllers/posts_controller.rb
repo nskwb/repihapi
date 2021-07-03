@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   def new
     @post = current_user.posts.build
     @ingredient = @post.ingredients.build
+    @recipe = @post.recipes.build
   end
 
   def create
@@ -32,6 +33,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+
     # フォームのタグの部分に初期値として代入する
     @tags = @post.tags.pluck(:name).join(',')
   end
@@ -72,7 +74,8 @@ class PostsController < ApplicationController
         :fat,
         :carbo,
         :calorie,
-        ingredients_attributes: %i[id name amount post_id _destroy]
+        ingredients_attributes: %i[id name amount post_id _destroy],
+        recipes_attributes: %i[id content post_id _destroy]
       )
   end
 

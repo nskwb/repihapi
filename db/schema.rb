@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_30_063413) do
+ActiveRecord::Schema.define(version: 2021_07_03_065445) do
 
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content", null: false
@@ -80,6 +80,14 @@ ActiveRecord::Schema.define(version: 2021_06_30_063413) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "recipes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_recipes_on_post_id"
+  end
+
   create_table "relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "following_id"
     t.integer "follower_id"
@@ -122,4 +130,5 @@ ActiveRecord::Schema.define(version: 2021_06_30_063413) do
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "users"
+  add_foreign_key "recipes", "posts"
 end

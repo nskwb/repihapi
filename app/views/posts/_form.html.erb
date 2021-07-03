@@ -28,6 +28,14 @@
       <%= link_to_add_association '追加', f, :ingredients, data: { association_insertion_method: 'before'} %>
     </div>
   </div>
+  <div id="recipes">
+    <%= f.fields_for :recipes do |form| %>
+      <%= render 'recipe_fields', f: form %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association '追加', f, :recipes, data: { association_insertion_method: 'before'} %>
+    </div>
+  </div>
 
   <div class="field">
     <%= f.label :protein, class: "block text-gray-700 text-base font-light mb-2" %>

@@ -11,16 +11,16 @@ gem 'sass-rails', '>= 6'
 gem 'tailwindcss-rails'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
-
 gem 'dotenv-rails'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
-
 gem 'devise'
 gem 'devise-i18n'
 gem 'faker'
 gem 'kaminari'
 gem 'ransack'
+gem 'cocoon'
+gem "simple_calendar", "~> 2.4"
 
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
@@ -28,8 +28,6 @@ gem 'omniauth-rails_csrf_protection'
 gem 'carrierwave'
 gem 'file_validators'
 gem 'mini_magick'
-
-gem 'cocoon'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

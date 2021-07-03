@@ -1,17 +1,18 @@
 投稿の詳細ページ
-  <span class=""><%= @post.name %></span>
-  <span class=""><%= @post.user.name %></span>
-  <span class=""><%= @post.content %></span>
-  <span class=""><%= @post.protein %>グラム</span>
-  <span class=""><%= @post.fat %>グラム</span>
-  <span class=""><%= @post.carbo %>グラム</span>
-  <span class=""><%= @post.calorie %>グラム</span>
+  <p class=""><%= @post.name %></p>
+  <p class=""><%= @post.user.name %></p>
+  <p class="">説明：<%= @post.content %></p>
+  <p class="">タンパク質：<%= @post.protein %>グラム</p>
+  <p class="">脂肪：<%= @post.fat %>グラム</p>
+  <p class="">炭水化物：<%= @post.carbo %>グラム</p>
+  <p class="">カロリー：<%= @post.calorie %>グラム</p>
   <% @post.tags.each do |tag| %>
     <%= tag.name %>
   <% end %>
   <% if @post.image? %>
     <%= image_tag @post.image.url %>
   <% end %>
+  <%= render 'show_ingredients', post: @post %>
   <% if user_signed_in? && @post.user != current_user %>
     <% if @post.favorited_by?(current_user) %>
       <%= link_to "お気に入り解除", post_favorites_path(@post.id), method: :delete %>

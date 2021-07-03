@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2021_06_30_063413) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_tags_on_tag_name"
+    t.index ["name"], name: "index_tags_on_name"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

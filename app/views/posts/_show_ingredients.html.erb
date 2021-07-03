@@ -1,0 +1,10 @@
+<h2>材料</h2>
+<%= post.serve%>食分
+<ul>
+  <% post.ingredients.each do |ingredient| %>
+    <li>
+      <span><%= ingredient.name %></span>
+      <span><%= ingredient.amount %></span>
+    </li>
+  <% end %>
+</ul>

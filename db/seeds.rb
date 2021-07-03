@@ -18,6 +18,7 @@ users = User.order(:created_at).take(3)
   users.each do |user|
     user.posts.create!(name: "#{user.id} #{n+1}回目の投稿",
                       content: "#{n+1}回目の投稿のコンテンツ",
+                      serve: 2,
                       protein: 100,
                       fat: 200,
                       carbo: 300,

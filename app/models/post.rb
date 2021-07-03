@@ -18,6 +18,7 @@ class Post < ApplicationRecord
   validates :image,
             file_size: { less_than: 5.megabytes },
             file_content_type: { allow: %w[image/jpg image/jpeg image/png] }
+  validates :serve, presence: true
   validates :protein, presence: true
   validates :fat, presence: true
   validates :carbo, presence: true

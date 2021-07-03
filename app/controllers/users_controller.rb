@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def meal_records
-    @meal_records = current_user.recorded_posts
+    @meal_records = current_user.meal_records
   end
 
   def search

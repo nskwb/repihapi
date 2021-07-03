@@ -12,10 +12,10 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :image,
             file_size: {
-              less_than: 5.megabytes,
+              less_than: 5.megabytes
             },
             file_content_type: {
-              allow: %w[image/jpg image/jpeg image/png],
+              allow: %w[image/jpg image/jpeg image/png]
             }
 
   has_many :posts, dependent: :destroy

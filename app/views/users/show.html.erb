@@ -26,6 +26,7 @@
       <% end %>
     <% end %>
     <% if current_user == @user %>
+      <%= link_to '食事記録', meal_records_user_path(current_user), class: "py-2 px-4 hover:text-gray-900" %>
       <p class="inline-block justify-center  text-yellow-500 bg-white border border-yellow-500 hover:text-white hover:bg-yellow-500 font-base px-4 py-2 mt-4 rounded text-base">
         <%= link_to 'ユーザー情報編集', edit_user_registration_path %>
       </p>

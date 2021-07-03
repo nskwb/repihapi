@@ -61,15 +61,19 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name,
-                                 :content,
-                                 :image,
-                                 :serve,
-                                 :protein,
-                                 :fat,
-                                 :carbo,
-                                 :calorie,
-                                 ingredients_attributes: %i[id name amount post_id])
+    params
+      .require(:post)
+      .permit(
+        :name,
+        :content,
+        :image,
+        :serve,
+        :protein,
+        :fat,
+        :carbo,
+        :calorie,
+        ingredients_attributes: %i[id name amount post_id _destroy]
+      )
   end
 
   def correct_user

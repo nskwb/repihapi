@@ -20,12 +20,14 @@
   <h2>材料</h2>
     <%= f.number_field :serve %>食分
 
+  <div id="ingredients">
     <%= f.fields_for :ingredients do |ingf| %>
-      材料名
-      <%= ingf.text_field :name %>
-      量
-      <%= ingf.number_field :amount %>
+      <%= render 'ingredient_fields', f: ingf %>
     <% end %>
+    <div class="links">
+      <%= link_to_add_association '追加', f, :ingredients, data: { association_insertion_method: 'before'} %>
+    </div>
+  </div>
 
   <div class="field">
     <%= f.label :protein, class: "block text-gray-700 text-base font-light mb-2" %>

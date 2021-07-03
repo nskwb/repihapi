@@ -9,7 +9,7 @@ import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "../css/tailwindcss.css";
 import "stylesheets/application";
-import "jquery";
+require("jquery");
 import "@nathanvda/cocoon";
 
 Rails.start();

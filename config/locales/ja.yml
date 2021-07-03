@@ -17,6 +17,8 @@ ja:
       post/ingredients:
         name: 材料名
         amount: 量
+      post/recipes:
+        content: 説明文
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

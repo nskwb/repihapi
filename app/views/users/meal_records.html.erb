@@ -1,6 +1,10 @@
 <%= month_calendar events: @meal_records do |date, events| %>
 	<%= date.day %>
 	<% events.each do |event| %>
-		  <%= link_to event.post_name, post_path(event.post_id) %>
+    <ul>
+      <li class="text-center">
+  		  <%= link_to event.post_name, post_path(event.post_id) %>
+      </li>
+    </ul>
 	<% end %>
 <% end %>

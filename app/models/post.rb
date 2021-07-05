@@ -17,14 +17,14 @@ class Post < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
   validates :content, presence: true, length: { maximum: 200 }
   validates :user_id, presence: true
-  validates :image,
+  validates :image, presence:true,
             file_size: { less_than: 5.megabytes },
             file_content_type: { allow: %w[image/jpg image/jpeg image/png] }
-  validates :serve, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :serve, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :protein, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :fat, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :carbo, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :calorie, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :calorie, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   mount_uploader :image, ImageUploader
 

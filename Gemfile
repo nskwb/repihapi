@@ -18,6 +18,7 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 gem 'sass-rails', '>= 6'
 gem 'simple_calendar', '~> 2.4'
+gem 'spring'
 gem 'tailwindcss-rails'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
@@ -38,7 +39,6 @@ end
 group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
-  gem 'spring'
   gem 'spring-commands-rspec'
   gem 'web-console', '>= 4.1.0'
 end

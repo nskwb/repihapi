@@ -7,7 +7,7 @@ RSpec.describe Post, type: :model do
   end
 
   describe 'バリデーション' do
-    it '名前・説明文・画像・タンパク質・脂肪・炭水化物・カロリー・分量・ユーザーidがある場合、有効である' do
+    it '名前・説明文・画像・タンパク質・脂肪・炭水化物・カロリー・分量・user_idがある場合、有効である' do
       expect(@post).to be_valid
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Post, type: :model do
       end
 
       it '重複した名前がある場合、無効である' do
-        create(:post, name: "test")
+        create(:post, name: 'test')
         @another_post = build(:post, name: 'test')
         @another_post.valid?
         expect(@another_post.errors[:name]).to include('はすでに存在します')

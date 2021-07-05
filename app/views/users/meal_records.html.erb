@@ -1,10 +1,15 @@
 <%= month_calendar events: @meal_records do |date, events| %>
 	<%= date.day %>
-	<% events.each do |event| %>
+	<% events.each_with_index do |event, i| %>
     <ul>
       <li class="text-center">
-  		  <%= link_to event.post_name, post_path(event.post_id) %>
+        <%= link_to @posts[i].name, post_path(event.post_id) %>
+        <%# event.post_nameを@posts[event.index_number]にできれば勝ち%>
       </li>
     </ul>
 	<% end %>
+  <%# events.eachのブロックに一つずつeventがわたされる。eventのstart_time属性の日付で、どの日にちに入るかをgem側で判断していると予想%>
 <% end %>
+
+<%= @sum_protein %>
+<%= @average_protein %>

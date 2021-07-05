@@ -28,6 +28,37 @@ class UsersController < ApplicationController
 
   def meal_records
     @meal_records = current_user.meal_records
+    # for文バージョン-------------------------
+    # for i in @meal_records.count do
+    #   meal_record = @meal_records[i]
+    #   posts[i] = Post.find(meal_record.post_id)
+
+    #   sum_protein += posts[i].protein
+    #   sum_fat += posts[i].fat
+    #   sum_carbo += posts[i].carbo
+    #   sum_calorie += posts[i].calorie
+    # end
+    # each文バージョン-------------------------
+    @posts = []
+    counts = @meal_records.count
+    @sum_protein = 0
+    sum_fat = 0
+    sum_carbo = 0
+    sum_calorie = 0
+
+    @meal_records.each_with_index do |meal_record, i|
+      @posts[i] = Post.find(meal_record.post_id)
+
+      @sum_protein += @posts[i].protein
+      sum_fat += @posts[i].fat
+      sum_carbo += @posts[i].carbo
+      sum_calorie += @posts[i].calorie
+    end
+    #----------------------------------
+    @average_protein = (@sum_protein / counts).round
+    @average_fat = (sum_fat / counts).round
+    @average_carbo = (sum_carbo / counts).round
+    @average_calorie = (sum_calorie / counts).round
   end
 
   def search

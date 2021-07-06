@@ -5,7 +5,7 @@ RSpec.describe Tag, type: :model do
     @tag = build(:tag)
   end
 
-  describe "バリデーション" do
+  describe 'バリデーション' do
     it '名前がない場合、無効である' do
       @tag.name = nil
       @tag.valid?
@@ -22,5 +22,4 @@ RSpec.describe Tag, type: :model do
       expect(@tag.errors[:name]).to include('は10文字以内で入力してください')
     end
   end
-
 end

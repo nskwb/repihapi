@@ -7,7 +7,7 @@ RSpec.describe Ingredient, type: :model do
   end
 
   describe 'バリデーション' do
-    it '名前・量・post_idがある場合、有効' do
+    it '各属性が正しい値の場合、有効' do
       expect(@ingredient).to be_valid
     end
 

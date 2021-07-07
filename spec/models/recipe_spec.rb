@@ -7,11 +7,11 @@ RSpec.describe Recipe, type: :model do
   end
 
   describe 'バリデーション' do
-    it 'すべての属性に値がある場合、有効である' do
+    it '各属性が正しい値の場合、有効である' do
       expect(@recipe).to be_valid
     end
 
-    context '説明文' do
+    describe '説明文' do
       it '説明文がない場合、無効' do
         @recipe.content = nil
         @recipe.valid?

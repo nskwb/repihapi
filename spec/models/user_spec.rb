@@ -6,11 +6,11 @@ RSpec.describe User, type: :model do
   end
 
   describe 'バリデーション' do
-    it '名前・メールアドレス・パスワード・確認用パスワードがある場合、有効である' do
+    it '各属性が正しい値の場合、有効である' do
       expect(@user).to be_valid
     end
 
-    context 'ユーザー名' do
+    describe '名前' do
       it '名前がない場合、無効である' do
         @user.name = nil
         @user.valid?
@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'メールアドレス' do
+    describe 'メールアドレス' do
       it 'メールアドレスがない場合、無効である' do
         @user.email = nil
         expect(@user).to be_invalid
@@ -44,7 +44,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'パスワード' do
+    describe 'パスワード' do
       it 'パスワードがない場合、無効である' do
         @user.password = nil
         @user.valid?
@@ -70,7 +70,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context '画像' do
+    describe '画像' do
       it '画像がなくても有効である' do
         @user.image = nil
         expect(@user).to be_valid

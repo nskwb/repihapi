@@ -7,8 +7,8 @@ RSpec.describe MealRecord, type: :model do
     @meal_record = build(:meal_record, user_id: @user.id, post_id: @post.id)
   end
 
-  describe "バリデーション" do
-    it 'すべての属性に値がある場合、無効である' do
+  describe 'バリデーション' do
+    it '各属性が正しい値の場合、有効である' do
       expect(@meal_record).to be_valid
     end
 
@@ -18,5 +18,4 @@ RSpec.describe MealRecord, type: :model do
       expect(@meal_record.errors[:start_time]).to include('を入力してください')
     end
   end
-
 end

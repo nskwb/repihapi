@@ -7,11 +7,11 @@ RSpec.describe Post, type: :model do
   end
 
   describe 'バリデーション' do
-    it '名前・説明文・画像・タンパク質・脂肪・炭水化物・カロリー・分量・user_idがある場合、有効である' do
+    it '各属性が正しい値の場合、有効である' do
       expect(@post).to be_valid
     end
 
-    context '名前' do
+    describe '名前' do
       it '名前がない場合、無効である' do
         @post.name = nil
         @post.valid?
@@ -37,7 +37,7 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    context '説明文' do
+    describe '説明文' do
       it '説明文がない場合、無効である' do
         @post.content = nil
         @post.valid?
@@ -56,7 +56,7 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    context 'タンパク質' do
+    describe 'タンパク質' do
       it 'タンパク質がない場合、無効である' do
         @post.protein = nil
         @post.valid?
@@ -80,7 +80,7 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    context '脂肪' do
+    describe '脂肪' do
       it '脂肪がない場合、無効である' do
         @post.fat = nil
         @post.valid?
@@ -104,7 +104,7 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    context '炭水化物' do
+    describe '炭水化物' do
       it '炭水化物がない場合、無効である' do
         @post.carbo = nil
         @post.valid?
@@ -128,7 +128,7 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    context 'カロリー' do
+    describe 'カロリー' do
       it 'カロリーがない場合、無効である' do
         @post.calorie = nil
         @post.valid?
@@ -158,7 +158,7 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    context '分量' do
+    describe '分量' do
       it '分量がない場合、無効である' do
         @post.serve = nil
         @post.valid?
@@ -182,7 +182,7 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    context 'ユーザーid' do
+    describe 'ユーザーid' do
       it 'ユーザーidがない場合、無効である' do
         @post.user_id = nil
         @post.valid?
@@ -190,7 +190,7 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    context '画像' do
+    describe '画像' do
       it '画像がない場合、無効である' do
         @post.image = nil
         @post.valid?

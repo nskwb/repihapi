@@ -6,10 +6,10 @@ RSpec.describe 'Users', type: :request do
       @user = build(:user, confirmed_at: nil)
     end
 
-    describe '新規登録' do
+    describe '新規' do
       it 'リクエストが成功すること' do
         get new_user_registration_path
-        expect(response.status).to eq 200
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -21,7 +21,7 @@ RSpec.describe 'Users', type: :request do
       context 'パラメータが妥当な場合' do
         it 'リクエストが成功すること' do
           post user_registration_path, params: { user: attributes_for(:user) }
-          expect(response.status).to eq 302
+          expect(response).to have_http_status(302)
         end
 
         it '認証メールが送信されること' do
@@ -44,7 +44,7 @@ RSpec.describe 'Users', type: :request do
       context 'パラメータが不正な場合' do
         it 'リクエストが成功すること' do
           post user_registration_path, params: { user: attributes_for(:user, name: '') }
-          expect(response.status).to eq 200
+          expect(response).to have_http_status(200)
         end
 
         it '認証メールが送信されないこと' do
@@ -103,7 +103,7 @@ RSpec.describe 'Users', type: :request do
       end
 
       context 'ユーザーが存在しない場合' do
-        subject { -> { get user_url 999 } }
+        subject { -> { get user_path 999 } }
 
         it { is_expected.to raise_error ActiveRecord::RecordNotFound }
       end
@@ -112,7 +112,7 @@ RSpec.describe 'Users', type: :request do
     describe '編集' do
       it 'リクエストが成功すること' do
         get edit_user_registration_path @user
-        expect(response.status).to eq 200
+        expect(response).to have_http_status(200)
       end
 
       it 'ユーザーの情報が表示されていること' do
@@ -126,7 +126,7 @@ RSpec.describe 'Users', type: :request do
       context 'パラメータが妥当な場合' do
         it 'リクエストが成功すること' do
           put user_registration_path, params: { user: attributes_for(:user, name: 'updated_test_user') }
-          expect(response.status).to eq 302
+          expect(response).to have_http_status(302)
         end
 
         it 'ユーザー名が更新されること' do
@@ -144,7 +144,7 @@ RSpec.describe 'Users', type: :request do
       context 'パラメータが不正な場合' do
         it 'リクエストが成功すること' do
           put user_registration_path, params: { user: attributes_for(:user, name: '') }
-          expect(response.status).to eq 200
+          expect(response).to have_http_status(200)
         end
 
         it 'ユーザー名が変更されないこと' do
@@ -158,7 +158,7 @@ RSpec.describe 'Users', type: :request do
     describe '削除' do
       it 'リクエストが成功すること' do
         delete user_registration_path
-        expect(response.status).to eq 302
+        expect(response).to have_http_status(302)
       end
 
       it 'ユーザーが削除されること' do

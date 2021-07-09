@@ -15,9 +15,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    tag_list = params[:post][:tag_names].split(',')
+    tag_list = params[:post][:tag_names].split(',') if params[:post][:tag_names].present?
     if @post.save
-      @post.save_tags(tag_list)
+      @post.save_tags(tag_list) if tag_list.present?
       flash[:success] = '投稿が作成されました'
       redirect_to root_url
     else
@@ -35,14 +35,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     # フォームのタグの部分に初期値として代入する
-    @tags = @post.tags.pluck(:name).join(',')
+    @tags = @post.tags.pluck(:name).join(',') if @post.tags.present?
   end
 
   def update
     @post = Post.find(params[:id])
-    tag_list = params[:post][:tag_names].split(',')
+
+    params[:post][:image] = 'post_default_image.jpeg' if params[:post][:image].blank?
+
+    tag_list = params[:post][:tag_names].split(',') if params[:post][:tag_names].present?
     if @post.update(post_params)
-      @post.save_tags(tag_list)
+      @post.save_tags(tag_list) if tag_list.present?
       flash[:success] = '投稿を更新しました'
       redirect_to post_path
     else
@@ -81,7 +84,7 @@ class PostsController < ApplicationController
 
   def correct_user
     @post = Post.find(params[:id])
-    redirect_to request.referer unless @post.user == current_user
+    redirect_to request.referer || root_path unless @post.user == current_user
   end
 
   def set_query

@@ -189,13 +189,5 @@ RSpec.describe Post, type: :model do
         expect(@post.errors[:user_id]).to include('を入力してください')
       end
     end
-
-    describe '画像' do
-      it '画像がない場合、無効である' do
-        @post.image = nil
-        @post.valid?
-        expect(@post.errors[:image]).to include('を入力してください')
-      end
-    end
   end
 end

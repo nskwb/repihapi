@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   root 'posts#index'
   get 'posts/show'
   devise_for :users,
-              controllers: {
-                confirmations: 'users/confirmations',
-                registrations: 'users/registrations',
-                passwords: 'users/passwords',
-                omniauth_callbacks: 'users/omniauth_callbacks'
-              }
+             controllers: {
+               confirmations: 'users/confirmations',
+               registrations: 'users/registrations',
+               passwords: 'users/passwords',
+               omniauth_callbacks: 'users/omniauth_callbacks'
+             }
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'

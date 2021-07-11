@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
     @meal_records.each_with_index do |meal_record, i|
       @posts[i] = Post.find(meal_record.post_id)
-
+      # = current_user.posts.findでも良いのでは？（どっちみちfindは呼び出されている・・・）
       @sum_protein += @posts[i].protein
       sum_fat += @posts[i].fat
       sum_carbo += @posts[i].carbo

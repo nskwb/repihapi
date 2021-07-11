@@ -21,7 +21,7 @@ class PostsController < ApplicationController
       flash[:success] = '投稿が作成されました'
       redirect_to root_url
     else
-      render 'posts/new'
+      render 'new'
     end
   end
 

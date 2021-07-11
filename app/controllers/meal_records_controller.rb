@@ -11,6 +11,6 @@ class MealRecordsController < ApplicationController
   def destroy
     meal_record = MealRecord.find_by(user_id: current_user.id, post_id: params[:post_id])
     meal_record.destroy
-    redirect_to meal_records_user_path
+    redirect_to meal_records_user_path(current_user)
   end
 end

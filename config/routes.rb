@@ -6,8 +6,6 @@ Rails
     get 'favorites/destroy'
     root 'posts#index'
     get 'posts/show'
-    get 'relationships/create'
-    get 'relationships/destroy'
     devise_for :users,
                controllers: {
                  confirmations: 'users/confirmations',

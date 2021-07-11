@@ -77,7 +77,11 @@ RSpec.describe 'Posts', type: :request do
         context 'パラメータが妥当な場合' do
           it 'リクエストに成功すること' do
             patch post_url @post,
-                           params: { post: attributes_for(:post, name: 'updated_post_name').merge(ingredients_attributes: [attributes_for(:ingredient,post: @post)]).merge(recipes_attributes: [attributes_for(:recipe, post: @post)]) }
+                           params: { post: attributes_for(:post,
+                                                          name: 'updated_post_name').merge(ingredients_attributes: [attributes_for(:ingredient,
+                                                                                                                                   post: @post)]).merge(recipes_attributes: [attributes_for(
+                                                                                                                                     :recipe, post: @post
+                                                                                                                                   )]) }
             expect(response).to have_http_status(302)
           end
 

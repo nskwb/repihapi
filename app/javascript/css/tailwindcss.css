@@ -1,3 +1,21 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
+@layer components {
+  .btn {
+    @apply w-full bg-green-500 font-light py-2 px-4 mt-4 text-white text-lg rounded;
+  }
+
+  .btn:hover {
+    @apply bg-green-700;
+  }
+
+  .devise-form {
+    @apply max-w-md flex flex-col justify-center mx-auto mt-20 pt-6 shadow-xl border border-gray-300;
+  }
+
+  .devise-form-field {
+    @apply block w-full px-3 py-2 border border-gray-300 shadow-sm rounded;
+  }
+}

@@ -1,17 +1,17 @@
-<div class="max-w-md flex flex-col justify-center mx-auto shadow-xl">
-  <div class="w-full mt-10 rounded px-4">
+<div class="devise-form">
+  <div class="w-full rounded px-4">
     <h2 class="text-center text-xl">パスワード再発行</h2>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field my-4">
-        <%= f.label :email, class: "block text-gray-700 text-base font-light mb-2" %>
+        <%= f.label :email, class: "block font-light mb-2" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
       </div>
 
       <div class="actions text-center">
-        <%= f.submit "送信", class: "w-full bg-green-500 hover:bg-green-700 font-light py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline text-white text-lg" %>
+        <%= f.submit "送信", class: "btn" %>
       </div>
     <% end %>
 

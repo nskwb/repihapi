@@ -3,7 +3,7 @@
 
   <h2>基本情報</h2>
     <div class="field my-4">
-      <%= f.label :name, class: "block text-gray-700 text-base font-light mb-2" %>
+      <%= f.label :name, class: "block font-light mb-2" %>
       <%= f.text_field :name, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
     </div>
 
@@ -12,12 +12,12 @@
     </div>
 
     <div>
-      <%= f.label :image, class: "block text-gray-700 text-base font-light mb-2" %>
+      <%= f.label :image, class: "block font-light mb-2" %>
       <%= f.file_field :image%>
       <%= f.hidden_field :image_cache %>
     </div>
 
-    <%= f.label :tag, class: "block text-gray-700 text-base font-light mb-2" %>
+    <%= f.label :tag, class: "block font-light mb-2" %>
     <%= f.text_field :tag_names, value: @tags, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
 
   <h2>材料</h2>
@@ -41,24 +41,24 @@
   </div>
 
   <div class="field">
-    <%= f.label :protein, class: "block text-gray-700 text-base font-light mb-2" %>
+    <%= f.label :protein, class: "block font-light mb-2" %>
     <%= f.number_field :protein, min: 0, step: "0.1", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
   </div>
 
   <div class="field">
-    <%= f.label :fat, class: "block text-gray-700 text-base font-light mb-2" %>
+    <%= f.label :fat, class: "block font-light mb-2" %>
     <%= f.number_field :fat, min: 0, step: "0.1", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
   </div>
 
   <div class="field">
-    <%= f.label :carbo, class: "block text-gray-700 text-base font-light mb-2" %>
+    <%= f.label :carbo, class: "block font-light mb-2" %>
     <%= f.number_field :carbo, min: 0, step: "0.1", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
   </div>
 
   <div class="field">
-    <%= f.label :calorie, class: "block text-gray-700 text-base font-light mb-2" %>
+    <%= f.label :calorie, class: "block font-light mb-2" %>
     <%= f.number_field :calorie, min: 0, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
   </div>
 
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "Post", class: "btn" %>
 <% end %>

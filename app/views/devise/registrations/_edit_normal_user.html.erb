@@ -1,0 +1,29 @@
+<div class="flex justify-center my-4">
+  <%= render 'shared/user_image', user: resource %>
+</div>
+
+<div class="field my-4">
+  <%= f.label :name, class: "block font-light mb-2" %>
+  <%= f.text_field :name, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+</div>
+
+<div class="field my-4">
+  <%= f.label :email %>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+</div>
+
+<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+<div>
+  Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+</div>
+<% end %>
+
+<div class="field my-4">
+  <%= f.label :image, class: "block font-light mb-2" %>
+  <%= f.file_field :image %>
+  <%= f.hidden_field :image_cache %>
+</div>
+
+<div class="actions text-center">
+  <%= f.submit "Update", class: "btn" %>
+</div>

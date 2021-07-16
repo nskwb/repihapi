@@ -1,83 +1,28 @@
-<div class="max-w-md flex flex-col justify-center mx-auto shadow-xl">
-  <div class="w-full mt-10 rounded px-4">
+<div class="devise-form">
+  <div class="w-full rounded px-4">
     <h2 class="text-center text-xl">ユーザー編集</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-
       <%if guest_user? %>
-        <h3 class="bg-red-100 border border-red-400 text-red-700 my-4 px-4 py-3 rounded text-center" >ゲストユーザーは変更・削除ができません</h3>
-
-        <%= render 'shared/user_image', user: resource %>
-
-        <div class="field my-4">
-          <%= f.label :name, class: "block text-gray-700 text-base font-light mb-2" %>
-          <%= f.text_field :name, disabled: true, readonly: true, class: "block w-full px-3 py-2 border border-gray-300 bg-gray-200 shadow-sm rounded" %>
-        </div>
-
-        <div class="field my-4">
-          <%= f.label :email, class: "block text-gray-700 text-base font-light mb-2" %>
-          <%= f.email_field :email, disabled: true, readonly: true, class: "block w-full px-3 py-2 border bg-gray-200 border-gray-300 shadow-sm rounded" %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>
-            Currently waiting confirmation for: <%= resource.unconfirmed_email %>
-          </div>
-        <% end %>
-
-        <div class="field my-4">
-          <%= f.label :image, class: "block text-gray-700 text-base font-light mb-2" %>
-          <%= f.file_field :image, disabled: true %>
-        </div>
-
-        <div class="actions text-center">
-          <%= f.submit "Update", disabled: true, class: "w-full bg-green-500 hover:bg-green-700 font-light py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline text-white text-lg cursor-not-allowed" %>
-        </div>
+        <%= render 'edit_guest_user', f: f %>
       <% else %>
-        <div class="flex justify-center my-4">
-          <%= render 'shared/user_image', user: resource %>
-        </div>
-        <div class="field my-4">
-          <%= f.label :name, class: "block text-gray-700 text-base font-light mb-2" %>
-          <%= f.text_field :name, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-        </div>
-
-        <div class="field my-4">
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>
-            Currently waiting confirmation for: <%= resource.unconfirmed_email %>
-          </div>
-        <% end %>
-
-        <div class="field my-4">
-          <%= f.label :image, class: "block text-gray-700 text-base font-light mb-2" %>
-          <%= f.file_field :image %>
-          <%= f.hidden_field :image_cache %>
-        </div>
-
-        <div class="actions text-center">
-          <%= f.submit "Update", class: "w-full bg-green-500 hover:bg-green-700 font-light py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline text-white text-lg" %>
-        </div>
+        <%= render 'edit_normal_user', f: f %>
       <% end %>
     <% end %>
 
     <%if guest_user? %>
       <p class="mt-6 block">
-        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,disabled: true, class: "text-gray-700 text-base font-light underline hover:text-black cursor-not-allowed" %>
+        <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,disabled: true, class: "font-light underline hover:text-black cursor-not-allowed" %>
       </p>
     <% else %>
       <p class="block mt-6">
-        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "text-gray-700 text-base font-light underline hover:text-black" %>
+        <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: "font-light underline hover:text-black" %>
       </p>
     <% end %>
 
     <div class="mt-10 mb-4">
-      <%= link_to "Back", :back, class:"text-lg font-light rounded" %>
+      <%= link_to "戻る", :back, class:"text-lg font-light rounded" %>
     </div>
   </div>
 </div>

@@ -1,10 +1,23 @@
-<% @users.each do |user| %>
-  <p><span>email: </span><%= link_to user.email, user_path(user.id) %></p>
-    <% if current_user != user %>
-        <% if user.followed_by?(current_user) %>
-            <p><%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete %></p>
-        <% else %>
-            <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post %></p>
-        <% end %>
+<div class="mt-6">
+  <h1 class=" text-center text-xl font-base mb-4 text-gray-700">フォロー中のユーザー</h1>
+
+  <ul class="users grid grid-cols-2 md:grid-cols-4 gap-2">
+    <% @users.each do |user| %>
+      <li class="list-none">
+        <div class="h-64 max-w-xs mx-auto rounded overflow-hidden border border-gray-300 shadow-md p-4">
+          <%= render 'shared/user_image', user: user %>
+          <div class="text-center">
+            <%= link_to user.name, user, class:"block font-light mb-2 text-md text-gray-700" %>
+            <% if current_user != user %>
+              <% if user.followed_by?(current_user) %>
+                <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class:"mx-auto w-1/3 px-4 py-2 rounded border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white mt-3" %>
+              <% else %>
+                <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class:"mx-auto w-1/3 px-4 py-2 rounded border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white mt-3" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </li>
     <% end %>
-<% end %>
+  </ul>
+</div>

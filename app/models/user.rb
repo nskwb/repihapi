@@ -8,7 +8,7 @@ class User < ApplicationRecord
          :omniauthable,
          omniauth_providers: [:google_oauth2]
 
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 15 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :image,
             file_size: {

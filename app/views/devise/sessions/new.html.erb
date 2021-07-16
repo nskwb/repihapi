@@ -1,27 +1,27 @@
-<div class="max-w-md flex flex-col justify-center mx-auto shadow-xl">
-  <div class="w-full mt-10 rounded px-4">
+<div class="devise-form">
+  <div class="w-full rounded px-4">
     <h2 class="text-center text-xl">ログイン</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field my-4">
-        <%= f.label :email, class: "block text-gray-700 text-base font-light mb-2" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+        <%= f.label :email, class: "block font-light mb-2" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "devise-form-field" %>
       </div>
 
       <div class="field my-4">
-        <%= f.label :password, class: "block text-gray-700 text-base font-light mb-2" %>
+        <%= f.label :password, class: "block font-light mb-2" %>
         <%= f.password_field :password, autocomplete: "current-password", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
       </div>
 
       <% if devise_mapping.rememberable? %>
         <div class="field my-4">
           <%= f.check_box :remember_me %>
-          <%= f.label :remember_me, class: "text-gray-700 text-base font-light mb-2" %>
+          <%= f.label :remember_me, class: "font-light mb-2" %>
         </div>
       <% end %>
 
       <div class="actions text-center">
-        <%= f.submit "ログイン", class: "w-full bg-green-500 hover:bg-green-700 font-light py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline text-white text-lg" %>
+        <%= f.submit "ログイン", class: "btn" %>
       </div>
     <% end %>
 

@@ -5,6 +5,7 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+        image: 画像
       post:
         name: 名前
         content: 説明文

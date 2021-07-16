@@ -1,4 +1,4 @@
-User.create!(name: "Nishikawa Mameta",
+User.create!(name: "Nis",
              email: "mametacrypto@gmail.com",
             password: "password",
             confirmed_at: Time.now)

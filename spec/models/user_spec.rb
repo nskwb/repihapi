@@ -17,15 +17,15 @@ RSpec.describe User, type: :model do
         expect(@user.errors[:name]).to include('が入力されていません。')
       end
 
-      it '名前が20文字以下の場合、有効である' do
-        @user.name = 'a' * 20
+      it '名前が15文字以下の場合、有効である' do
+        @user.name = 'a' * 15
         expect(@user).to be_valid
       end
 
-      it '名前が21文字以上の場合、無効である' do
-        @user.name = 'a' * 21
+      it '名前が16文字以上の場合、無効である' do
+        @user.name = 'a' * 16
         expect(@user).to be_invalid
-        expect(@user.errors[:name]).to include('は20文字以下に設定して下さい。')
+        expect(@user.errors[:name]).to include('は15文字以下に設定して下さい。')
       end
     end
 

@@ -11,7 +11,7 @@ import "../css/tailwindcss.css";
 import "stylesheets/application";
 require("jquery");
 import "@nathanvda/cocoon";
-
+import "@fortawesome/fontawesome-free/js/all";
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();

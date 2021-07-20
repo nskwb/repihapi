@@ -22,6 +22,7 @@ gem 'spring'
 gem 'tailwindcss-rails'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
+gem 'font-awesome-sass', '~> 5.15.1'
 
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'

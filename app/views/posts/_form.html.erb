@@ -5,7 +5,7 @@
       <div class="image-info text-center">
         <h2 class="text-center font-bold mb-2">画像（必須）</h2>
         <% if @post.image.blank? %>
-          <%= image_tag 'thumb_default_post_image.jpeg', size: "200x200", class: "mx-auto border border-gray-700 mb-4" %>
+          <%= image_tag 'thumb_default_post_image.jpeg', size: "300x300", class: "mx-auto border border-gray-700 mb-4" %>
         <% else%>
           <%= image_tag @post.image.url, class: "mx-auto border border-gray-700 mb-4" %>
         <% end %>

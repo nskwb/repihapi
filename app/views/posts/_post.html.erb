@@ -1,7 +1,7 @@
 <li class="list-none">
   <div class="h-64 max-w-xs mx-auto rounded overflow-hidden border border-gray-300 shadow-md p-4">
     <% if post.image? %>
-      <%= image_tag post.image.url, class:"mx-auto" %>
+      <%= image_tag post.image.url, size: "150x150", class:"mx-auto" %>
     <% end %>
     <div class="post-info py-4 text-center">
       <%= link_to post.name, post_path(post), class:"block h-8 font-light text-md mb-2 text-gray-700" %>

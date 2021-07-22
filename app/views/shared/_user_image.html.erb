@@ -1,5 +1,5 @@
 <% if user.image? %>
-  <%= image_tag user.image.url, class: "mx-auto" %>
+  <%= image_tag user.image.url, size: "150x150", class: "mx-auto" %>
 <% else %>
-  <%= image_tag 'user_default_image.jpeg', class: "mx-auto" %>
+  <%= image_tag 'user_default_image.jpeg', size: "150x150", class: "mx-auto" %>
 <% end %>

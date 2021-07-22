@@ -8,11 +8,11 @@
   }
 
   .btn {
-    @apply bg-green-500 font-light py-2 px-4 text-white rounded
+    @apply bg-green-500 font-light py-2 px-4 text-white rounded;
   }
 
   .btn-form {
-    @apply w-full mt-4 text-lg
+    @apply w-full mt-4 text-lg;
   }
 
   .btn:hover {
@@ -28,22 +28,30 @@
   }
 
   .errors {
-    @apply bg-red-100 border border-red-400 text-red-700 mt-4 px-4 py-3 rounded
+    @apply bg-red-100 border border-red-400 text-red-700 mt-4 px-4 py-3 rounded;
   }
 
   .flash {
-    @apply border mt-4 px-4 py-3 rounded w-1/2 text-center
+    @apply border mt-4 px-4 py-3 rounded w-1/2 text-center;
   }
 
   .flash-notice {
-    @apply bg-green-100 border-green-400 text-green-700
+    @apply bg-green-100 border-green-400 text-green-700;
   }
 
   .flash-success {
-    @apply bg-green-100 border-green-400 text-green-700
+    @apply bg-green-100 border-green-400 text-green-700;
   }
 
   .flash-alert {
-    @apply bg-red-100 border-red-400 text-red-700
+    @apply bg-red-100 border-red-400 text-red-700;
+  }
+
+  .header-icon {
+    @apply fill-current text-gray-500;
+  }
+
+  .header-icon:hover {
+    @apply text-green-600;
   }
 }

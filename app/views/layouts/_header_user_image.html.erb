@@ -1,0 +1,5 @@
+<% if current_user.image? %>
+  <%= image_tag current_user.image.url, class: "rounded-full h-10 w-10 flex items-center justify-center border border-gray-500 hover:border-green-600" %>
+<% else %>
+  <%= image_tag 'user_default_image.jpeg', class: "rounded-full h-10 w-10 flex items-center justify-center border border-gray-500 hover:border-green-600" %>
+<% end %>

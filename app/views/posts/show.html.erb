@@ -58,7 +58,7 @@
           <%= render 'posts/favorites_info', post: @post %>
         <% end %>
         <%= link_to post_meal_records_path(@post.id), method: :post, data: { confirm: "食事記録に追加しますか？" }, class: "border border-gray-500 rounded px-3 py-2" do %>
-          <i class="far fa-calendar-alt fa-lg"></i>
+          <i class="far fa-calendar-plus fa-lg"></i>
           <span>食事記録に追加<span>
         <% end %>
       <% end %>

@@ -3,6 +3,10 @@
 @tailwind screens;
 
 @layer components {
+  .field_with_errors {
+    @apply contents;
+  }
+
   .btn {
     @apply bg-green-500 font-light py-2 px-4 text-white rounded
   }

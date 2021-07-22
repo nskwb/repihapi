@@ -1,8 +1,9 @@
 <div class="nested-fields">
-  材料名
-  <%= f.text_field :name %>
-  量
-  <%= f.text_field :amount %>
-
-  <%= link_to_remove_association "remove task", f %>
+  <div>
+    <%= f.text_field :name, class: "w-2/3 py-1 border border-gray-300 shadow-sm rounded" %>
+    <%= f.text_field :amount, class: "w-1/6 py-1 border border-gray-300 shadow-sm rounded" %>
+    <%= link_to_remove_association(f) do %>
+      <i class="fas fa-times-circle fa-2x align-middle fill-current text-orange-600"></i>
+    <% end %>
+  </div>
 </div>

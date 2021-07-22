@@ -1,11 +1,14 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
-  purge: {
-    enabled: true,
-    content: ["app/views/**/*.html.erb", "app/javascript/**/*.css"],
-  },
+  purge: {},
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        orange: colors.orange,
+      },
+    },
   },
   variants: {
     extend: {},

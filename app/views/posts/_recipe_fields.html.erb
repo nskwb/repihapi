@@ -1,5 +1,6 @@
-<div class="nested-fields">
-  説明
-  <%= f.text_field :content %>
-  <%= link_to_remove_association "remove task", f %>
+<div class="nested-fields w-full">
+  <%= f.text_field :content, class: "w-5/6 px-3 py-1 border border-gray-300 shadow-sm rounded" %>
+  <%= link_to_remove_association(f) do %>
+    <i class="fas fa-times-circle fa-2x align-middle fill-current text-orange-600"></i>
+  <% end %>
 </div>

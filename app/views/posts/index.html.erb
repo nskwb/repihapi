@@ -1,15 +1,19 @@
 <%= paginate @posts %>
 
 <div class="mt-6">
-  <h2 class="text-center text-xl font-base mb-4 text-gray-700">投稿一覧</h2>
+  <h1 class="text-center text-xl mb-4">投稿一覧</h2>
+  <div class="search-form flex">
     <%= search_form_for @q, url: search_posts_path do |f| %>
-      <%= f.label :name_cont, 'レシピ名' %>
-      <%= f.search_field :name_cont %>
-      <%= f.submit '検索' %>
+      <i class="fas fa-search fa-lg"></i>
+      <%= f.search_field :name_cont, placeholder: "投稿名", class: "mb-3 px-4 py-2 border border-gray-300 shadow-sm rounded" %>
+      <%= f.submit '検索', class: "bg-green-500 font-light py-2 px-4 text-white rounded" %>
     <% end %>
-  <ul class="posts grid grid-cols-2 md:grid-cols-4 gap-2">
-    <%= render @posts %>
-  </ul>
+  </div>
+  <div class="posts">
+    <ul class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <%= render @posts %>
+    </ul>
+  </div>
 </div>
 
 <%= paginate @posts %>

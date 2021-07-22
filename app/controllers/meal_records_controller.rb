@@ -5,6 +5,7 @@ class MealRecordsController < ApplicationController
     start_time = Time.zone.now
     meal_record = current_user.meal_records.build(start_time: start_time, post_id: params[:post_id])
     meal_record.save
+    flash[:success] = '食事記録に追加しました'
     redirect_to posts_path
   end
 

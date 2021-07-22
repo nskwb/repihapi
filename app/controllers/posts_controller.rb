@@ -15,7 +15,6 @@ class PostsController < ApplicationController
 
   def create
     params[:post][:image] = 'thumb_default_post_image.jpeg' if params[:post][:image].blank?
-
     @post = current_user.posts.build(post_params)
     tag_list = params[:post][:tag_names].split(',') if params[:post][:tag_names].present?
     if @post.save

@@ -1,7 +1,9 @@
-<span>
-  <%= link_to comment.user.name, user_path(comment.user) %>
-<span>
-
-<span>
-  コメント内容: <%= comment.content %>
-</span>
+<div class="mt-2">
+  <p class="text-sm font-bold mt-3">
+    <%= link_to comment.user.name, user_path(comment.user) %>
+    <span>さん</span>
+  </p>
+  <p class="mb-3">
+    <%= comment.content %>
+  </p>
+</div>

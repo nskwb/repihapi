@@ -1,0 +1,9 @@
+<h2 class="text-center font-bold my-2">レシピ（必須）</h2>
+<ul class="divide-y divide-gray-400">
+  <% post.recipes.each.with_index(1) do |recipe, i| %>
+    <li class="flex flex-row py-3">
+      <p class="rounded-full h-10 w-10 flex items-center justify-center bg-green-500 text-white"><%= i %></p>
+      <p class="self-center ml-4"><%= recipe.content %></p>
+    </li>
+  <% end %>
+</ul>

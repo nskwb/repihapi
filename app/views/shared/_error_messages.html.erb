@@ -1,6 +1,6 @@
 <% if object.errors.any? %>
   <div id="error_explanation">
-    <ul>
+    <ul class="errors w-1/2 mx-auto">
     <% object.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>

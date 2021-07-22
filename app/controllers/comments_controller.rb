@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
       @post.create_comment_notification(current_user, @comment.id)
       redirect_to post_path(@post)
     else
-      flash.now[:danger] = 'コメントの内容を入力してください'
+      flash.now[:alert] = 'コメントの内容を入力してください'
       render template: 'posts/show'
     end
   end

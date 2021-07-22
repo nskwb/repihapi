@@ -1,0 +1,7 @@
+<div>
+  <% flash.each do |message_type, message| %>
+    <div class="flash flash-<%= message_type %> mx-auto">
+      <p><%= message %></p>
+    </div>
+  <% end %>
+</div>

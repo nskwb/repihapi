@@ -13,11 +13,7 @@
   <body class="text-gray-700 text-base">
     <%= render 'layouts/header' %>
     <div class="container mx-auto mt-6">
-      <% flash.each do |message_type, message| %>
-        <div class="flash-<%= message_type %>">
-          <%= message %>
-        </div>
-      <% end %>
+      <%= render 'layouts/flash_message'%>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>

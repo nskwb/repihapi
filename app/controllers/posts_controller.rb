@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_query, only: %i[index search]
 
   def index
-    @posts = Post.page(params[:page]).per(15)
+    @posts = Post.page(params[:page]).per(16)
   end
 
   def new

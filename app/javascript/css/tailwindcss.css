@@ -31,6 +31,7 @@
     @apply bg-red-100 border border-red-400 text-red-700 mt-4 px-4 py-3 rounded;
   }
 
+  /* フラッシュメッセージ */
   .flash {
     @apply border mt-4 px-4 py-3 rounded w-1/2 text-center;
   }
@@ -47,11 +48,29 @@
     @apply bg-red-100 border-red-400 text-red-700;
   }
 
+  /* ヘッダー */
   .header-icon {
     @apply fill-current text-gray-500;
   }
 
   .header-icon:hover {
     @apply text-green-600;
+  }
+
+  /* ページネーション */
+  .pagination>span {
+    @apply px-3 py-1 border border-gray-300 rounded;
+  }
+
+  .pagination>span:hover {
+    @apply bg-green-100 border-green-400;
+  }
+
+  .pagination>span.current {
+    @apply bg-green-400 text-white;
+  }
+
+  .pagination a {
+    @apply block w-full h-full;
   }
 }

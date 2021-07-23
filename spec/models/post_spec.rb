@@ -18,15 +18,15 @@ RSpec.describe Post, type: :model do
         expect(@post.errors[:name]).to include('を入力してください')
       end
 
-      it '名前が50文字以下の場合、有効である' do
-        @post.name = 'a' * 50
+      it '名前が20文字以下の場合、有効である' do
+        @post.name = 'a' * 20
         expect(@post).to be_valid
       end
 
-      it '名前が51文字以上の場合、無効である' do
-        @post.name = 'a' * 51
+      it '名前が21文字以上の場合、無効である' do
+        @post.name = 'a' * 21
         @post.valid?
-        expect(@post.errors[:name]).to include('は50文字以内で入力してください')
+        expect(@post.errors[:name]).to include('は20文字以内で入力してください')
       end
 
       it '重複した名前がある場合、無効である' do

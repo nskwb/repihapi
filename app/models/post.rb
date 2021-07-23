@@ -14,7 +14,7 @@ class Post < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
-  validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
   validates :content, presence: true, length: { maximum: 200 }
   validates :user_id, presence: true
   validates :image, file_size: { less_than: 5.megabytes },

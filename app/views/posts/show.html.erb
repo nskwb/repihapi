@@ -1,7 +1,7 @@
 <div class="grid grid-cols-2 gap-6">
   <div class="col-span-1">
     <div class="image-info">
-      <% if @post.image.present? %>
+      <% if @post.image? %>
         <%= image_tag @post.image.url, class: "mx-auto border border-gray-700 mb-4" %>
       <% end %>
     </div>

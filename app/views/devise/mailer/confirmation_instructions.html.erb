@@ -1,5 +1,6 @@
-<p>Welcome <%= @email %>!</p>
+<p><%= @resource.name %>様</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>この度は、ご登録いただき誠にありがとうございます。</p>
+<p>以下のURLをクリックして、登録を完了してください。</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'アカウントを有効化する', confirmation_url(@resource, confirmation_token: @token), class: "btn" %></p>

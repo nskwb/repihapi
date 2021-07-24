@@ -17,9 +17,9 @@
 
     <tbody>
       <% date_range.each_slice(7) do |week| %>
-        <tr class="border border-gray-200 h-40 text-center">
+        <tr class="border border-gray-300 h-40 text-center">
           <% week.each do |day| %>
-            <%= content_tag :td, class: [calendar.td_classes_for(day), "border border-gray-200 align-top w-32"] do %>
+            <%= content_tag :td, class: [calendar.td_classes_for(day), "border border-gray-300 align-top w-32"] do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
                 <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
               <% else %>

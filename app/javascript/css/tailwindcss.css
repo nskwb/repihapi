@@ -73,4 +73,12 @@
   .pagination a {
     @apply block w-full h-full;
   }
+
+  .prev-month {
+    @apply bg-gray-200;
+  }
+
+  .next-month {
+    @apply bg-gray-200;
+  }
 }

@@ -27,8 +27,10 @@ class UsersController < ApplicationController
   end
 
   def meal_records
-    @meal_records = current_user.meal_records
-    if @meal_records
+    @start_date = params[:start_date].present? ? Time.zone.parse(params[:start_date]) : Time.zone.now
+    @meal_records = current_user.meal_records.where(created_at: @start_date.all_month)
+
+    if @meal_records.present?
       @posts = []
       counts = @meal_records.count
       @sum_protein = 0
@@ -48,8 +50,7 @@ class UsersController < ApplicationController
       @average_carbo = (sum_carbo / counts).round
       @average_calorie = (sum_calorie / counts).round
     else
-      flash.now[:alert] = '食事記録がありません'
-      redirect_to root_path
+      render 'meal_records'
     end
   end
 

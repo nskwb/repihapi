@@ -81,4 +81,17 @@
   .next-month {
     @apply bg-gray-200;
   }
+
+  /* その他 */
+  .circle {
+    @apply rounded-full h-10 w-10 flex items-center justify-center;
+  }
+
+  .circle-green {
+    @apply bg-green-500 text-white;
+  }
+
+  .divide {
+    @apply divide-y divide-gray-300;
+  }
 }

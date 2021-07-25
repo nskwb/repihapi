@@ -10,8 +10,9 @@ class MealRecordsController < ApplicationController
   end
 
   def destroy
-    meal_record = MealRecord.find_by(user_id: current_user.id, post_id: params[:post_id])
+    meal_record = MealRecord.find_by(user_id: current_user.id, post_id: params[:post_id], start_time: params[:start_time])
     meal_record.destroy
+    flash[:success] = '食事記録を削除しました'
     redirect_to meal_records_user_path(current_user)
   end
 end

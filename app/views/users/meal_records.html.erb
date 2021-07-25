@@ -7,13 +7,42 @@
       </div>
       <ul class="flex flex-col mx-auto mt-4">
         <% events.each_with_index do |event, i| %>
-            <li class="text-center text-xs mb-2 underline hover:text-green-600">
-              <%= link_to @posts[i].name, post_path(event.post_id) %>
+            <li class="text-center text-xs mb-2">
+              <span class="underline hover:text-green-600"><%= link_to @posts[i].name, post_path(event.post_id) %></span>
+              <span class="hover:text-orange-600"><%= link_to '削除', post_meal_records_path(event.post_id, start_time: event.start_time), method: :delete, data: { confirm: "選択した食事記録を削除します。よろしいですか？"} %></span>
             </li>
         <% end %>
       </ul>
     <% end %>
   </div>
-  <%= @sum_protein %>
-  <%= @average_protein %>
+  <div class="flex justify-end mr-4">
+    <div class="nutrition-info w-1/2 mt-6 mr-0">
+      <h2 class="text-center text-xl mb-4"><span><%= @start_date.month %>月</span>の平均値</h2>
+      <h3 class="font-bold text-lg ml-6">■PFCバランス</h3>
+      <div class="">
+        <div class="protein flex justify-between items-center mx-6 py-3 border-b border-gray-300">
+          <div class="flex flex-row items-center">
+            <span class="block text-xl rounded-full h-10 w-10 flex items-center justify-center mr-3 circle-green">P</span>
+            <p class="items-center font-semibold">タンパク質</p>
+          </div>
+          <p class="items-center text-xl font-semibold"><%= @ratio_protein %>％(<%= @average_protein %>グラム)</p>
+        </div>
+        <div class="fat flex justify-between items-center mx-6 py-3 border-b border-gray-300">
+          <div class="flex flex-row items-center">
+            <span class="block text-xl rounded-full h-10 w-10 flex items-center justify-center mr-3 circle-green">F</span>
+            <p class="items-center font-bold">脂肪</p>
+          </div>
+          <p class="items-center text-xl font-semibold"><%= @ratio_fat %>％(<%= @average_fat %>グラム)</p>
+        </div>
+        <div class="carbo flex justify-between items-center mx-6 py-3 border-b border-gray-300">
+          <div class="flex flex-row items-center">
+            <span class="block text-xl rounded-full h-10 w-10 flex items-center justify-center mr-3 circle-green">C</span>
+            <p class="items-center font-bold">炭水化物</p>
+          </div>
+          <p class="items-center text-xl font-semibold"><%= @ratio_carbo %>％(<%= @average_carbo %>グラム)</p>
+        </div>
+      </div>
+      <h3 class="font-bold text-lg mt-3 ml-6">■カロリー</h3>
+      <p class="text-right text-xl font-semibold mx-6"><%= @average_calorie %>kcal</p>
+    </div>
 </div>

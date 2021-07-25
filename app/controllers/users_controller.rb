@@ -30,25 +30,38 @@ class UsersController < ApplicationController
     @start_date = params[:start_date].present? ? Time.zone.parse(params[:start_date]) : Time.zone.now
     @meal_records = current_user.meal_records.where(created_at: @start_date.all_month)
 
+    sum_protein = 0
+    sum_fat = 0
+    sum_carbo = 0
+    sum_calorie = 0
+    @average_protein = 0
+    @average_fat = 0
+    @average_carbo
+    @average_calorie = 0
+    @ratio_protein = 0
+    @ratio_fat = 0
+    @ratio_carbo = 0
+
     if @meal_records.present?
       @posts = []
       counts = @meal_records.count
-      @sum_protein = 0
-      sum_fat = 0
-      sum_carbo = 0
-      sum_calorie = 0
 
       @meal_records.each_with_index do |meal_record, i|
         @posts[i] = Post.find(meal_record.post_id)
-        @sum_protein += @posts[i].protein
+        sum_protein += @posts[i].protein
         sum_fat += @posts[i].fat
         sum_carbo += @posts[i].carbo
         sum_calorie += @posts[i].calorie
       end
-      @average_protein = (@sum_protein / counts).round
+      @average_protein = (sum_protein / counts).round
       @average_fat = (sum_fat / counts).round
       @average_carbo = (sum_carbo / counts).round
       @average_calorie = (sum_calorie / counts).round
+
+      @total = @average_protein + @average_fat + @average_carbo
+      @ratio_protein = (@average_protein / @total.to_f * 100).round
+      @ratio_fat = (@average_fat / @total.to_f * 100).round
+      @ratio_carbo = (@average_carbo / @total.to_f * 100).round
     else
       render 'meal_records'
     end

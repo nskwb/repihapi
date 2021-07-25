@@ -1,3 +1,9 @@
+<% if current_user == @user %>
+  <% provide(:title, 'マイページ') %>
+<% else %>
+  <% provide(:title, "#{@user.name}さん") %>
+<% end %>
+
 <div class="grid grid-cols-4">
   <div class="user-info col-span-1 container mx-auto">
     <div class="user-image justify-items-center mt-6">

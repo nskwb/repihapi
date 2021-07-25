@@ -3,7 +3,7 @@
     <div class="header-left flex">
       <%= link_to 'REPIHAPI', root_path, class: "text-3xl font-medium text-gray-900" %>
     </div>
-    <nav class=" header-right ml-auto flex flex-wrap items-center justify-center my-2">
+    <nav class="header-right ml-auto flex flex-wrap items-center justify-center my-2">
       <% if user_signed_in? %>
         <%= link_to users_path, class: "py-2 px-4" do %>
           <i class="fas fa-users fa-lg header-icon"></i>
@@ -13,16 +13,16 @@
           <i class="far fa-copy fa-lg header-icon"></i>
         <% end %>
 
-        <%= link_to user_path(current_user), class: "py-2 px-4" do %>
-          <%= render 'layouts/header_user_image'%>
-        <% end %>
-
         <%= link_to new_post_path, class: "py-2 px-4 hover:text-gray-900" do%>
           <i class="far fa-edit fa-lg header-icon"></i>
         <% end %>
 
         <%= link_to meal_records_user_path(current_user), class: "py-2 px-4" do %>
           <i class="far fa-calendar-alt fa-lg header-icon"></i>
+        <% end %>
+
+        <%= link_to user_path(current_user), class: "py-2 px-4" do %>
+          <%= render 'layouts/header_user_image'%>
         <% end %>
 
         <%= link_to notifications_path, class: "py-2 px-4" do %>

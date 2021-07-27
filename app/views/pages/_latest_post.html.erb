@@ -1,0 +1,11 @@
+<li class="flex p-3 border-b border-gray-300">
+  <% if latest_post.image? %>
+    <%= image_tag latest_post.image.url, size: "150x150" %>
+  <% end %>
+  <div class="ml-4">
+    <p class="font-bold underline"><%= link_to latest_post.name, post_path(latest_post), class: "hover:text-green-600"%></p>
+    <p class="text-sm h-6"><%= latest_post.content.truncate(20) %></p>
+    <span><i class="fas fa-star fa-lg fill-current text-yellow-500"></i><%= latest_post.favorites.count %></span>
+    <span class="ml-6"><i class="far fa-user mr-2"></i><%= link_to latest_post.user.name, user_path(latest_post.user), class: "hover:text-green-600" %></span>
+  </div>
+</li>

@@ -12,6 +12,7 @@ import "stylesheets/application";
 require("jquery");
 import "@nathanvda/cocoon";
 import "@fortawesome/fontawesome-free/js/all";
+require("./pages/slick");
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();

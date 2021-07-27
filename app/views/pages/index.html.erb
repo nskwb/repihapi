@@ -1,0 +1,63 @@
+<div class="mt-6">
+  <div class="slider regular mx-auto" style="max-width: 1024px">
+    <div class="relative">
+      <%= image_tag 'carousel_image1', class: "object-cover"%>
+      <div class="absolute top-10 right-0">
+        <h1 class="text-6xl text-white text-center font-bold mb-4">REPIHAPI</h1>
+        <p class="text-2xl text-white text-center font-bold px-4">REPIHAPIは「レシピ投稿機能」「カロリー自動計算機能」「食事記録機能」を持つ、健康になりたい人のためのWebアプリケーションです。</p>
+      </div>
+    </div>
+    <div class="relative">
+      <%= image_tag 'carousel_image2'%>
+      <div class="absolute top-10 right-1/2 mr-4">
+        <h1 class="text-4xl text-white font-bold mb-4">レシピ投稿・カロリー自動計算</h1>
+        <p class="text-xl text-white font-bold mb-2">レシピを投稿する際に、たんぱく質・脂肪・炭水化物の量を入力することで、カロリーを自動で計算します。</p>
+        <p class="text-xl text-white font-bold mb-2">また、PFCバランスも同時に算出し、自分の好みのバランスのレシピを探すこともできます。</p>
+      </div>
+    </div>
+    <div class="relative">
+      <%= image_tag 'carousel_image3'%>
+      <div class="absolute top-10 right-1/2 ml-4">
+        <h1  class="text-4xl text-white font-bold mb-4">食事記録機能</h1>
+        <p class="text-xl text-white font-bold mb-2">自分が実際に食べたレシピを記録することができます。</p>
+        <p class="text-xl text-white font-bold mb-2">また、月の平均PFCバランスとカロリーもわかるので、食生活の振り返りに役立ちます。</p>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-4 mt-6">
+    <div class="left col-span-1">
+      <div class="popular-posts">
+        <h2 class="mb-4 text-center font-bold text-xl">人気の投稿</h2>
+        <ul>
+          <% @popular_posts.each do |popular_post| %>
+              <%= render 'popular_post', popular_post: popular_post %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="popular-tags whitespace-normal mt-6">
+        <h2 class="mb-4 text-center font-bold text-xl">人気のタグ</h2>
+        <% @popular_tags.each do |popular_tag| %>
+          <span class="inline-block my-2 p-1 border border-green-600 rounded-full hover:text-white hover:bg-green-600">
+            <i class="fas fa-tag fa-xs fill-current text-gray-500"></i><%= popular_tag.name %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+    <div class="right col-span-1 bg-orange-100">
+      <div class="latest-posts">
+        <h2 class="mb-4 text-center font-bold text-xl">最新の投稿</h2>
+        <ul>
+          <% @latest_posts.each do |latest_post| %>
+              <%= render 'latest_post', latest_post: latest_post %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="calendar">
+        <h2>食事記録</h2>
+        <% if user_signed_in? %>
+        <% else %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

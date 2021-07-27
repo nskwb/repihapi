@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'posts#index'
+  root 'pages#index'
   get 'posts/show'
   devise_for :users,
              controllers: {

@@ -38,3 +38,5 @@ yarn-debug.log*
 
 .env
 coverage
+
+db/mysql_data

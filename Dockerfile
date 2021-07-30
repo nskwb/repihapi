@@ -1,5 +1,7 @@
 FROM ruby:3.0.0
 
+ENV RAILS_ENV=production
+
 RUN apt-get update -qq && \
   apt-get install -y nodejs
 
@@ -16,3 +18,7 @@ COPY . /repihapi
 
 RUN bundle config --local set path 'vendor/bundle' && \
   bundle install
+
+COPY start.sh /start.sh
+RUN chmod 744 /start.sh
+CMD ["sh", "/start.sh"]

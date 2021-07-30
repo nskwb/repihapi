@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'pages#index'
-  get 'posts/show'
   devise_for :users,
              controllers: {
                confirmations: 'users/confirmations',

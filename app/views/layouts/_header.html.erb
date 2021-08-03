@@ -1,7 +1,7 @@
 <header class="border-b border-gray-300">
   <div class="container py-2 mx-auto flex flex-wrap flex-col md:flex-row items-center">
     <div class="header-left flex">
-      <%= link_to 'REPIHAPI', root_path, class: "text-3xl font-medium text-gray-900" %>
+      <%= link_to 'REPIHAPI', root_path,'data-turbolinks': false, class: "text-3xl font-medium text-gray-900" %>
     </div>
     <nav class="header-right ml-auto flex flex-wrap items-center justify-center my-2">
       <% if user_signed_in? %>

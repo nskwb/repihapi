@@ -15,6 +15,7 @@ require("slick.js");
 import "../css/tailwind.css";
 
 const images = require.context("../images/", true);
+const imagePath = (name) => images(name, true);
 
 Rails.start();
 Turbolinks.start();

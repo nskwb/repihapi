@@ -1,6 +1,7 @@
-@tailwind components;
-@tailwind utilities;
-@tailwind screens;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 
 @layer components {
   .field_with_errors {

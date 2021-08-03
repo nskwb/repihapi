@@ -14,6 +14,8 @@ require("slick.js");
 
 import "../css/tailwind.css";
 
+const images = require.context("../images/", true);
+
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();

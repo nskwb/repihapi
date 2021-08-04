@@ -7,12 +7,16 @@ import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
-import "../css/tailwindcss.css";
-import "../stylesheets/application.scss";
+
 require("jquery");
-import "@nathanvda/cocoon";
-import "@fortawesome/fontawesome-free/js/all";
-require("./pages/slick");
+require("@nathanvda/cocoon");
+require("slick.js");
+
+import "../css/tailwind.css";
+
+const images = require.context("../images/", true);
+const imagePath = (name) => images(name, true);
+
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();

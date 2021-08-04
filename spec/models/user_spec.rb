@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before do
-    @user = build(:user)
-  end
+  before { @user = build(:user) }
 
   describe 'バリデーション' do
     it '各属性が正しい値の場合、有効である' do
@@ -14,7 +12,7 @@ RSpec.describe User, type: :model do
       it '名前がない場合、無効である' do
         @user.name = nil
         @user.valid?
-        expect(@user.errors[:name]).to include('が入力されていません。')
+        expect(@user.errors[:name]).to include('を入力してください')
       end
 
       it '名前が15文字以下の場合、有効である' do
@@ -25,7 +23,7 @@ RSpec.describe User, type: :model do
       it '名前が16文字以上の場合、無効である' do
         @user.name = 'a' * 16
         expect(@user).to be_invalid
-        expect(@user.errors[:name]).to include('は15文字以下に設定して下さい。')
+        expect(@user.errors[:name]).to include('は15文字以内で入力してください')
       end
     end
 
@@ -33,14 +31,14 @@ RSpec.describe User, type: :model do
       it 'メールアドレスがない場合、無効である' do
         @user.email = nil
         expect(@user).to be_invalid
-        expect(@user.errors[:email]).to include('が入力されていません。')
+        expect(@user.errors[:email]).to include('を入力してください')
       end
 
       it '重複したメールアドレスがある場合、無効である' do
         create(:user, email: 'test@example.com')
         @another_user = build(:user, email: 'test@example.com')
         @another_user.valid?
-        expect(@another_user.errors[:email]).to include('は既に使用されています。')
+        expect(@another_user.errors[:email]).to include('はすでに存在します')
       end
     end
 
@@ -48,7 +46,7 @@ RSpec.describe User, type: :model do
       it 'パスワードがない場合、無効である' do
         @user.password = nil
         @user.valid?
-        expect(@user.errors[:password]).to include('が入力されていません。')
+        expect(@user.errors[:password]).to include('を入力してください')
       end
 
       it 'パスワードが６文字以上の場合、有効である' do
@@ -60,7 +58,7 @@ RSpec.describe User, type: :model do
       it 'パスワードが5文字以下の場合、無効である' do
         @user.password = 'a' * 5
         @user.valid?
-        expect(@user.errors[:password]).to include('は6文字以上に設定して下さい。')
+        expect(@user.errors[:password]).to include('は6文字以上で入力してください')
       end
 
       it 'パスワードと確認用パスワードの値が違う場合、無効である' do

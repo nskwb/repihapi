@@ -32,7 +32,7 @@ jobs:
       - ruby/install-deps
       - run:
           name: Execute webpack
-          command: bin/webpack
+          command: bundle exec webpack
       - run:
           name: Database setup
           command: bundle exec rails db:migrate

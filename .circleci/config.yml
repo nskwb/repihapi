@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   ruby: circleci/ruby@1.1.4
+  heroku: circleci/heroku@1.2.6
 
 jobs:
   build:
@@ -52,11 +53,26 @@ jobs:
           name: test
           command: bundle exec rspec
 
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git
+        post-steps:
+        - run: heroku run bundle exec rails db:migrate RAILS_ENV=production -a $HEROKU_APP_NAME
+
 workflows:
   version: 2
-  build_and_test:
+  build_and_test_deploy:
     jobs:
       - build
       - test:
           requires:
             - build
+      - heroku/deploy-via-git:
+          requires:
+            - test
+          filters:
+            branches:
+              only: main

@@ -44,7 +44,7 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: Execute webpack
-          command: bundle exec webpack
+          command: bundle exec bin/webpack
       - run:
           name: Database setup
           command: bundle exec rails db:migrate

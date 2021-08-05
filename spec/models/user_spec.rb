@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
       end
 
       it '名前が15文字以下の場合、有効である' do
-        @user.name = 'a' * 200
+        @user.name = 'a' * 15
         expect(@user).to be_valid
       end
 

@@ -70,39 +70,6 @@ RSpec.describe 'Users', type: :request do
       end
     end
 
-    describe '更新' do
-      context 'パラメータが妥当な場合' do
-        it 'リクエストが成功すること' do
-          put user_registration_path, params: { user: attributes_for(:user, name: 'updated_user') }
-          expect(response).to have_http_status(302)
-        end
-
-        it 'ユーザー名が更新されること' do
-          expect do
-            put user_registration_path, params: { user: attributes_for(:user, name: 'updated_user') }
-          end.to change { User.find(@user.id).name }.from('test_user').to('updated_user')
-        end
-
-        it 'リダイレクトすること' do
-          put user_registration_path, params: { user: attributes_for(:user, name: 'updated_user') }
-          expect(response).to redirect_to user_path @user
-        end
-      end
-
-      context 'パラメータが不正な場合' do
-        it 'リクエストが成功すること' do
-          put user_registration_path, params: { user: attributes_for(:user, name: '') }
-          expect(response).to have_http_status(200)
-        end
-
-        it 'ユーザー名が変更されないこと' do
-          expect do
-            put user_registration_path, params: { user: attributes_for(:user, name: '') }
-          end.not_to change(User.find(@user.id), :name)
-        end
-      end
-    end
-
     describe '削除' do
       it 'リクエストが成功すること' do
         delete user_registration_path

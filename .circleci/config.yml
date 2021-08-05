@@ -31,6 +31,9 @@ jobs:
       - checkout
       - ruby/install-deps
       - run:
+          name: Execute bin/webpack
+          command: bundle exec bin/webpack
+      - run:
           name: Database setup
           command: bundle exec rails db:migrate
       - run:

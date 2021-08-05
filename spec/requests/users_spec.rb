@@ -12,58 +12,6 @@ RSpec.describe 'Users', type: :request do
         expect(response).to have_http_status(200)
       end
     end
-
-    describe '作成' do
-      before do
-        ActionMailer::Base.deliveries.clear
-      end
-
-      context 'パラメータが妥当な場合' do
-        it 'リクエストが成功すること' do
-          post user_registration_path, params: { user: attributes_for(:user) }
-          expect(response).to have_http_status(302)
-        end
-
-        it '認証メールが送信されること' do
-          post user_registration_path, params: { user: attributes_for(:user) }
-          expect(ActionMailer::Base.deliveries.size).to eq 1
-        end
-
-        it '作成が成功すること' do
-          expect do
-            post user_registration_path, params: { user: attributes_for(:user) }
-          end.to change(User, :count).by 1
-        end
-
-        it 'ルートにリダイレクトされること' do
-          post user_registration_path, params: { user: attributes_for(:user) }
-          expect(response).to redirect_to root_path
-        end
-      end
-
-      context 'パラメータが不正な場合' do
-        it 'リクエストが成功すること' do
-          post user_registration_path, params: { user: attributes_for(:user, name: '') }
-          expect(response).to have_http_status(200)
-        end
-
-        it '認証メールが送信されないこと' do
-          post user_registration_path, params: { user: attributes_for(:user, name: '') }
-          expect(ActionMailer::Base.deliveries.size).to eq 0
-        end
-
-        it '作成が失敗すること' do
-          expect do
-            post user_registration_path, params: { user: attributes_for(:user, name: '') }
-          end.not_to change(User, :count)
-        end
-
-        it 'エラーが表示されること' do
-          post user_registration_path, params: { user: attributes_for(:user, name: '') }
-          expect(response.body).to include('error_explanation')
-        end
-      end
-    end
   end
 
   describe 'ログイン後' do

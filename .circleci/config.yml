@@ -1,49 +1,15 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@1.1.4
+  ruby: circleci/ruby@0.1.2 
 
 jobs:
   build:
     docker:
-      - image: circleci/ruby:3.0
-    working_directory: ~/repihapi
+      - image: circleci/ruby:2.6.3-stretch-node
+    executor: ruby/default
     steps:
       - checkout
-      - ruby/install-deps
-
-  test:
-    docker:
-      - image: circleci/ruby:3.0
-      - image: circleci/mysql:8.0
-        environment:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: repihapi_test
-          MYSQL_USER: root
-        command: --default-authentication-plugin=mysql_native_password
-    environment:
-      BUNDLE_JOBS: "4"
-      BUNDLE_RETRY: "3"
-      TEST_DB_HOST: "127.0.0.1"
-      RAILS_ENV: test
-    working_directory: ~/repihapi
-    steps:
-      - checkout
-      - ruby/install-deps
       - run:
-          name: Database setup
-          command: bundle exec rails db:migrate
-      - run:
-          name: test
-          command: bundle exec rspec
-
-workflows:
-  version: 2
-  build_test_and_deploy:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - test
+          name: Which bundler?
+          command: bundle -v
+      - ruby/bundle-install

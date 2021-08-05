@@ -16,15 +16,15 @@ jobs:
       - image: circleci/ruby:3.0.0
       - image: circleci/mysql:8.0
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-          MYSQL_ROOT_HOST: "%"
-          MYSQL_DATABASE: repihapi_test
+          - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          - MYSQL_ROOT_HOST: "%"
         command: --default-authentication-plugin=mysql_native_password
     environment:
-      BUNDLE_JOBS: "4"
-      BUNDLE_RETRY: "3"
-      TEST_DB_HOST: "127.0.0.1"
-      RAILS_ENV: test
+      - RAILS_ENV: test
+      - BUNDLE_JOBS: "4"
+      - BUNDLE_RETRY: "3"
+      - TEST_DB_HOST: "127.0.0.1"
+      - TEST_DB_PASSWORD: ""
     working_directory: ~/repihapi
     steps:
       - checkout

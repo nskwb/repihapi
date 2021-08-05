@@ -5,7 +5,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:3.0
+      - image: circleci/ruby:3.0.0-node-browsers
     working_directory: ~/repihapi
     steps:
       - checkout
@@ -13,22 +13,38 @@ jobs:
 
   test:
     docker:
-      - image: circleci/ruby:3.0
+      - image: circleci/ruby:3.0.0-node-browsers
       - image: circleci/mysql:8.0
         environment:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: repihapi_test
-          MYSQL_USER: root
+          - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          - MYSQL_ROOT_HOST: "%"
+          - MYSQL_DATABASE: repihapi_test
         command: --default-authentication-plugin=mysql_native_password
     environment:
-      BUNDLE_JOBS: "4"
-      BUNDLE_RETRY: "3"
-      TEST_DB_HOST: "127.0.0.1"
-      RAILS_ENV: test
+      - RAILS_ENV: test
+      - BUNDLE_JOBS: "4"
+      - BUNDLE_RETRY: "3"
+      - TEST_DB_HOST: "127.0.0.1"
+      - TEST_DB_PASSWORD: ""
     working_directory: ~/repihapi
     steps:
       - checkout
       - ruby/install-deps
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --immutable
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Execute webpack
+          command: bundle exec bin/webpack
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
@@ -38,12 +54,9 @@ jobs:
 
 workflows:
   version: 2
-  build_test_and_deploy:
+  build_and_test:
     jobs:
       - build
       - test:
           requires:
             - build
-      - deploy:
-          requires:
-            - test

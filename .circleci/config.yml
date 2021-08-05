@@ -16,9 +16,9 @@ jobs:
       - image: circleci/ruby:3.0.0
       - image: circleci/mysql:8.0
         environment:
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          MYSQL_ROOT_HOST: "%"
           MYSQL_DATABASE: repihapi_test
-          MYSQL_USER: root
         command: --default-authentication-plugin=mysql_native_password
     environment:
       BUNDLE_JOBS: "4"

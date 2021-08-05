@@ -59,12 +59,11 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git
-        post-steps:
-        - run: heroku run bundle exec rails db:migrate RAILS_ENV=production -a $HEROKU_APP_NAME
+      - run: heroku run bundle exec rails db:migrate RAILS_ENV=production -a $HEROKU_APP_NAME
 
 workflows:
   version: 2
-  build_and_test_deploy:
+  build_test_and_deploy:
     jobs:
       - build
       - test:

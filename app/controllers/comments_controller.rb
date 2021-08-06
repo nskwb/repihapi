@@ -26,7 +26,6 @@ class CommentsController < ApplicationController
       flash.now[:alert] = 'コメントの削除はできません'
       render post_path(@post)
     end
-
   end
 
   private

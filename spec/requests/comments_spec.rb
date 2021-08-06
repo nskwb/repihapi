@@ -41,12 +41,12 @@ RSpec.describe 'Comments', type: :request do
     end
   end
 
-  describe "DELETE /posts/:post_id/comments/:id" do
+  describe 'DELETE /posts/:post_id/comments/:id' do
     before do
       @comment = create(:comment, user: @user, post: @user2_post)
     end
 
-    context "自分のコメントの場合" do
+    context '自分のコメントの場合' do
       it 'リクエストに成功すること' do
         delete post_comment_path(@user2_post, @comment)
         expect(response).to have_http_status(302)

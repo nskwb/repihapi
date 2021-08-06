@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Tags", type: :request do
+RSpec.describe 'Tags', type: :request do
   before do
     @user = create(:user)
     @post = create(:post, name: 'test_post')
@@ -14,8 +14,8 @@ RSpec.describe "Tags", type: :request do
     sign_in @user
   end
 
-  describe "GET /tags" do
-    it "リクエストに成功する" do
+  describe 'GET /tags' do
+    it 'リクエストに成功する' do
       get tags_path
       expect(response).to have_http_status(200)
     end
@@ -27,8 +27,8 @@ RSpec.describe "Tags", type: :request do
     end
   end
 
-  describe "GET /tags/:id" do
-    context "タグが存在する場合" do
+  describe 'GET /tags/:id' do
+    context 'タグが存在する場合' do
       it 'リクエストが成功すること' do
         get tag_path @tag
         expect(response).to have_http_status(200)
@@ -45,7 +45,7 @@ RSpec.describe "Tags", type: :request do
       end
     end
 
-    context "タグが存在しない場合" do
+    context 'タグが存在しない場合' do
       subject { -> { get tag_path(id: 0) } }
       it { is_expected.to raise_error ActiveRecord::RecordNotFound }
     end

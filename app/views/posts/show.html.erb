@@ -42,8 +42,7 @@
         <p class="block font-bold text-sm mb-2">タグ</p>
         <% @post.tags.each do |tag| %>
           <div class="tag inline-block rounded-full border-yellow-500 mr-2 text-gray-500 hover:text-gray-700 text-base">
-            <i class="fas fa-tag fa-xs fill-current"></i>
-            <span><%= tag.name %></span>
+            <%= link_to "##{tag.name}", tag_path(tag) %>
           </div>
         <% end %>
       </div>

@@ -38,7 +38,9 @@
         <h2 class="mb-4 text-center font-bold text-xl">人気のタグ</h2>
         <% @popular_tags.each do |popular_tag| %>
           <span class="inline-block my-2 px-3 py-1 border border-green-600 rounded-full hover:text-white hover:bg-green-600">
-            <i class="fas fa-tag fa-xs fill-current text-gray-500"></i><%= popular_tag.name %>
+            <%= link_to tag_path(popular_tag) do %>
+              <i class="fas fa-tag fa-xs fill-current text-gray-500"></i><%= popular_tag.name %>
+            <% end %>
           </span>
         <% end %>
       </div>

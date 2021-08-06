@@ -32,6 +32,6 @@ Rails.application.routes.draw do
     collection { get 'search' }
   end
 
+  resources :tags, only: %i[index show]
   resources :notifications, only: :index
-  resources :tags, only: :index
 end

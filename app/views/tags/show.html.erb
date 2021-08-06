@@ -1,0 +1,10 @@
+<% provide(:title, "「#{@tag.name}」が付いた投稿") %>
+<div class="mt-6 my-4">
+  <h1 class="text-center text-xl mb-4">タグ 「<%= @tag.name %>」が付いた投稿</h1>
+  <div class="posts">
+    <ul class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <%= render @posts %>
+    </ul>
+  </div>
+</div>
+<%= paginate @posts %>

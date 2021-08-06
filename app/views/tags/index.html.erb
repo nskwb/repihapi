@@ -1,0 +1,9 @@
+<% provide(:title, 'タグ一覧') %>
+
+<div class="mt-6 my-4">
+  <h1 class="text-center text-xl mb-4">タグ一覧</h1>
+    <div class="tags">
+      <%= render @tags %>
+    </div>
+</div>
+<%= paginate @tags %>

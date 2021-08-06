@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tags/index'
   root 'pages#index'
   devise_for :users,
              controllers: {
@@ -32,4 +33,5 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: :index
+  resources :tags, only: :index
 end

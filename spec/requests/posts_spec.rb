@@ -78,10 +78,7 @@ RSpec.describe 'Posts', type: :request do
           it 'リクエストに成功すること' do
             patch post_url @post,
                            params: { post: attributes_for(:post,
-                                                          name: 'updated_post_name').merge(ingredients_attributes: [attributes_for(:ingredient,
-                                                                                                                                   post: @post)]).merge(recipes_attributes: [attributes_for(
-                                                                                                                                     :recipe, post: @post
-                                                                                                                                   )]) }
+                                                          name: 'updated_post_name').merge(ingredients_attributes: [attributes_for(:ingredient,post: @post)]).merge(recipes_attributes: [attributes_for(:recipe, post: @post)]) }
             expect(response).to have_http_status(302)
           end
 
@@ -169,7 +166,7 @@ RSpec.describe 'Posts', type: :request do
       end
 
       context '投稿が存在しない場合' do
-        subject { -> { get post_path 999 } }
+        subject { -> { get post_path 0 } }
         it { is_expected.to raise_error ActiveRecord::RecordNotFound }
       end
     end

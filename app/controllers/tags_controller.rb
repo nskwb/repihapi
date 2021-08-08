@@ -6,7 +6,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
-    @posts = @tag.posts.page(params[:page]).per(16)
+    @posts = @tag.posts.page(params[:page]).per(12)
   end
 
   def search

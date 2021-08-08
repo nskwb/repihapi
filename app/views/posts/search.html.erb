@@ -1,9 +1,26 @@
 <div class="mt-6">
-  <h1 class="text-center text-xl font-base mb-4 text-gray-700">検索結果</h1>
-  <p class="text-center text-md mb-4 text-gray-700">
-    <%= @q.result.count %>件のレシピが見つかりました
-  </p>
-  <div class="posts">
+  <h1 class="text-center text-xl font-base mb-4 text-gray-700">
+    <% if @searched_word.present? %>
+      <%= @searched_word %>の
+    <% end %>
+    検索結果
+  </h1>
+  <div class="mb-6">
+    <span class="text-center text-md mb-4 text-gray-700 mr-4">
+      <%= @q.result.count %>件の投稿が見つかりました
+    </span>
+    <div class="rounded border border-gray-300 inline-block">
+      <%= search_form_for @q, url: search_posts_path, html: { method: :post } do |f| %>
+        <%= f.hidden_field :name_cont %>
+        <%= f.select( :sorts, { '新着順': 'updated_at desc',
+                                'カロリーの低い順': 'calorie asc',
+                                'カロリーの高い順': 'calorie desc'},
+                              { selected: params[:q][:sorts] },
+                              { onchange: 'this.form.submit()' }) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="posts mb-6">
     <ul class="grid grid-cols-2 md:grid-cols-4 gap-2">
       <%= render @posts %>
     </ul>
@@ -11,5 +28,5 @@
 
   <%= paginate @posts %>
 
-  <%= link_to '戻る', posts_path %>
+  <%= link_to '戻る', posts_path, class: "font-xl mt-4 hover:text-orange-500" %>
 </div>

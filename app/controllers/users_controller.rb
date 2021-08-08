@@ -3,12 +3,12 @@ class UsersController < ApplicationController
   before_action :set_query, only: %i[index search]
 
   def index
-    @users = User.page(params[:page]).per(10)
+    @users = User.page(params[:page]).per(12)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(15)
+    @posts = @user.posts.page(params[:page]).per(9)
   end
 
   def follows

@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
-  before_action :set_query, only: %i[index search]
 
   def index
-    @posts = Post.page(params[:page]).per(16)
+    @q = Post.ransack(params[:q])
+    @posts = Post.page(params[:page]).per(12)
   end
 
   def new
@@ -61,7 +61,15 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = @q.result.page(params[:page]).per(15)
+    if params[:q].present?
+      @q = Post.ransack(params[:q])
+      @posts = @q.result.page(params[:page]).per(12)
+      @searched_word = params[:q][:name_cont]
+    else
+      params[:q] = { sorts: 'id desc' }
+      @q = Post.ransack
+      @posts = Post.page(params[:page]).per(12)
+    end
   end
 
   private
@@ -86,9 +94,5 @@ class PostsController < ApplicationController
   def correct_user
     @post = Post.find(params[:id])
     redirect_to request.referer || root_path unless @post.user == current_user
-  end
-
-  def set_query
-    @q = Post.ransack(params[:q])
   end
 end

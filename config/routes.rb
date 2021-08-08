@@ -29,7 +29,9 @@ Rails.application.routes.draw do
     resource :favorites, only: %i[create destroy]
     resources :comments, only: %i[create destroy]
     resource :meal_records, only: %i[create destroy]
-    collection { get 'search' }
+    collection do
+      match 'search' => 'posts#search', via: %i[get post]
+    end
   end
 
   resources :tags, only: %i[index show] do

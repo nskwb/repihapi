@@ -1,14 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
-  before do
-    @user = create(:user)
-  end
+  before { @user = create(:user) }
 
   describe 'ログイン必須' do
-    before do
-      sign_in @user
-    end
+    before { sign_in @user }
 
     describe 'GET #new' do
       it 'リクエストが成功すること' do
@@ -21,20 +17,35 @@ RSpec.describe 'Posts', type: :request do
       context 'パラメータが妥当な場合' do
         it 'リクエストが成功すること' do
           post posts_url,
-               params: { post: attributes_for(:post).merge(ingredients_attributes: [attributes_for(:ingredient)]).merge(recipes_attributes: [attributes_for(:recipe)]) }
+               params: {
+                 post:
+                   attributes_for(:post)
+                     .merge(ingredients_attributes: [attributes_for(:ingredient)])
+                     .merge(recipes_attributes: [attributes_for(:recipe)]),
+               }
           expect(response).to have_http_status(302)
         end
 
         it '作成が成功すること' do
           expect do
             post posts_url,
-                 params: { post: attributes_for(:post).merge(ingredients_attributes: [attributes_for(:ingredient)]).merge(recipes_attributes: [attributes_for(:recipe)]) }
+                 params: {
+                   post:
+                     attributes_for(:post)
+                       .merge(ingredients_attributes: [attributes_for(:ingredient)])
+                       .merge(recipes_attributes: [attributes_for(:recipe)]),
+                 }
           end.to change(Post, :count).by(1).and change(Ingredient, :count).by(1).and change(Recipe, :count).by(1)
         end
 
         it 'リダイレクトすること' do
           post posts_url,
-               params: { post: attributes_for(:post).merge(ingredients_attributes: [attributes_for(:ingredient)]).merge(recipes_attributes: [attributes_for(:recipe)]) }
+               params: {
+                 post:
+                   attributes_for(:post)
+                     .merge(ingredients_attributes: [attributes_for(:ingredient)])
+                     .merge(recipes_attributes: [attributes_for(:recipe)]),
+               }
           expect(response).to redirect_to root_path
         end
       end
@@ -46,9 +57,7 @@ RSpec.describe 'Posts', type: :request do
         end
 
         it '作成が失敗すること' do
-          expect do
-            post posts_url, params: { post: attributes_for(:post, name: '') }
-          end.not_to change(Post, :count)
+          expect { post posts_url, params: { post: attributes_for(:post, name: '') } }.not_to change(Post, :count)
         end
       end
     end
@@ -77,26 +86,35 @@ RSpec.describe 'Posts', type: :request do
         context 'パラメータが妥当な場合' do
           it 'リクエストに成功すること' do
             patch post_url @post,
-                           params: { post: attributes_for(:post,
-                                                          name: 'updated_post_name').merge(ingredients_attributes: [attributes_for(:ingredient,
-                                                                                                                                   post: @post)]).merge(recipes_attributes: [attributes_for(
-                                                                                                                                     :recipe, post: @post
-                                                                                                                                   )]) }
+                           params: {
+                             post:
+                               attributes_for(:post, name: 'updated_post_name')
+                                 .merge(ingredients_attributes: [attributes_for(:ingredient, post: @post)])
+                                 .merge(recipes_attributes: [attributes_for(:recipe, post: @post)]),
+                           }
             expect(response).to have_http_status(302)
           end
 
           it '投稿名が更新されること' do
             expect do
               patch post_url @post,
-                             params: { post: attributes_for(:post,
-                                                            name: 'updated_post_name').merge(ingredients_attributes: [attributes_for(:ingredient)]).merge(recipes_attributes: [attributes_for(:recipe)]) }
+                             params: {
+                               post:
+                                 attributes_for(:post, name: 'updated_post_name')
+                                   .merge(ingredients_attributes: [attributes_for(:ingredient)])
+                                   .merge(recipes_attributes: [attributes_for(:recipe)]),
+                             }
             end.to change { Post.find(@post.id).name }.from('post_name').to('updated_post_name')
           end
 
           it 'リダイレクトすること' do
             patch post_url @post,
-                           params: { post: attributes_for(:post,
-                                                          name: 'updated_post_name').merge(ingredients_attributes: [attributes_for(:ingredient)]).merge(recipes_attributes: [attributes_for(:recipe)]) }
+                           params: {
+                             post:
+                               attributes_for(:post, name: 'updated_post_name')
+                                 .merge(ingredients_attributes: [attributes_for(:ingredient)])
+                                 .merge(recipes_attributes: [attributes_for(:recipe)]),
+                           }
             expect(response).to redirect_to post_path @post
           end
         end
@@ -108,9 +126,10 @@ RSpec.describe 'Posts', type: :request do
           end
 
           it '投稿名が変更されないこと' do
-            expect do
-              put post_url @post, params: { post: attributes_for(:post, name: '') }
-            end.not_to change(Post.find(@post.id), :name)
+            expect { put post_url @post, params: { post: attributes_for(:post, name: '') } }.not_to change(
+              Post.find(@post.id),
+              :name,
+            )
           end
         end
       end
@@ -122,9 +141,7 @@ RSpec.describe 'Posts', type: :request do
         end
 
         it '投稿が削除されること' do
-          expect do
-            delete post_path @post
-          end.to change(Post, :count).by(-1)
+          expect { delete post_path @post }.to change(Post, :count).by(-1)
         end
 
         it 'リダイレクトすること' do
@@ -136,13 +153,9 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe 'ログインなしでも閲覧可' do
-    before do
-      @post = create(:post, name: 'test_post')
-    end
+    before { @post = create(:post, name: 'test_post') }
     describe 'GET #index' do
-      before do
-        @post2 = create(:post, name: 'test_post2')
-      end
+      before { @post2 = create(:post, name: 'test_post2') }
 
       it 'リクエストが成功すること' do
         get posts_path
@@ -157,6 +170,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     describe 'GET #show' do
+      before { allow(controller).to recieve(:current_user).and_return(@user) }
       context '投稿が存在する場合' do
         it 'リクエストが成功すること' do
           get post_path @post.id

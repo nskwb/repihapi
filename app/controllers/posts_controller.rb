@@ -28,8 +28,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @post.save_browsing_history(current_user)
-    @comment = current_user.comments.build if user_signed_in?
+    if current_user.present?
+      @post.save_browsing_history(current_user)
+      @comment = current_user.comments.build if user_signed_in?
+    end
     @comments = @post.comments
   end
 
@@ -86,7 +88,7 @@ class PostsController < ApplicationController
         :carbo,
         :calorie,
         ingredients_attributes: %i[id name amount post_id _destroy],
-        recipes_attributes: %i[id content post_id _destroy]
+        recipes_attributes: %i[id content post_id _destroy],
       )
   end
 

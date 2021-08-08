@@ -170,7 +170,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     describe 'GET #show' do
-      before { allow(controller).to receive(:current_user).and_return(@user) }
+      before { sign_in @user }
       context '投稿が存在する場合' do
         it 'リクエストが成功すること' do
           get post_path @post.id

@@ -1,0 +1,12 @@
+<% provide(:title, '閲覧履歴') %>
+
+<div class="mt-6">
+  <h1 class="text-center text-xl mb-4">閲覧履歴（直近10件）</h1>
+  <div class="browsing-histories">
+    <ul class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <% @browsing_histories.each do |browsing_history| %>
+        <%= render 'posts/post', post: browsing_history.post %>
+      <% end %>
+    </ul>
+  </div>
+</div>

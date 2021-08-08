@@ -3,12 +3,12 @@
     <div class="header-left flex">
       <%= link_to 'REPIHAPI', root_path,'data-turbolinks': false, class: "text-3xl font-medium text-gray-900" %>
       <% if user_signed_in? %>
-        <%= link_to users_path, class: "ml-4 py-2 px-4" do %>
-          <i class="fas fa-users fa-lg header-icon"></i>
-        <% end %>
-
         <%= link_to posts_path, class: "py-2 px-4" do %>
           <i class="far fa-copy fa-lg header-icon"></i>
+        <% end %>
+
+        <%= link_to users_path, class: "ml-4 py-2 px-4" do %>
+          <i class="fas fa-users fa-lg header-icon"></i>
         <% end %>
 
         <%= link_to tags_path, class: "py-2 px-4" do %>

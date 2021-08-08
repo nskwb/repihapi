@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get :followers
       get :favorites
       get :meal_records
+      get :browsing_histories
     end
 
     collection { get 'search' }

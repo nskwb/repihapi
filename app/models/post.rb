@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  HISTORY_LIMIT = 20
+
   belongs_to :user
 
   has_many :ingredients, dependent: :destroy
@@ -9,6 +11,8 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
   has_many :notifications, dependent: :destroy
   has_many :meal_records, dependent: :destroy
+  has_many :browsing_histories, dependent: :destroy
+
   accepts_nested_attributes_for :ingredients, allow_destroy: true
   accepts_nested_attributes_for :recipes, allow_destroy: true
 
@@ -17,8 +21,13 @@ class Post < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
   validates :content, presence: true, length: { maximum: 200 }
   validates :user_id, presence: true
-  validates :image, file_size: { less_than: 5.megabytes },
-                    file_content_type: { allow: %w[image/jpg image/jpeg image/png] }
+  validates :image,
+            file_size: {
+              less_than: 5.megabytes
+            },
+            file_content_type: {
+              allow: %w[image/jpg image/jpeg image/png]
+            }
   validates :serve, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :protein, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :fat, presence: true, numericality: { greater_than_or_equal_to: 0 }
@@ -76,6 +85,19 @@ class Post < ApplicationRecord
     else
       save_comment_notification(current_user, comment_id, user_id)
     end
+  end
+
+  def save_browsing_history(current_user)
+    new_history = browsing_histories.new
+    new_history.user_id = current_user.id
+    if current_user.browsing_histories.exists?(post_id: id)
+      old_history = current_user.browsing_histories.find_by(post_id: id)
+      old_history.destroy
+    end
+    new_history.save
+
+    histories = current_user.browsing_histories.all
+    histories[0].destroy if histories.count > HISTORY_LIMIT
   end
 
   private

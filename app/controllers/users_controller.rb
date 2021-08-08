@@ -67,6 +67,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def browsing_histories
+    @browsing_histories = current_user.browsing_histories.includes(:post)
+  end
+
   def search
     @users = @q.result.page(params[:page]).per(10)
   end

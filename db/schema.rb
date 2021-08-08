@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_03_094950) do
+ActiveRecord::Schema.define(version: 2021_08_08_092118) do
+
+  create_table "browsing_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "fk_rails_e787dd6688"
+    t.index ["user_id", "post_id"], name: "index_browsing_histories_on_user_id_and_post_id", unique: true
+  end
 
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content", null: false
@@ -134,6 +143,8 @@ ActiveRecord::Schema.define(version: 2021_07_03_094950) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "browsing_histories", "posts"
+  add_foreign_key "browsing_histories", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "ingredients", "posts"

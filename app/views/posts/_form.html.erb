@@ -1,94 +1,96 @@
-<%= form_with(model: @post, local: true) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="grid grid-cols-2 gap-6">
-    <div class="col-span-1">
-      <div class="image-info text-center">
-        <h2 class="text-center font-bold mb-2">画像（必須）</h2>
-        <% if @post.image.blank? %>
-          <%= image_pack_tag 'media/images/thumb_default_post_image.jpeg', size: "300x300", class: "mx-auto border border-gray-700 mb-4" %>
-        <% else%>
-          <%= image_tag @post.image.url, class: "mx-auto border border-gray-700 mb-4" %>
-        <% end %>
-        <%= f.file_field :image %>
-        <%= f.hidden_field :image_cache %>
-      </div>
-      <div class="nutrition-info mt-4 font-bold">
-        <h2 class="text-center font-bold mb-2">栄養素（必須）</h2>
-
-        <ul class="explanation list-inside px-6 text-sm">
-          <li class="font-normal mb-2"><span><i class="fas fa-carrot fill-current text-orange-500 mr-2"></i></span>単位はグラム</li>
-          <li class="font-normal"><span><i class="fas fa-carrot fill-current text-orange-500 mr-2"></i></span>小数第１位まで入力可</li>
-        </ul>
-
-        <div class="field flex flex-row justify-between items-center mb-2 px-6">
-          <%= f.label :タンパク質, class: "block text-sm" %>
-          <%= f.number_field :protein, min: 0, step: "0.1", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-        </div>
-
-        <div class="field flex flex-row justify-between items-center mb-2 px-6">
-          <%= f.label :脂肪, class: "block text-sm" %>
-          <%= f.number_field :fat, min: 0, step: "0.1", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-        </div>
-
-        <div class="field flex flex-row justify-between items-center mb-2 px-6">
-          <%= f.label :炭水化物, class: "block text-sm" %>
-          <%= f.number_field :carbo, min: 0, step: "0.1", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-        </div>
-
-        <div class="field flex flex-row justify-between items-center px-6">
-          <%= f.label :カロリー（自動計算）, class: "block text-sm" %>
-          <%= f.number_field :calorie, min: 0, class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-span-1">
-      <div class="basic-info">
-        <h2 class="text-center font-bold mb-2">基本情報</h2>
-        <div class="field my-4">
-          <%= f.label :名前（必須・50文字以内）, class: "block font-bold text-sm mb-2" %>
-          <%= f.text_field :name, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-        </div>
-
-        <div class="field my-4">
-          <%= f.label :説明（必須・200文字以内）, class: "block font-bold text-sm mb-2"%>
-          <%= f.text_area :content, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-        </div>
-
-        <div class="field my-4">
-          <%= f.label :タグ（カンマ区切り・10文字以内）, class: "block font-bold text-sm mb-2" %>
-          <%= f.text_field :tag_names, value: @tags, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
-        </div>
-      </div>
-
-      <div class="ingredients-info">
-        <h2 class="text-center font-bold my-2">材料</h2>
-        <div class="text-sm font-bold mb-4">
-          <%= f.number_field :serve, min: 1, class: "py-2 border border-gray-300 shadow-sm rounded" %><span class="ml-2">食分（必須）</span>
-        </div>
-        <div id="ingredients">
-          <h3 class="text-sm font-bold mb-2">材料名・数量（必須）</h3>
-          <%= f.fields_for :ingredients do |ingf| %>
-            <%= render 'ingredient_fields', f: ingf %>
+<div class="comment-form">
+  <%= form_with(model: @post, local: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="grid grid-cols-2 gap-6">
+      <div class="col-span-1">
+        <div class="image-info text-center">
+          <h2 class="text-center font-bold mb-2">画像（必須）</h2>
+          <% if @post.image.blank? %>
+            <%= image_pack_tag 'media/images/thumb_default_post_image.jpeg', size: "300x300", class: "mx-auto border border-gray-700 mb-4" %>
+          <% else%>
+            <%= image_tag @post.image.url, class: "mx-auto border border-gray-700 mb-4" %>
           <% end %>
-          <div class="links mt-3">
-            <%= link_to_add_association '追加', f, :ingredients, data: { association_insertion_method: 'before'}, class: "btn" %>
+          <%= f.file_field :image %>
+          <%= f.hidden_field :image_cache %>
+        </div>
+        <div class="nutrition-info mt-4 font-bold">
+          <h2 class="text-center font-bold mb-2">栄養素（必須）</h2>
+
+          <ul class="explanation list-inside px-6 text-sm">
+            <li class="font-normal mb-2"><span><i class="fas fa-carrot fill-current text-orange-500 mr-2"></i></span>単位はグラム</li>
+            <li class="font-normal"><span><i class="fas fa-carrot fill-current text-orange-500 mr-2"></i></span>小数第１位まで入力可</li>
+          </ul>
+
+          <div class="field flex flex-row justify-between items-center mb-2 px-6">
+            <%= f.label :タンパク質, class: "block text-sm" %>
+            <%= f.number_field :protein, min: 0, step: "0.1", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+          </div>
+
+          <div class="field flex flex-row justify-between items-center mb-2 px-6">
+            <%= f.label :脂肪, class: "block text-sm" %>
+            <%= f.number_field :fat, min: 0, step: "0.1", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+          </div>
+
+          <div class="field flex flex-row justify-between items-center mb-2 px-6">
+            <%= f.label :炭水化物, class: "block text-sm" %>
+            <%= f.number_field :carbo, min: 0, step: "0.1", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+          </div>
+
+          <div class="field flex flex-row justify-between items-center px-6">
+            <%= f.label :カロリー（自動計算）, class: "block text-sm" %>
+            <%= f.number_field :calorie, min: 0, class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
           </div>
         </div>
       </div>
 
-      <div class="recipe-info">
-        <h2 class="text-center font-bold mb-2">レシピ（必須）</h2>
-        <div id="recipes">
-          <%= f.fields_for :recipes do |form| %>
-            <%= render 'recipe_fields', f: form %>
-          <% end %>
-          <div class="links mt-3">
-            <%= link_to_add_association '追加', f, :recipes, data: { association_insertion_method: 'before'}, class: "btn" %>
+      <div class="col-span-1">
+        <div class="basic-info">
+          <h2 class="text-center font-bold mb-2">基本情報</h2>
+          <div class="field my-4">
+            <%= f.label :名前（必須・50文字以内）, class: "block font-bold text-sm mb-2" %>
+            <%= f.text_field :name, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+          </div>
+
+          <div class="field my-4">
+            <%= f.label :説明（必須・200文字以内）, class: "block font-bold text-sm mb-2"%>
+            <%= f.text_area :content, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+          </div>
+
+          <div class="field my-4">
+            <%= f.label :タグ（カンマ区切り・10文字以内）, class: "block font-bold text-sm mb-2" %>
+            <%= f.text_field :tag_names, value: @tags, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
           </div>
         </div>
+
+        <div class="ingredients-info">
+          <h2 class="text-center font-bold my-2">材料</h2>
+          <div class="text-sm font-bold mb-4">
+            <%= f.number_field :serve, min: 1, class: "py-2 border border-gray-300 shadow-sm rounded" %><span class="ml-2">食分（必須）</span>
+          </div>
+          <div id="ingredients">
+            <h3 class="text-sm font-bold mb-2">材料名・数量（必須）</h3>
+            <%= f.fields_for :ingredients do |ingf| %>
+              <%= render 'ingredient_fields', f: ingf %>
+            <% end %>
+            <div class="links mt-3">
+              <%= link_to_add_association '追加', f, :ingredients, data: { association_insertion_method: 'before'}, class: "btn" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="recipe-info">
+          <h2 class="text-center font-bold mb-2">レシピ（必須）</h2>
+          <div id="recipes">
+            <%= f.fields_for :recipes do |form| %>
+              <%= render 'recipe_fields', f: form %>
+            <% end %>
+            <div class="links mt-3">
+              <%= link_to_add_association '追加', f, :recipes, data: { association_insertion_method: 'before'}, class: "btn" %>
+            </div>
+          </div>
+        </div>
+        <%= f.submit "投稿", class: "btn btn-form" %>
       </div>
-      <%= f.submit "投稿", class: "btn btn-form" %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

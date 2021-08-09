@@ -3,7 +3,8 @@ class MealRecordsController < ApplicationController
 
   def create
     start_time = Time.zone.now
-    meal_record = current_user.meal_records.build(start_time: start_time, post_id: params[:post_id])
+    meal_record = current_user.meal_records.build(start_time: start_time, post_id: params[:post_id], post_name: params[:post_name],
+                                                  post_protein: params[:post_protein], post_fat: params[:post_fat], post_carbo: params[:post_carbo], post_calorie: params[:post_calorie])
     meal_record.save
     flash[:success] = '食事記録に追加しました'
     redirect_to posts_path
@@ -14,5 +15,19 @@ class MealRecordsController < ApplicationController
     meal_record.destroy
     flash[:success] = '食事記録を削除しました'
     redirect_to meal_records_user_path(current_user)
+  end
+
+  private
+
+  def post_params
+    params
+      .require(:post)
+      .permit(
+        :name,
+        :protein,
+        :fat,
+        :carbo,
+        :calorie
+      )
   end
 end

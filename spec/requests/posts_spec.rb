@@ -21,7 +21,7 @@ RSpec.describe 'Posts', type: :request do
                  post:
                    attributes_for(:post)
                      .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                     .merge(recipes_attributes: [attributes_for(:recipe)]),
+                     .merge(recipes_attributes: [attributes_for(:recipe)])
                }
           expect(response).to have_http_status(302)
         end
@@ -33,7 +33,7 @@ RSpec.describe 'Posts', type: :request do
                    post:
                      attributes_for(:post)
                        .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                       .merge(recipes_attributes: [attributes_for(:recipe)]),
+                       .merge(recipes_attributes: [attributes_for(:recipe)])
                  }
           end.to change(Post, :count).by(1).and change(Ingredient, :count).by(1).and change(Recipe, :count).by(1)
         end
@@ -44,7 +44,7 @@ RSpec.describe 'Posts', type: :request do
                  post:
                    attributes_for(:post)
                      .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                     .merge(recipes_attributes: [attributes_for(:recipe)]),
+                     .merge(recipes_attributes: [attributes_for(:recipe)])
                }
           expect(response).to redirect_to root_path
         end
@@ -90,7 +90,7 @@ RSpec.describe 'Posts', type: :request do
                              post:
                                attributes_for(:post, name: 'updated_post_name')
                                  .merge(ingredients_attributes: [attributes_for(:ingredient, post: @post)])
-                                 .merge(recipes_attributes: [attributes_for(:recipe, post: @post)]),
+                                 .merge(recipes_attributes: [attributes_for(:recipe, post: @post)])
                            }
             expect(response).to have_http_status(302)
           end
@@ -102,7 +102,7 @@ RSpec.describe 'Posts', type: :request do
                                post:
                                  attributes_for(:post, name: 'updated_post_name')
                                    .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                                   .merge(recipes_attributes: [attributes_for(:recipe)]),
+                                   .merge(recipes_attributes: [attributes_for(:recipe)])
                              }
             end.to change { Post.find(@post.id).name }.from('post_name').to('updated_post_name')
           end
@@ -113,7 +113,7 @@ RSpec.describe 'Posts', type: :request do
                              post:
                                attributes_for(:post, name: 'updated_post_name')
                                  .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                                 .merge(recipes_attributes: [attributes_for(:recipe)]),
+                                 .merge(recipes_attributes: [attributes_for(:recipe)])
                            }
             expect(response).to redirect_to post_path @post
           end
@@ -128,7 +128,7 @@ RSpec.describe 'Posts', type: :request do
           it '投稿名が変更されないこと' do
             expect { put post_url @post, params: { post: attributes_for(:post, name: '') } }.not_to change(
               Post.find(@post.id),
-              :name,
+              :name
             )
           end
         end

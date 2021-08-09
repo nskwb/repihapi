@@ -61,4 +61,28 @@ class User < ApplicationRecord
     data = access_token.info
     user = User.where('email = ?', data['email']).first
   end
+
+  def calculate_nutrients(meal_records)
+    # sum_protein = 0
+    # sum_fat = 0
+    # sum_carbo = 0
+    # sum_calorie = 0
+
+    # counts = meal_records.count
+    # meal_records.each do |meal_record|
+    #   sum_protein += meal_record.post_protein
+    #   sum_fat += meal_record.post_fat
+    #   sum_carbo += meal_record.post_carbo
+    #   sum_calorie += meal_record.post_calorie
+    # end
+    # @average_protein = (sum_protein / counts).round
+    # @average_fat = (sum_fat / counts).round
+    # @average_carbo = (sum_carbo / counts).round
+    # @average_calorie = (sum_calorie / counts).round
+
+    # @total = @average_protein + @average_fat + @average_carbo
+    # @ratio_protein = (@average_protein / @total.to_f * 100).round
+    # @ratio_fat = (@average_fat / @total.to_f * 100).round
+    # @ratio_carbo = (@average_carbo / @total.to_f * 100).round
+  end
 end

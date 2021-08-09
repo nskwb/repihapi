@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_092118) do
+ActiveRecord::Schema.define(version: 2021_08_09_061854) do
 
   create_table "browsing_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -54,6 +54,11 @@ ActiveRecord::Schema.define(version: 2021_08_08_092118) do
     t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "post_name"
+    t.float "post_protein"
+    t.float "post_fat"
+    t.float "post_carbo"
+    t.integer "post_calorie"
     t.index ["post_id"], name: "index_meal_records_on_post_id"
     t.index ["user_id"], name: "index_meal_records_on_user_id"
   end

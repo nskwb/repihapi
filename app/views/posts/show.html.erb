@@ -78,11 +78,11 @@
     <% end %>
 
     <% if user_signed_in? %>
-      <%= render 'comments/form', { post: @post, comment: @comment } %>
+      <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
     <% end %>
 
-    <ul class="divide-y divide-gray-400">
-      <%= render @comments %>
-    </ul>
+    <div id="js-comments">
+      <%= render partial: 'comments/index', locals: { comments: @comments, post: @post } %>
+    </div>
   </div>
 </div>

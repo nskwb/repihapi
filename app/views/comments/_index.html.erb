@@ -1,0 +1,22 @@
+<ul class="divide-y divide-gray-400">
+  <% comments.order(created_at: :desc).each do |comment| %>
+    <li id="js-comment-<%= comment.id %>">
+      <div class="mt-2">
+        <p class="text-sm font-bold mt-3">
+          <%= link_to comment.user.name, user_path(comment.user) %>
+          <span>さん</span>
+          <span class="text-gray-400"><%= time_ago_in_words(comment.created_at) %>前</span>
+        </p>
+        <p class="mb-3">
+          <span><%= comment.content %></span>
+          <span>
+            <% if comment.user == current_user %>
+              <%= link_to post_comment_path(post, comment), method: :delete, data: { "turbolinks" => false, confirm: "コメントを削除します。よろしいですか？" } do %>
+                <i class="ml-4 far fa-trash-alt hover:text-orange-400"></i>
+              <% end %>
+            <% end %>
+        </p>
+      </div>
+    </li>
+  <% end %>
+</ul>

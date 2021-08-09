@@ -30,28 +30,19 @@ class UsersController < ApplicationController
     @start_date = params[:start_date].present? ? Time.zone.parse(params[:start_date]) : Time.zone.now
     @meal_records = current_user.meal_records.where(created_at: @start_date.all_month)
 
-    sum_protein = 0
-    sum_fat = 0
-    sum_carbo = 0
-    sum_calorie = 0
-    @average_protein = 0
-    @average_fat = 0
-    @average_carbo
-    @average_calorie = 0
-    @ratio_protein = 0
-    @ratio_fat = 0
-    @ratio_carbo = 0
-
     if @meal_records.present?
-      @posts = []
-      counts = @meal_records.count
+      # current_user.calculate_nutrients(@meal_records)
+      sum_protein = 0
+      sum_fat = 0
+      sum_carbo = 0
+      sum_calorie = 0
 
-      @meal_records.each_with_index do |meal_record, i|
-        @posts[i] = Post.find(meal_record.post_id)
-        sum_protein += @posts[i].protein
-        sum_fat += @posts[i].fat
-        sum_carbo += @posts[i].carbo
-        sum_calorie += @posts[i].calorie
+      counts = @meal_records.count
+      @meal_records.each do |meal_record|
+        sum_protein += meal_record.post_protein
+        sum_fat += meal_record.post_fat
+        sum_carbo += meal_record.post_carbo
+        sum_calorie += meal_record.post_calorie
       end
       @average_protein = (sum_protein / counts).round
       @average_fat = (sum_fat / counts).round

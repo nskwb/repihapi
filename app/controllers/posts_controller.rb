@@ -88,7 +88,7 @@ class PostsController < ApplicationController
         :carbo,
         :calorie,
         ingredients_attributes: %i[id name amount post_id _destroy],
-        recipes_attributes: %i[id content post_id _destroy],
+        recipes_attributes: %i[id content post_id _destroy]
       )
   end
 

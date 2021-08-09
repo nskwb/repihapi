@@ -48,8 +48,10 @@ RSpec.describe 'MealRecords', type: :request do
   describe 'GET /users/:id/meal_records' do
     before do
       @post2 = create(:post, name: 'recorded_post2', user: @user)
-      create(:meal_record, user: @user, post: @post)
-      create(:meal_record, user: @user, post: @post2)
+      create(:meal_record, user: @user, post: @post, post_name: @post.name, post_protein: @post.protein, post_fat: @post.fat, post_carbo: @post.carbo,
+                           post_calorie: @post.calorie)
+      create(:meal_record, user: @user, post: @post2, post_name: @post2.name, post_protein: @post2.protein, post_fat: @post2.fat,
+                           post_carbo: @post2.carbo, post_calorie: @post2.calorie)
     end
 
     it 'リクエストに成功すること' do

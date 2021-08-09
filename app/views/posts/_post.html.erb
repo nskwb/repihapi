@@ -13,7 +13,9 @@
       </div>
       <% if user_signed_in?%>
         <% if post.user != current_user %>
-          <%= render 'posts/favorites_info', post: post %>
+          <div id="favorite-button-<%= post.id %>">
+            <%= render partial: 'favorites/favorite', locals: {post: post} %>
+          </div>
         <% end %>
         <%= link_to post_meal_records_path(post_id: post.id, post_name: post.name, post_protein: post.protein, post_fat: post.fat, post_carbo: post.carbo, post_calorie: post.calorie), method: :post, data: { confirm: "食事記録に追加しますか？" } do %>
           <i class="far fa-calendar-plus fa-lg"></i>

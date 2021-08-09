@@ -13,30 +13,30 @@ RSpec.describe 'Favorites', type: :request do
 
   describe 'POST /posts/:post_id/favorites' do
     it 'リクエストに成功すること' do
-      post post_favorites_path(@user_post)
-      expect(response).to have_http_status(302)
+      post post_favorites_path(@user_post), xhr: true
+      expect(response).to have_http_status(200)
     end
 
     it 'お気に入り数が１つ増えること' do
       expect do
-        post post_favorites_path(@user_post)
+        post post_favorites_path(@user_post), xhr: true
       end.to change(Favorite, :count).by(1)
     end
   end
 
   describe 'DELETE /posts/:post_id/favorites' do
     before do
-      post post_favorites_path(@user_post)
+      post post_favorites_path(@user_post), xhr: true
     end
 
     it 'リクエストに成功すること' do
-      delete post_favorites_path(@user_post)
-      expect(response).to have_http_status(302)
+      delete post_favorites_path(@user_post), xhr: true
+      expect(response).to have_http_status(200)
     end
 
     it 'お気に入り数が１つ減ること' do
       expect do
-        delete post_favorites_path(@user_post)
+        delete post_favorites_path(@user_post), xhr: true
       end.to change(Favorite, :count).by(-1)
     end
   end

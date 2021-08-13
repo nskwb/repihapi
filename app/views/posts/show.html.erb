@@ -1,88 +1,96 @@
 <% provide(:title, '投稿詳細') %>
-
-<div class="grid grid-cols-2 gap-6 mt-4">
-  <div class="col-span-1">
-    <div class="image-info">
-      <% if @post.image? %>
-        <%= image_tag @post.image.url, class: "mx-auto border border-gray-700 mb-4" %>
-      <% end %>
+<div>
+  <div class="grid grid-cols-2 gap-6 mt-4">
+    <div class="col-span-1">
+      <div class="image-info">
+        <% if @post.image? %>
+          <%= image_tag @post.image.url, class: "mx-auto border border-gray-700 mb-4" %>
+        <% end %>
+      </div>
+      <div class="nutrition-info mt-4">
+        <h2 class="text-center font-bold mb-2">栄養素</h2>
+        <div class="field flex flex-row justify-around items-center mb-2 px-6">
+            <p  class="font-bold">タンパク質</p>
+            <p> <%= @post.protein %><span>グラム</span></p>
+        </div>
+        <div class="field flex flex-row justify-around items-center mb-2 px-6">
+            <p>脂肪</p>
+            <p> <%= @post.fat %><span>グラム</span></p>
+        </div>
+        <div class="field flex flex-row justify-around items-center mb-2 px-6">
+            <p>炭水化物</p>
+            <p> <%= @post.carbo %><span>グラム</span></p>
+        </div>
+        <div class="field flex flex-row justify-around items-center mb-2 px-6">
+            <p>カロリー</p>
+            <p> <%= @post.calorie %><span>グラム</span></p>
+        </div>
+      </div>
     </div>
-    <div class="nutrition-info mt-4">
-      <h2 class="text-center font-bold mb-2">栄養素</h2>
-      <div class="field flex flex-row justify-around items-center mb-2 px-6">
-          <p  class="font-bold">タンパク質</p>
-          <p> <%= @post.protein %><span>グラム</span></p>
+    <div class="col-span-1">
+      <div class="basic-info">
+        <h2 class="text-center font-bold mb-2">基本情報</h2>
+        <div class="mb-4">
+            <i class="far fa-user fa-lg mr-2"></i>
+            <%= link_to @post.user.name, user_path(@post.user), class: "hover:underline" %>
+        </div>
+        <div class="mb-4">
+          <p class="block font-bold text-sm mb-2">名前</p>
+          <p> <%= @post.name %></p>
+        </div>
+        <div class="mb-4">
+          <p class="block font-bold text-sm mb-2">説明</p>
+          <p> <%= @post.content %></p>
+        </div>
+        <div class="mb-4">
+          <p class="block font-bold text-sm mb-2">タグ</p>
+          <% @post.tags.each do |tag| %>
+            <div class="tag inline-block rounded-full border-yellow-500 mr-2 text-gray-500 hover:text-gray-700 text-base">
+              <%= link_to "##{tag.name}", tag_path(tag) %>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div class="field flex flex-row justify-around items-center mb-2 px-6">
-          <p>脂肪</p>
-          <p> <%= @post.fat %><span>グラム</span></p>
+      <div class="ingredient-info">
+        <%= render 'posts/show_ingredients', post: @post %>
       </div>
-      <div class="field flex flex-row justify-around items-center mb-2 px-6">
-          <p>炭水化物</p>
-          <p> <%= @post.carbo %><span>グラム</span></p>
+      <div class="recipe-info">
+        <%= render 'posts/show_recipe', post: @post %>
       </div>
-      <div class="field flex flex-row justify-around items-center mb-2 px-6">
-          <p>カロリー</p>
-          <p> <%= @post.calorie %><span>グラム</span></p>
+      <div class="favorites-info my-4">
+        <% if user_signed_in? %>
+          <% if @post.user != current_user %>
+            <div id="favorite-button-<%= @post.id %>" class="mb-3">
+              <%= render partial: 'favorites/favorite', locals: {post: @post} %>
+            </div>
+          <% end %>
+          <%= link_to post_meal_records_path(@post.id), method: :post, data: { confirm: "食事記録に追加しますか？" }, class: "border border-gray-500 rounded px-3 py-2" do %>
+            <i class="far fa-calendar-plus fa-lg"></i>
+            <span>食事記録に追加<span>
+          <% end %>
+        <% end %>
+      </div>
+      <% if user_signed_in? && @post.user == current_user  %>
+        <div class="mt-6">
+          <%= link_to edit_post_path(@post) do %>
+            <i class="far fa-edit fa-lg mr-3"></i>
+          <% end %>
+          <%= link_to post_path(@post), method: :delete, data: { confirm: "投稿を削除します。よろしいですか？" } do %>
+            <i class="far fa-trash-alt fa-lg"></i>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+      <% end %>
+
+      <div id="js-comments">
+        <%= render partial: 'comments/index', locals: { comments: @comments, post: @post } %>
       </div>
     </div>
   </div>
-  <div class="col-span-1">
-    <div class="basic-info">
-      <h2 class="text-center font-bold mb-2">基本情報</h2>
-      <div class="mb-4">
-        <p class="block font-bold text-sm mb-2">名前</p>
-        <p> <%= @post.name %></p>
-      </div>
-      <div class="mb-4">
-        <p class="block font-bold text-sm mb-2">説明</p>
-        <p> <%= @post.content %></p>
-      </div>
-      <div class="mb-4">
-        <p class="block font-bold text-sm mb-2">タグ</p>
-        <% @post.tags.each do |tag| %>
-          <div class="tag inline-block rounded-full border-yellow-500 mr-2 text-gray-500 hover:text-gray-700 text-base">
-            <%= link_to "##{tag.name}", tag_path(tag) %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="ingredient-info">
-      <%= render 'posts/show_ingredients', post: @post %>
-    </div>
-    <div class="recipe-info">
-      <%= render 'posts/show_recipe', post: @post %>
-    </div>
-    <div class="favorites-info my-4">
-      <% if user_signed_in? %>
-        <% if @post.user != current_user %>
-          <div id="favorite-button-<%= @post.id %>" class="mb-3">
-            <%= render partial: 'favorites/favorite', locals: {post: @post} %>
-          </div>
-        <% end %>
-        <%= link_to post_meal_records_path(@post.id), method: :post, data: { confirm: "食事記録に追加しますか？" }, class: "border border-gray-500 rounded px-3 py-2" do %>
-          <i class="far fa-calendar-plus fa-lg"></i>
-          <span>食事記録に追加<span>
-        <% end %>
-      <% end %>
-    </div>
-    <% if user_signed_in? && @post.user == current_user  %>
-      <div class="mt-6">
-        <%= link_to edit_post_path(@post) do %>
-          <i class="far fa-edit fa-lg mr-3"></i>
-        <% end %>
-        <%= link_to post_path(@post), method: :delete, data: { confirm: "投稿を削除します。よろしいですか？" } do %>
-          <i class="far fa-trash-alt fa-lg"></i>
-        <% end %>
-      </div>
-    <% end %>
-
-    <% if user_signed_in? %>
-      <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
-    <% end %>
-
-    <div id="js-comments">
-      <%= render partial: 'comments/index', locals: { comments: @comments, post: @post } %>
-    </div>
+  <div>
+    <%= link_to "戻る", :back, class:"text-lg font-light btn rounded-full bg-orange-500 hover:bg-orange-600" %>
   </div>
 </div>

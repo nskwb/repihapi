@@ -4,7 +4,11 @@
       <%= image_tag post.image.url, size: "150x150", class:"mx-auto" %>
     <% end %>
     <div class="post-info py-4 text-center">
-      <%= link_to post.name, post_path(post), class:"block h-8 font-light text-md mb-2 text-gray-700" %>
+      <%= link_to post.name, post_path(post), class:"block h-8 font-light text-md font-semibold hover:underline" %>
+      <div class="text-gray-500">
+        <p><%= post.calorie %> kcal</p>
+        <p><i class="far fa-user mr-2"></i><%= link_to post.user.name, user_path(post.user), class: "hover:underline" %></p>
+      </div>
       <div class="tags">
         <% post.tags.each do |tag| %>
           <div class="tag inline-block rounded-full border-yellow-500 mr-2 text-gray-500 hover:text-gray-700">

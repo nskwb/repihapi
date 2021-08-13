@@ -1,46 +1,59 @@
 <header class="border-b border-gray-300">
-  <div class="container py-2 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+  <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center py-1">
     <div class="header-left flex">
-      <%= link_to 'REPIHAPI', root_path,'data-turbolinks': false, class: "text-3xl font-medium text-gray-900" %>
+      <div>
+        <%= link_to 'REPIHAPI', root_path,'data-turbolinks': false, class: "text-3xl font-medium text-gray-900" %>
+      </div>
+
       <% if user_signed_in? %>
-        <%= link_to posts_path, class: "py-2 px-4" do %>
+        <%= link_to posts_path, class: "px-4 py-2" do %>
           <i class="far fa-copy fa-lg header-icon"></i>
         <% end %>
 
-        <%= link_to users_path, class: "ml-4 py-2 px-4" do %>
+        <%= link_to users_path, class: "px-4 py-2" do %>
           <i class="fas fa-users fa-lg header-icon"></i>
         <% end %>
 
-        <%= link_to tags_path, class: "py-2 px-4" do %>
+        <%= link_to tags_path, class: "px-4 py-2" do %>
           <i class="fas fa-hashtag fa-lg header-icon"></i>
         <% end %>
       <% end %>
     </div>
-    <nav class="header-right ml-auto flex flex-wrap items-center justify-center my-2">
+    <div class="header-right ml-auto flex flex-wrap items-center justify-center my-2">
       <% if user_signed_in? %>
-        <%= link_to new_post_path, class: "py-2 px-4" do%>
-          <i class="far fa-edit fa-lg header-icon"></i>
-        <% end %>
+        <div class="mx-2">
+          <%= link_to new_post_path do%>
+            <i class="far fa-edit fa-lg header-icon"></i>
+          <% end %>
+        </div>
+        <div class="mx-2">
+          <%= link_to meal_records_user_path(current_user), class: "border border-gray-500 rounded  px-4 py-2 hover:border-green-500" do %>
+            <i class="far fa-calendar-alt fa-lg header-icon"></i>
+            <span>食事記録</span>
+          <% end %>
+        </div>
 
-        <%= link_to meal_records_user_path(current_user), class: "py-2 px-4" do %>
-          <i class="far fa-calendar-alt fa-lg header-icon"></i>
-        <% end %>
+        <div class="mx-2">
+          <%= link_to user_path(current_user) do %>
+            <%= render 'layouts/header_user_image'%>
+          <% end %>
+        </div>
 
-        <%= link_to user_path(current_user), class: "py-2 px-4" do %>
-          <%= render 'layouts/header_user_image'%>
-        <% end %>
+        <div class="mx-2">
+          <%= link_to notifications_path do %>
+            <i class="far fa-bell fa-lg header-icon"></i>
+          <% end %>
+        </div>
 
-        <%= link_to notifications_path, class: "py-2 px-4" do %>
-          <i class="far fa-bell fa-lg header-icon"></i>
-        <% end %>
-
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "py-2 px-4 border border-orange-400 text-orange-400 rounded hover:border-orange-600 hover:text-orange-600" %>
+        <div class="mx-2">
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "py-2 px-4 border border-orange-400 text-orange-400 rounded hover:border-orange-600 hover:text-orange-600" %>
+        </div>
 
       <% else %>
         <%= link_to 'サインアップ', new_user_registration_path, class: "py-2 px-4 m-2 hover:text-gray-900" %>
         <%= link_to 'ログイン', new_user_session_path, class: "py-2 px-4 m-2 text-green-600 hover:text-green-900" %>
         <%= link_to 'かんたんログイン', users_guest_sign_in_path, method: :post, class: "py-2 px-4 m-2 text-green-600 text-center border border-solid border-green-600 rounded hover:bg-green-600 hover:text-white" %>
       <% end %>
-    </nav>
+    </div>
   </div>
 </header>

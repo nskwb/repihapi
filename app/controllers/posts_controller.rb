@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     if @post.save
       @post.save_tags(tag_list) if tag_list.present?
       flash[:success] = '投稿が作成されました'
-      redirect_to root_url
+      redirect_to @post
     else
       render 'new'
     end
@@ -49,7 +49,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       @post.save_tags(tag_list) if tag_list.present?
       flash[:success] = '投稿を更新しました'
-      redirect_to post_path
+      redirect_to @post
     else
       render 'edit'
     end
@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = '投稿を削除しました'
-    redirect_to root_url
+    redirect_to @post.user
   end
 
   def search

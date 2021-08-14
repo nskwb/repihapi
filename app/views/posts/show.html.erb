@@ -14,15 +14,15 @@
             <p> <%= @post.protein %><span>グラム</span></p>
         </div>
         <div class="field flex flex-row justify-around items-center mb-2 px-6">
-            <p>脂肪</p>
+            <p class="font-bold">脂肪</p>
             <p> <%= @post.fat %><span>グラム</span></p>
         </div>
         <div class="field flex flex-row justify-around items-center mb-2 px-6">
-            <p>炭水化物</p>
+            <p class="font-bold">炭水化物</p>
             <p> <%= @post.carbo %><span>グラム</span></p>
         </div>
         <div class="field flex flex-row justify-around items-center mb-2 px-6">
-            <p>カロリー</p>
+            <p class="font-bold">カロリー</p>
             <p> <%= @post.calorie %><span>グラム</span></p>
         </div>
       </div>
@@ -75,9 +75,6 @@
           <%= link_to edit_post_path(@post) do %>
             <i class="far fa-edit fa-lg mr-3"></i>
           <% end %>
-          <%= link_to post_path(@post), method: :delete, data: { confirm: "投稿を削除します。よろしいですか？" } do %>
-            <i class="far fa-trash-alt fa-lg"></i>
-          <% end %>
         </div>
       <% end %>
 
@@ -89,8 +86,5 @@
         <%= render partial: 'comments/index', locals: { comments: @comments, post: @post } %>
       </div>
     </div>
-  </div>
-  <div>
-    <%= link_to "戻る", :back, class:"text-lg font-light btn rounded-full bg-orange-500 hover:bg-orange-600" %>
   </div>
 </div>

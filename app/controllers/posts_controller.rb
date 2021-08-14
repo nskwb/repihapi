@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    params[:post][:image] = 'thumb_default_post_image.jpeg' if params[:post][:image].blank?
+    params[:post][:image] = @post.image if params[:post][:image].blank?
     tag_list = params[:post][:tag_names].split(',') if params[:post][:tag_names].present?
     if @post.update(post_params)
       @post.save_tags(tag_list) if tag_list.present?

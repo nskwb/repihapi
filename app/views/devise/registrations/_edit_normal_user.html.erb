@@ -20,10 +20,10 @@
 
 <div class="field my-4">
   <%= f.label :image, class: "block font-light mb-2" %>
-  <%= f.file_field :image %>
+  <%= f.file_field :image, onchange: 'previewImage(preview)' %>
   <%= f.hidden_field :image_cache %>
 </div>
 
 <div class="actions text-center">
-  <%= f.submit "Update", class: "btn btn-form" %>
+  <%= f.submit "更新", class: "btn btn-form" %>
 </div>

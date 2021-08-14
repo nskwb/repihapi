@@ -37,17 +37,6 @@ RSpec.describe 'Posts', type: :request do
                  }
           end.to change(Post, :count).by(1).and change(Ingredient, :count).by(1).and change(Recipe, :count).by(1)
         end
-
-        it 'リダイレクトすること' do
-          post posts_url,
-               params: {
-                 post:
-                   attributes_for(:post)
-                     .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                     .merge(recipes_attributes: [attributes_for(:recipe)])
-               }
-          expect(response).to redirect_to root_path
-        end
       end
 
       context 'パラメータが不正な場合' do
@@ -146,7 +135,7 @@ RSpec.describe 'Posts', type: :request do
 
         it 'リダイレクトすること' do
           delete post_path @post
-          expect(response).to redirect_to root_path
+          expect(response).to redirect_to @post.user
         end
       end
     end

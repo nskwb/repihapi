@@ -1,6 +1,13 @@
 <div>
   <h2 class="text-center font-bold mb-2">コメント</h2>
   <%= form_with(model: [post, comment]) do |f| %>
+    <div id="error_explanation mt-4">
+      <ul>
+        <% comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
     <div class="mb-2">
       <%= f.text_area :content, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
     </div>

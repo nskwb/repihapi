@@ -77,7 +77,8 @@
           <% end %>
         </div>
       <% end %>
-
+      <div id="error_explanation">
+      </div>
       <% if user_signed_in? %>
         <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
       <% end %>

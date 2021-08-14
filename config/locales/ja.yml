@@ -15,12 +15,19 @@ ja:
         fat: 脂肪
         carbo: 炭水化物
         calorie: カロリー
+      comment:
+        content: 内容
       post/ingredients:
         name: 材料名
         amount: 量
       post/recipes:
         content: 説明文
     errors:
+      models:
+        comments:
+          attributes:
+            content:
+              blank: "コメントを入力してください"
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
         restrict_dependent_destroy:

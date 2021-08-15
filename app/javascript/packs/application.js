@@ -11,6 +11,7 @@ import "channels";
 require("jquery");
 require("@nathanvda/cocoon");
 require("slick.js");
+require("../posts/calculate.js");
 
 import "../css/tailwind.css";
 

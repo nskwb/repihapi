@@ -16,29 +16,29 @@
         <div class="nutrition-info mt-4 font-bold">
           <h2 class="text-center font-bold mb-2">栄養素（必須）</h2>
 
-          <ul class="explanation list-inside px-6 text-sm">
-            <li class="font-normal mb-2"><span><i class="fas fa-carrot fill-current text-orange-500 mr-2"></i></span>単位はグラム</li>
-            <li class="font-normal"><span><i class="fas fa-carrot fill-current text-orange-500 mr-2"></i></span>小数第１位まで入力可</li>
-          </ul>
-
-          <div class="field flex flex-row justify-between items-center mb-2 px-6">
-            <%= f.label :タンパク質, class: "block text-sm" %>
-            <%= f.number_field :protein, min: 0, step: "0.1", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+          <div class="explanation list-inside px-6 text-sm font-semibold">
+              <i class="fas fa-carrot fill-current text-orange-500 mr-2"></i>
+              <span>小数第１位まで入力可</span>
           </div>
 
           <div class="field flex flex-row justify-between items-center mb-2 px-6">
-            <%= f.label :脂肪, class: "block text-sm" %>
-            <%= f.number_field :fat, min: 0, step: "0.1", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+            <%= f.label :protein, 'たんぱく質[g]', class: "block text-sm" %>
+            <%= f.number_field :protein, min: 0, step: "0.1", id: "js-p", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
           </div>
 
           <div class="field flex flex-row justify-between items-center mb-2 px-6">
-            <%= f.label :炭水化物, class: "block text-sm" %>
-            <%= f.number_field :carbo, min: 0, step: "0.1", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+            <%= f.label :fat, '脂肪[g]', class: "block text-sm" %>
+            <%= f.number_field :fat, min: 0, step: "0.1", id:"js-f", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+          </div>
+
+          <div class="field flex flex-row justify-between items-center mb-2 px-6">
+            <%= f.label :carbo, '炭水化物[g]', class: "block text-sm" %>
+            <%= f.number_field :carbo, min: 0, step: "0.1", id:"js-c", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
           </div>
 
           <div class="field flex flex-row justify-between items-center px-6">
-            <%= f.label :カロリー（自動計算）, class: "block text-sm" %>
-            <%= f.number_field :calorie, min: 0, class: "block px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+            <%= f.label :calorie, 'カロリー（自動計算）[kcal]', class: "block text-sm" %>
+            <%= f.number_field :calorie, min: 0, id: "js-calorie", class: "block px-3 py-2 border border-gray-300 shadow-sm rounded", readonly: true %>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
 
           <div class="field my-4">
             <%= f.label :タグ（カンマ区切り・10文字以内）, class: "block font-bold text-sm mb-2" %>
-            <%= f.text_field :tag_names, value: @tags, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
+            <%= f.text_field :tag_names, value: @tags, placeholder: "例）和食, 健康, 旬の野菜", class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
           </div>
         </div>
 
@@ -95,7 +95,7 @@
   <% end %>
 </div>
 <script>
-function previewImage(id) {
+  function previewImage(id) {
   const target = this.event.target;
   const file = target.files[0];
   const reader = new FileReader();
@@ -106,6 +106,5 @@ function previewImage(id) {
     reader.readAsDataURL(file);
   } else {
     preview.src = "";
-  }
-}
+  }}
 </script>

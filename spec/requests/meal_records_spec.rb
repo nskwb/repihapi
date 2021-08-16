@@ -25,33 +25,11 @@ RSpec.describe 'MealRecords', type: :request do
     end
   end
 
-  describe 'DELETE /posts/:post_id/meal_records' do
-    before { create(:meal_record, user: @user, post: @post) }
-
-    it 'リクエストに成功すること' do
-      # delete post_meal_records_path(@post), params: { meal_record: attributes_for(:meal_record, user: @user) }
-      # expect(response).to have_http_status(302)
-    end
-
-    it '食事記録の数が１つ減ること' do
-      # expect do
-      #   delete post_meal_records_path(@post), params: { meal_record: attributes_for(:meal_record, user: @user) }
-      # end.to change(MealRecord, :count).by(-1)
-    end
-
-    it 'リダイレクトすること' do
-      # delete post_meal_records_path(@post), params: { meal_record: attributes_for(:meal_record, user: @user) }
-      # expect(response).to redirect_to meal_records_user_path(@user)
-    end
-  end
-
   describe 'GET /users/:id/meal_records' do
     before do
       @post2 = create(:post, name: 'recorded_post2', user: @user)
-      create(:meal_record, user: @user, post: @post, post_name: @post.name, post_protein: @post.protein, post_fat: @post.fat, post_carbo: @post.carbo,
-                           post_calorie: @post.calorie)
-      create(:meal_record, user: @user, post: @post2, post_name: @post2.name, post_protein: @post2.protein, post_fat: @post2.fat,
-                           post_carbo: @post2.carbo, post_calorie: @post2.calorie)
+      create(:meal_record, start_time: Time.zone.now, user: @user, post: @post, post_name: @post.name, post_protein: @post.protein, post_fat: @post.fat, post_carbo: @post.carbo, post_calorie: @post.calorie)
+      create(:meal_record, start_time: Time.zone.now, user: @user, post: @post2, post_name: @post2.name, post_protein: @post2.protein, post_fat: @post2.fat, post_carbo: @post2.carbo, post_calorie: @post2.calorie)
     end
 
     it 'リクエストに成功すること' do

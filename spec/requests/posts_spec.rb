@@ -162,7 +162,7 @@ RSpec.describe 'Posts', type: :request do
       before { sign_in @user }
       context '投稿が存在する場合' do
         it 'リクエストが成功すること' do
-          get post_path @post.id
+          get post_path @post
           expect(response).to have_http_status(200)
         end
         it '投稿名が表示されていること' do

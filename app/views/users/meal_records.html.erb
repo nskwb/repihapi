@@ -11,7 +11,7 @@
         <% events.each_with_index do |event, i| %>
             <li class="text-center text-xs mb-2">
               <span class="underline hover:text-green-600"><%= link_to event.post_name, post_path(event.post_id) %></span>
-              <span class="hover:text-orange-600"><%= link_to '削除', post_meal_records_path(event.post_id, start_time: event.start_time), method: :delete, data: { confirm: "選択した食事記録を削除します。よろしいですか？"} %></span>
+              <span class="hover:text-orange-600"><%= link_to '削除', post_meal_records_path(post_id: event.post_id, start_time: event.start_time), method: :delete, data: { confirm: "選択した食事記録を削除します。よろしいですか？"} %></span>
             </li>
         <% end %>
       </ul>

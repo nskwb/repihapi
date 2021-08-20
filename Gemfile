@@ -8,6 +8,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'faker'
+gem 'fog-aws'
 # gem 'font-awesome-sass', '~> 5.15.1'
 gem 'jbuilder', '~> 2.7'
 gem 'kaminari'
@@ -40,11 +41,11 @@ end
 
 group :development do
   gem 'bullet'
-  gem "capistrano", "~> 3.10", require: false
-  gem "capistrano-rails", "~> 1.6", require: false
+  gem 'capistrano', '~> 3.10', require: false
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', '~> 1.6', require: false
   gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-rbenv-vars', '~> 0.1'
-  gem 'capistrano3-puma'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring-commands-rspec'

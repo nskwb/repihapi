@@ -1,40 +1,37 @@
 <li class="list-none">
-  <div class="h-64 max-w-xs mx-auto rounded overflow-hidden border border-gray-300 shadow-md p-4">
+  <div class="h-64 max-w-xs mx-auto rounded overflow-hidden border border-gray-300 shadow-md">
     <% if post.image? %>
-      <%= image_tag post.image.url, size: "150x150", class:"mx-auto" %>
-    <% end %>
-    <div class="post-info py-4 text-center">
-      <%= link_to post.name, post_path(post), class:"block h-8 font-light text-md font-semibold hover:underline" %>
-      <div class="text-gray-500">
-        <p><%= post.calorie %> kcal</p>
-        <p><i class="far fa-user mr-2"></i><%= link_to post.user.name, user_path(post.user), class: "hover:underline" %></p>
+      <div class="relative">
+        <%= link_to post_path(post) do %>
+          <%= image_tag post.image.url, size: "200x150", class:"inline-block w-full h-32 mx-auto items-start" %>
+        <% end %>
+        <div class="text-gray-500 absolute top-0 right-0 bg-orange-400 rounded px-1">
+          <p class="text-white font-semibold"><%= post.calorie %> kcal</p>
+        </div>
       </div>
+    <% end %>
+    <div class="post-info py-2 text-center items-end">
+      <%= link_to post.name, post_path(post), class:"block font-light text-md font-semibold hover:underline truncate" %>
+      <p><i class="far fa-user mr-2"></i><%= link_to post.user.name, user_path(post.user), class: "hover:underline" %></p>
       <div class="tags">
-        <% post.tags.each do |tag| %>
-          <div class="tag inline-block rounded-full border-yellow-500 mr-2 text-gray-500 hover:text-gray-700">
-            <%= link_to "##{tag.name}", tag_path(tag) %> </div>
+        <% post.tags.limit(3).each do |tag| %>
+          <div class="tag inline-block truncate rounded-full border-yellow-500  text-xs mr-1 text-gray-500 underline hover:text-gray-700">
+            <%= link_to "##{tag.name}", tag_path(tag) %>
+          </div>
+        <% end %>
+        <% if post.tags.size > 3 %>
+          <span>...</span>
         <% end %>
       </div>
       <% if user_signed_in?%>
         <% if post.user != current_user %>
-          <div id="favorite-button-<%= post.id %>">
+          <div id="favorite-button-<%= post.id %>" class="inline-block">
             <%= render partial: 'favorites/favorite', locals: {post: post} %>
           </div>
         <% end %>
         <%= link_to post_meal_records_path(post_id: post.id, post_name: post.name, post_protein: post.protein, post_fat: post.fat, post_carbo: post.carbo, post_calorie: post.calorie), method: :post, data: { confirm: "#{Date.today}の食事記録に追加しますか？" } do %>
           <i class="far fa-calendar-plus fa-lg"></i>
         <% end %>
-      <% end %>
-
-      <% if user_signed_in? && post.user == current_user && current_page?(user_path(current_user))  %>
-        <div class="mt-3">
-          <%= link_to edit_post_path(post) do %>
-            <i class="far fa-edit mr-3"></i>
-          <% end %>
-          <%= link_to post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-            <i class="far fa-trash-alt"></i>
-          <% end %>
-        </div>
       <% end %>
     </div>
   </div>

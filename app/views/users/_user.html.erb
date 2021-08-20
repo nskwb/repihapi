@@ -1,10 +1,10 @@
 <li>
-  <div class="h-64 max-w-xs mx-auto rounded overflow-hidden border border-gray-300 shadow-md p-4">
+  <div class="h-64 max-w-xs mx-auto rounded overflow-hidden border border-gray-300 shadow-md">
     <%= render 'shared/user_image', user: user %>
     <div class="text-center">
       <%= link_to user.name, user, class:"block font-light mb-2 text-md text-gray-700" %>
       <% if current_user != user %>
-        <div id="js-follow-<%= user.id %>">
+        <div id="js-follow-<%= user.id %>" class="content-end">
           <%= render partial: "relationships/relationship", locals: {user: user} %>
         </div>
       <% end %>

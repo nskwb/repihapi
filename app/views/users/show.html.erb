@@ -23,29 +23,31 @@
     <%else %>
       <div>
         <div class="text-center flex flex-col">
-          <div class="mb-3">
-            <%= link_to favorites_user_path,class: "px-3 py-2 rounded border border-gray-200 hover:border-green-500" do %>
+          <div class="my-2">
+            <%= link_to favorites_user_path,class: "inline-block px-3 py-2 rounded border border-gray-200 hover:border-green-500 md:w-3/4" do %>
               <i class="fas fa-star fa-lg fill-current text-gray-400 mr-2 inline-block"></i>いいねした投稿
             <% end %>
           </div>
-          <div class="m-2">
-            <%= link_to meal_records_user_path(current_user),class: "px-3 py-2 rounded border border-gray-200 mr-2 hover:border-green-500" do %>
+          <div class="my-2">
+            <%= link_to meal_records_user_path(current_user),class: "inline-block px-3 py-2 rounded border border-gray-200 mr-2 hover:border-green-500 md:w-3/4" do %>
               <i class="far fa-calendar-alt fa-lg fill-current text-gray-400 mr-2 inline-block"></i>食事記録
             <% end %>
-            <%= link_to browsing_histories_user_path, class: "px-3 py-2 rounded border border-gray-200 hover:border-green-500" do %>
+          </div>
+          <div class="my-2">
+            <%= link_to browsing_histories_user_path, class: "inline-block px-3 py-2 rounded border border-gray-200 hover:border-green-500 md:w-3/4" do %>
               <i class="fas fa-history fa-lg fill-current text-gray-400 mr-2 inline-block"></i>閲覧履歴
             <% end %>
           </div>
         </div>
-        <div class="text-center">
-          <%= link_to 'ユーザー情報編集', edit_user_registration_path, class: "inline-block text-yellow-500 bg-white border border-yellow-500 hover:text-white hover:bg-yellow-500 font-base px-4 py-2 mt-4 rounded text-base" %>
+        <div class="text-center my-2">
+          <%= link_to 'ユーザー情報編集', edit_user_registration_path, class: "inline-block text-yellow-500 bg-white border border-yellow-500 hover:text-white hover:bg-yellow-500 font-base px-4 py-2 mt- rounded text-base" %>
         </div>
       </div>
     <% end %>
   </div>
   <div class="posts-info lg:col-span-3 md:col-span-2">
     <% if @user.posts.any? %>
-      <ol class="posts grid lg:grid-cols-3 md:grid-cols-2">
+      <ol class="posts grid lg:grid-cols-3 grid-cols-2">
         <%= render @posts %>
       </ol>
       <%= paginate @posts %>

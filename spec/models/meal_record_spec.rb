@@ -4,7 +4,8 @@ RSpec.describe MealRecord, type: :model do
   before do
     @user = create(:user)
     @post = create(:post)
-    @meal_record = build(:meal_record, start_time: Time.zone.now, user_id: @user.id, post_id: @post.id, post_name: @post.name, post_protein: @post.protein, post_fat: @post.fat, post_carbo: @post.carbo, post_calorie: @post.calorie)
+    @meal_record = build(:meal_record, start_time: Time.zone.now, user_id: @user.id, post_id: @post.id, post_name: @post.name,
+                                       post_protein: @post.protein, post_fat: @post.fat, post_carbo: @post.carbo, post_calorie: @post.calorie)
   end
 
   describe 'バリデーション' do

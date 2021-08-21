@@ -53,25 +53,29 @@ jobs:
           name: test
           command: bundle exec rspec
 
-  # deploy:
-  #   executor: heroku/default
-  #   steps:
-  #     - checkout
-  #     - heroku/install
-  #     - heroku/deploy-via-git
-  #     - run: heroku run bundle exec rails db:migrate RAILS_ENV=production -a $HEROKU_APP_NAME
+  deploy:
+    docker:
+      - image: circleci/ruby:3.0.0-node-browsers
+    steps:
+      - checkout
+      - ruby/install-deps
+      - add_ssh_keys:
+          fingerprints: "ea:11:b5:53:8e:1f:87:24:3e:47:86:1e:30:a5:a3:bc"
+      - run:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
 
 workflows:
   version: 2
-  build_and_test:
+  build_and_test_and_deploy:
     jobs:
       - build
       - test:
           requires:
             - build
-      # - heroku/deploy-via-git:
-      #     requires:
-      #       - test
-      #     filters:
-      #       branches:
-      #         only: main
+      - deploy:
+          requires:
+            - test
+            filters:
+              branches:
+                only: main

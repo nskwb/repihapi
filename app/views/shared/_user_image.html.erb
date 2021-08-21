@@ -1,5 +1,7 @@
-<% if user.image? %>
-  <%= image_tag user.image.url, size: "150x150",id: "preview", class: "inline-block w-full h-40 mx-auto items-start" %>
-<% else %>
-  <%= image_pack_tag 'media/images/user_default_image.jpeg', size: "200x150", id: "preview", class: "inline-block w-full h-40 mx-auto items-start" %>
+<%= link_to user_path(user) do %>
+  <% if user.image? %>
+    <%= image_tag user.image.url, size: "150x150",id: "preview", class: "inline-block w-full h-40 mx-auto items-start" %>
+  <% else %>
+    <%= image_pack_tag 'media/images/user_default_image.jpeg', size: "200x150", id: "preview", class: "inline-block w-full h-40 mx-auto" %>
+  <% end %>
 <% end %>

@@ -4,7 +4,6 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable,
-         :confirmable,
          :omniauthable,
          omniauth_providers: [:google_oauth2]
 

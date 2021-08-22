@@ -122,8 +122,10 @@ RSpec.describe 'Posts', type: :request do
       end
 
       context '投稿が存在しない場合' do
-        subject { -> { get post_path 0 } }
-        it { is_expected.to raise_error ActiveRecord::RecordNotFound }
+        it '食事記録ページにリダイレクト' do
+          get post_path(id: 0)
+          expect(response).to redirect_to meal_records_user_path(@user)
+        end
       end
     end
   end

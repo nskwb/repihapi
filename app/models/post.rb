@@ -10,7 +10,6 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
   has_many :notifications, dependent: :destroy
-  has_many :meal_records, dependent: :destroy
   has_many :browsing_histories, dependent: :destroy
 
   accepts_nested_attributes_for :ingredients, allow_destroy: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_09_061854) do
+ActiveRecord::Schema.define(version: 2021_08_22_094621) do
 
   create_table "browsing_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -153,7 +153,6 @@ ActiveRecord::Schema.define(version: 2021_08_09_061854) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "ingredients", "posts"
-  add_foreign_key "meal_records", "posts"
   add_foreign_key "meal_records", "users"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"

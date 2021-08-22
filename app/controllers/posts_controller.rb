@@ -27,12 +27,17 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    if current_user.present?
+    @post = Post.find_by(id: params[:id])
+
+    if @post.blank?
+      flash[:alert] = "投稿は削除されました"
+      redirect_to request.referer || meal_records_user_path(current_user)
+    elsif
+      current_user.present?
       @post.save_browsing_history(current_user)
       @comment = current_user.comments.build if user_signed_in?
+      @comments = @post.comments
     end
-    @comments = @post.comments
   end
 
   def edit

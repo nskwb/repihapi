@@ -45,7 +45,7 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: Install imagemagick
-          command: sudo apt-get update && sudo apt-get -y install imagemagick
+          command: sudo apt-get update --allow-releaseinfo-change && sudo apt-get -y install imagemagick
       - run:
           name: Execute webpack
           command: bundle exec bin/webpack

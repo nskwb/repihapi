@@ -4,6 +4,8 @@ RSpec.describe 'Posts', type: :request do
   before { @user = create(:user) }
 
   describe 'ログイン必須' do
+    let(:image) { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/default_post_image.jpeg'), 'image/jpeg') }
+
     before { sign_in @user }
 
     describe 'GET #new' do
@@ -17,12 +19,13 @@ RSpec.describe 'Posts', type: :request do
       context 'パラメータが妥当な場合' do
         it 'リクエストが成功すること' do
           post posts_url,
-               params: {
-                 post:
-                   attributes_for(:post)
-                     .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                     .merge(recipes_attributes: [attributes_for(:recipe)])
-               }
+              params: {
+                post:
+                  attributes_for(:post, image: image)
+                  .merge(ingredients_attributes: [attributes_for(:ingredient)])
+                  .merge(recipes_attributes: [attributes_for(:recipe)])
+                }
+
           expect(response).to have_http_status(302)
         end
 
@@ -31,7 +34,7 @@ RSpec.describe 'Posts', type: :request do
             post posts_url,
                  params: {
                    post:
-                     attributes_for(:post)
+                     attributes_for(:post, image: image)
                        .merge(ingredients_attributes: [attributes_for(:ingredient)])
                        .merge(recipes_attributes: [attributes_for(:recipe)])
                  }
@@ -53,9 +56,7 @@ RSpec.describe 'Posts', type: :request do
 
     describe '投稿者のみ操作可能' do
       before do
-        @user2 = create(:user)
-        sign_in @user2
-        @post = create(:post, name: 'post_name', user: @user2)
+        @post = create(:post, name: 'post_name', user: @user)
         @ingredient = create(:ingredient, post: @post)
         @recipe = create(:recipe, post: @post)
       end
@@ -69,57 +70,6 @@ RSpec.describe 'Posts', type: :request do
         it '投稿の情報が表示されていること' do
           get edit_post_path @post.id
           expect(response.body).to include('post_name')
-        end
-      end
-      describe 'PUT #update' do
-        context 'パラメータが妥当な場合' do
-          it 'リクエストに成功すること' do
-            patch post_url @post,
-                           params: {
-                             post:
-                               attributes_for(:post, name: 'updated_post_name')
-                                 .merge(ingredients_attributes: [attributes_for(:ingredient, post: @post)])
-                                 .merge(recipes_attributes: [attributes_for(:recipe, post: @post)])
-                           }
-            expect(response).to have_http_status(302)
-          end
-
-          it '投稿名が更新されること' do
-            expect do
-              patch post_url @post,
-                             params: {
-                               post:
-                                 attributes_for(:post, name: 'updated_post_name')
-                                   .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                                   .merge(recipes_attributes: [attributes_for(:recipe)])
-                             }
-            end.to change { Post.find(@post.id).name }.from('post_name').to('updated_post_name')
-          end
-
-          it 'リダイレクトすること' do
-            patch post_url @post,
-                           params: {
-                             post:
-                               attributes_for(:post, name: 'updated_post_name')
-                                 .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                                 .merge(recipes_attributes: [attributes_for(:recipe)])
-                           }
-            expect(response).to redirect_to post_path @post
-          end
-        end
-
-        context 'パラメータが不正な場合' do
-          it 'リクエストに成功すること' do
-            put post_url @post, params: { post: attributes_for(:post, name: '') }
-            expect(response).to have_http_status(200)
-          end
-
-          it '投稿名が変更されないこと' do
-            expect { put post_url @post, params: { post: attributes_for(:post, name: '') } }.not_to change(
-              Post.find(@post.id),
-              :name
-            )
-          end
         end
       end
 

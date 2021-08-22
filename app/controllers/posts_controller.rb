@@ -82,6 +82,7 @@ class PostsController < ApplicationController
         :name,
         :content,
         :image,
+        :image_cache,
         :serve,
         :protein,
         :fat,

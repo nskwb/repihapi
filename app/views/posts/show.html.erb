@@ -75,6 +75,9 @@
           <%= link_to edit_post_path(@post) do %>
             <i class="far fa-edit fa-lg mr-3"></i>
           <% end %>
+          <%= link_to post_path(@post), method: :delete, data: { confirm: "投稿を削除します。よろしいですか？" } do %>
+            <i class="far fa-trash-alt fa-lg"></i>
+          <% end %>
         </div>
       <% end %>
       <div id="error_explanation">

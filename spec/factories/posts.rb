@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :post do
     sequence(:name) { |n| "post_name#{n}" }
     content { '説明文' }
+    image { File.open(File.join(Rails.root, 'spec/fixtures/default_post_image.jpeg')) }
     protein { 100.1 }
     fat { 100.1 }
     carbo { 100.1 }

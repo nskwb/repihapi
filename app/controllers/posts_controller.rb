@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = Post.page(params[:page]).per(12)
+    @posts = Post.includes(:user).page(params[:page]).per(12)
   end
 
   def new
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
       current_user.present?
       @post.save_browsing_history(current_user)
       @comment = current_user.comments.build if user_signed_in?
-      @comments = @post.comments
+      @comments = @post.comments.includes(:user)
     end
   end
 
@@ -69,7 +69,7 @@ class PostsController < ApplicationController
   def search
     if params[:q].present?
       @q = Post.ransack(params[:q])
-      @posts = @q.result.page(params[:page]).per(12)
+      @posts = @q.result.includes(:user).page(params[:page]).per(12)
       @searched_word = params[:q][:name_cont]
     else
       params[:q] = { sorts: 'id desc' }

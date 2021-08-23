@@ -42,6 +42,8 @@ class UsersController < ApplicationController
       @ratio_protein = (@average_protein / @total.to_f * 100).round
       @ratio_fat = (@average_fat / @total.to_f * 100).round
       @ratio_carbo = (@average_carbo / @total.to_f * 100).round
+
+      @chart = [['P:タンパク質', @ratio_protein], ['F:脂肪', @ratio_fat], ['C:炭水化物', @ratio_carbo]]
     else
       render 'meal_records'
     end

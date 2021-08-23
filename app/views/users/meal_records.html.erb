@@ -1,7 +1,7 @@
 <% provide(:title, '食事記録') %>
 
 <div class="mt-6 my-4">
-  <h1 class="text-center text-xl mb-4">食事記録</h1>
+  <h1 class="text-center text-xl mb-4"><span><%= @start_date.month %>月</span>の食事記録</h1>
   <div>
     <%= month_calendar events: @meal_records do |date, events| %>
       <div class="calendar-date">
@@ -17,34 +17,42 @@
       </ul>
     <% end %>
   </div>
-  <div class="flex justify-end mr-4">
-    <div class="nutrition-info w-1/2 mt-6 mr-0">
-      <h2 class="text-center text-xl mb-4"><span><%= @start_date.month %>月</span>の平均値</h2>
+  <div>
+  <div class="mt-6">
+    <h2 class="text-center text-xl mb-4"><span><%= @start_date.month %>月</span>の摂取カロリー</h2>
+    <%= line_chart @meal_records.group("date(created_at)").average(:post_calorie), colors: ["#38a169"] %>
+  </div>
+  <div class="grid md:grid-cols-2 mt-6">
+    <div class="grid-span-1 mx-auto">
+      <%= pie_chart @chart, colors: ["#f56565", "#f6e05e", "#4299e1"] %>
+    </div>
+    <div class="nutrition-info grid-span-1 w-full">
+      <h2 class="text-center text-xl mb-4"><span>平均カロリーとPFCバランス</h2>
+      <h3 class="font-bold text-lg mt-3 ml-6">■カロリー</h3>
+      <p class="text-right text-xl font-semibold mx-6"><%= @average_calorie %>kcal</p>
       <h3 class="font-bold text-lg ml-6">■PFCバランス</h3>
-      <div class="">
+      <div>
         <div class="protein flex justify-between items-center mx-6 py-3 border-b border-gray-300">
           <div class="flex flex-row items-center">
-            <span class="block text-xl rounded-full h-10 w-10 flex items-center justify-center mr-3 circle-green">P</span>
+            <span class="block text-xl rounded-full h-10 w-10 flex items-center justify-center mr-3 bg-red-500 text-white">P</span>
             <p class="items-center font-semibold">タンパク質</p>
           </div>
           <p class="items-center text-xl font-semibold"><%= @ratio_protein %>％(<%= @average_protein %>グラム)</p>
         </div>
         <div class="fat flex justify-between items-center mx-6 py-3 border-b border-gray-300">
           <div class="flex flex-row items-center">
-            <span class="block text-xl rounded-full h-10 w-10 flex items-center justify-center mr-3 circle-green">F</span>
+            <span class="block text-xl rounded-full h-10 w-10 flex items-center justify-center mr-3 bg-yellow-400 text-white">F</span>
             <p class="items-center font-bold">脂肪</p>
           </div>
           <p class="items-center text-xl font-semibold"><%= @ratio_fat %>％(<%= @average_fat %>グラム)</p>
         </div>
         <div class="carbo flex justify-between items-center mx-6 py-3 border-b border-gray-300">
           <div class="flex flex-row items-center">
-            <span class="block text-xl rounded-full h-10 w-10 flex items-center justify-center mr-3 circle-green">C</span>
+            <span class="block text-xl rounded-full h-10 w-10 flex items-center justify-center mr-3 bg-blue-500 text-white">C</span>
             <p class="items-center font-bold">炭水化物</p>
           </div>
           <p class="items-center text-xl font-semibold"><%= @ratio_carbo %>％(<%= @average_carbo %>グラム)</p>
         </div>
       </div>
-      <h3 class="font-bold text-lg mt-3 ml-6">■カロリー</h3>
-      <p class="text-right text-xl font-semibold mx-6"><%= @average_calorie %>kcal</p>
     </div>
 </div>

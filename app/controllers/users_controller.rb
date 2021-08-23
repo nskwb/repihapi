@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def favorites
     user = User.find(params[:id])
-    @favorite_posts = user.favorite_posts
+    @favorite_posts = user.favorite_posts.includes(:user)
   end
 
   def meal_records
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def browsing_histories
-    @browsing_histories = current_user.browsing_histories.includes(:post)
+    @browsing_histories = current_user.browsing_histories.includes(post: :user)
   end
 
   def search

@@ -12,7 +12,7 @@ require("jquery");
 require("@nathanvda/cocoon");
 require("slick.js");
 require("../posts/calculate.js");
-
+import "chartkick/chart.js";
 import "../css/tailwind.css";
 
 const images = require.context("../images/", true);

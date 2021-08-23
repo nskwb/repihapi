@@ -3,12 +3,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+gem 'chartkick'
 gem 'cocoon'
 gem 'devise'
 gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'faker'
 gem 'fog-aws'
+gem 'groupdate'
 # gem 'font-awesome-sass', '~> 5.15.1'
 gem 'jbuilder', '~> 2.7'
 gem 'kaminari'

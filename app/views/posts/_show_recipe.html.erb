@@ -3,7 +3,7 @@
   <% post.recipes.each.with_index(1) do |recipe, i| %>
     <li class="flex flex-row py-3">
       <p class="rounded-full h-10 w-10 flex items-center justify-center bg-green-500 text-white"><%= i %></p>
-      <p class="self-center ml-4"><%= recipe.content %></p>
+      <p class="self-center ml-4 w-5/6"><%= recipe.content %></p>
     </li>
   <% end %>
 </ul>

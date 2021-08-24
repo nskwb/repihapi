@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def favorites
     user = User.find(params[:id])
-    @favorite_posts = user.favorite_posts.includes(:user)
+    @favorite_posts = user.favorite_posts.includes(:user).page(params[:page]).per(12)
   end
 
   def meal_records

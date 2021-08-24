@@ -83,6 +83,15 @@
     @apply bg-gray-200;
   }
 
+  /* カード */
+  .card {
+    @apply h-64 w-48 max-w-xs mx-auto rounded overflow-hidden border border-gray-300 shadow-md;
+  }
+
+  .cards {
+    @apply grid gap-x-2 gap-y-4 grid-cols-2;
+  }
+
   /* その他 */
   .circle {
     @apply rounded-full h-10 w-10 flex items-center justify-center;

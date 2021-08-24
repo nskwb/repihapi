@@ -1,5 +1,13 @@
-<ul class="favorite_posts">
-  <% @favorite_posts.each do |post| %>
-    <%= render post %>
-  <% end %>
-</ul>
+<% provide(:title, 'いいねした投稿') %>
+
+<div class="mt-6">
+  <h1 class="text-center text-xl mb-4">いいねした投稿</h1>
+  <div class="posts">
+    <ul class="favorite_posts cards sm:grid-cols-3 md:grid-cols-4">
+      <% @favorite_posts.each do |post| %>
+        <%= render post %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<%= paginate @favorite_posts %>

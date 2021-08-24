@@ -12,7 +12,7 @@
           <span>
             <% if comment.user == current_user %>
               <%= link_to post_comment_path(post, comment), method: :delete, data: { "turbolinks" => false, confirm: "コメントを削除します。よろしいですか？" } do %>
-                <i class="ml-4 far fa-alt hover:text-orange-400"></i>
+                <i class="ml-4 far fa-trash-alt hover:text-orange-400"></i>
               <% end %>
             <% end %>
         </p>

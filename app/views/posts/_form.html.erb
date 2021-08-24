@@ -47,7 +47,7 @@
         <div class="basic-info">
           <h2 class="text-center font-bold mb-2">基本情報</h2>
           <div class="field my-4">
-            <%= f.label :名前（必須・50文字以内）, class: "block font-bold text-sm mb-2" %>
+            <%= f.label :名前（必須・20文字以内）, class: "block font-bold text-sm mb-2" %>
             <%= f.text_field :name, autofocus: true, class: "block w-full px-3 py-2 border border-gray-300 shadow-sm rounded" %>
           </div>
 
@@ -89,7 +89,7 @@
             </div>
           </div>
         </div>
-        <%= f.submit "投稿", class: "btn btn-form" %>
+        <%= f.submit "投稿", class: "btn btn-form cursor-pointer" %>
       </div>
     </div>
   <% end %>

@@ -60,7 +60,7 @@
 
   /* ページネーション */
   .pagination>span {
-    @apply px-3 py-1 border border-gray-300 rounded;
+    @apply border border-gray-300 rounded;
   }
 
   .pagination>span:hover {
@@ -68,11 +68,11 @@
   }
 
   .pagination>span.current {
-    @apply bg-green-400 text-white;
+    @apply px-3 py-1 bg-green-400 text-white;
   }
 
   .pagination a {
-    @apply block w-full h-full;
+    @apply block px-3 py-1 w-full h-full;
   }
 
   .prev-month {
@@ -94,5 +94,13 @@
 
   .divide {
     @apply divide-y divide-gray-300;
+  }
+
+  .search {
+    @apply bg-green-500 font-light py-2 px-4 text-white rounded cursor-pointer;
+  }
+
+  .search:hover {
+    @apply bg-green-600;
   }
 }

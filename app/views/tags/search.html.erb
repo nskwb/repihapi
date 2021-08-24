@@ -9,5 +9,7 @@
 
   <%= paginate @tags %>
 
-  <%= link_to '戻る', tags_path %>
+  <div class="mt-6 mb-4">
+    <%= link_to "戻る", :back, class:"text-lg font-light btn rounded-full bg-orange-500 hover:bg-orange-600" %>
+  </div>
 </div>

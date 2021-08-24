@@ -6,7 +6,7 @@
     <%= search_form_for @q, url: search_posts_path, html: { method: :get } do |f| %>
       <i class="fas fa-search fa-lg"></i>
       <%= f.search_field :name_cont, placeholder: "投稿名", class: "mb-3 px-4 py-2 border border-gray-300 shadow-sm rounded" %>
-      <%= f.submit '検索', class: "bg-green-500 font-light py-2 px-4 text-white rounded" %>
+      <%= f.submit '検索', class: "search" %>
     <% end %>
   </div>
   <div class="posts">

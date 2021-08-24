@@ -13,8 +13,8 @@
       <%= @user.name %>
     </div>
     <div class="user-follow text-center m-3">
-      <%=link_to "フォロー中", follows_user_path(@user.id), class: "inline-block px-3 py-2 border rounded-full bg-green-500 text-white" %>
-      <%=link_to "フォロワー", followers_user_path(@user.id), class: "inline-block px-3 py-2 border rounded-full bg-green-500 text-white" %>
+      <%=link_to "フォロー中", follows_user_path(@user.id), class: "btn" %>
+      <%=link_to "フォロワー", followers_user_path(@user.id), class: "btn" %>
     </div>
     <% if current_user != @user %>
       <div id="js-follow-<%= @user.id %>" class="text-center mb-4">

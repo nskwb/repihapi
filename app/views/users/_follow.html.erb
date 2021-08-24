@@ -1,24 +1,20 @@
-<div class="mt-6">
-  <h1 class=" text-center text-xl font-base mb-4 text-gray-700">フォロー中のユーザー</h1>
-
-  <ul class="users cards sm:grid-cols-3 md:grid-cols-4">
-    <% @users.each do |user| %>
-      <li class="list-none">
-        <div class="card lg:w-56">
-          <%= render 'shared/user_image', user: user %>
-          <div class="text-center">
-            <%= link_to user.name, user, class:"block font-light mb-2 text-md text-gray-700" %>
-            <% if current_user != user %>
-              <div id="js-follow-<%= user.id %>">
-                <%= render partial: "relationships/relationship", locals: {user: user} %>
-              </div>
-            <% end %>
-          </div>
+<ul class="users cards sm:grid-cols-3 md:grid-cols-4">
+  <% @users.each do |user| %>
+    <li class="list-none">
+      <div class="card lg:w-56">
+        <%= render 'shared/user_image', user: user %>
+        <div class="text-center">
+          <%= link_to user.name, user, class:"block font-light mb-2 text-md text-gray-700" %>
+          <% if current_user != user %>
+            <div id="js-follow-<%= user.id %>">
+              <%= render partial: "relationships/relationship", locals: {user: user} %>
+            </div>
+          <% end %>
         </div>
-      </li>
-    <% end %>
-  </ul>
-    <div class="mt-10 mb-4">
-    <%= link_to "戻る", user_path(current_user), class:"text-lg font-light btn rounded-full bg-orange-500 hover:bg-orange-600" %>
-  </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+  <div class="mt-10 mb-4">
+  <%= link_to "戻る", user_path(current_user), class:"text-lg font-light btn rounded-full bg-orange-500 hover:bg-orange-600" %>
 </div>

@@ -32,8 +32,7 @@ class PostsController < ApplicationController
     if @post.blank?
       flash[:alert] = "投稿は削除されました"
       redirect_to request.referer || meal_records_user_path(current_user)
-    elsif
-      current_user.present?
+    elsif current_user.present?
       @post.save_browsing_history(current_user)
       @comment = current_user.comments.build if user_signed_in?
       @comments = @post.comments.includes(:user)

@@ -4,19 +4,16 @@
       <div>
         <%= link_to 'REPIHAPI', root_path,'data-turbolinks': false, class: "text-3xl font-medium text-gray-900" %>
       </div>
+      <%= link_to posts_path, class: "px-4 py-2" do %>
+        <i class="far fa-copy fa-lg header-icon"></i>
+      <% end %>
 
-      <% if user_signed_in? %>
-        <%= link_to posts_path, class: "px-4 py-2" do %>
-          <i class="far fa-copy fa-lg header-icon"></i>
-        <% end %>
+      <%= link_to users_path, class: "px-4 py-2" do %>
+        <i class="fas fa-users fa-lg header-icon"></i>
+      <% end %>
 
-        <%= link_to users_path, class: "px-4 py-2" do %>
-          <i class="fas fa-users fa-lg header-icon"></i>
-        <% end %>
-
-        <%= link_to tags_path, class: "px-4 py-2" do %>
-          <i class="fas fa-hashtag fa-lg header-icon"></i>
-        <% end %>
+      <%= link_to tags_path, class: "px-4 py-2" do %>
+        <i class="fas fa-hashtag fa-lg header-icon"></i>
       <% end %>
     </div>
     <div class="header-right ml-auto flex flex-wrap items-center justify-center my-2">

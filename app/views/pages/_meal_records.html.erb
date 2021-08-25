@@ -1,0 +1,25 @@
+<% if user_signed_in? %>
+  <div class="line-chart">
+    <h2 class="mb-2 text-center font-bold text-lg"><span><%= @start_date.month %>月</span>の摂取カロリー（kcal）</h2>
+    <%= line_chart @meal_records.group("date(created_at)").average(:post_calorie), colors: ["#38a169"] %>
+  </div>
+  <div class="pie-chart mt-6">
+    <h2 class="mb-2 text-center font-bold text-lg"><span><%= @start_date.month %>月</span>のPFCバランス（％）</h2>
+    <%= pie_chart @chart, colors: ["#f56565", "#f6e05e", "#4299e1"] %>
+  </div>
+  <%= link_to "もっと詳しく見る", meal_records_user_path(current_user), class: "inline-block btn mt-4"%>
+<% else %>
+  <p class="text-md bg-orange-400 rounded px-2 py-1 text-center text-white mb-6">ログインすることで、食べたものをカレンダーに記録し、<br>カロリーや栄養バランスの管理ができるようになります。</p>
+  <div class="line-chart">
+    <h2 class="mb-2 text-center font-bold text-lg">摂取カロリー（kcal）</h2>
+    <%= line_chart example_records, colors: ["#38a169"] %>
+  </div>
+  <div class="pie-chart mt-6">
+    <h2 class="mb-2 text-center font-bold text-lg">PFCバランス（％）</h2>
+    <%= pie_chart [["P:タンパク質", 35], ["F:脂肪", 40], ["C:炭水化物", 25]], colors: ["#f56565", "#f6e05e", "#4299e1"] %>
+  </div>
+  <div class="text-center">
+    <%= link_to "ログインする", new_user_session_path, class: "inline-block btn mt-4"%>
+    <%= link_to "ゲストログインはこちら", users_guest_sign_in_path, class:"inline-block btn"%>
+  </div>
+<% end %>

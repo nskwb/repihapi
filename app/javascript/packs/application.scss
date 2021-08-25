@@ -1,2 +1,10 @@
 @import "./slick.scss";
 @import "./slick-theme.scss";
+
+.slider {
+  display: none;
+}
+
+.slider.slick-initialized {
+  display: block;
+}

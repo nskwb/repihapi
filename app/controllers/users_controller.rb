@@ -31,19 +31,7 @@ class UsersController < ApplicationController
     @meal_records = current_user.meal_records.where(created_at: @start_date.all_month)
 
     if @meal_records.present?
-      count = @meal_records.length
-
-      @average_protein = @meal_records.average(:post_protein).round
-      @average_fat = @meal_records.average(:post_fat).round
-      @average_carbo = @meal_records.average(:post_carbo).round
-      @average_calorie = @meal_records.average(:post_calorie).round
-
-      @total = @average_protein + @average_fat + @average_carbo
-      @ratio_protein = (@average_protein / @total.to_f * 100).round
-      @ratio_fat = (@average_fat / @total.to_f * 100).round
-      @ratio_carbo = (@average_carbo / @total.to_f * 100).round
-
-      @chart = [['P:タンパク質', @ratio_protein], ['F:脂肪', @ratio_fat], ['C:炭水化物', @ratio_carbo]]
+      calculate_nutrition
     else
       render 'meal_records'
     end

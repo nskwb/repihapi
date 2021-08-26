@@ -31,6 +31,7 @@ https://repihapi.com
 - MySQL 8.0.23
 - AWS （VPC / EC2 / Route53 / S3 / RDS / ACM / ALB / CloudFront / IAM）
 - Nginx
+- Puma
 - Circle CI
 - Capistrano
 

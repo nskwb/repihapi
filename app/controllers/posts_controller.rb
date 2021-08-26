@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
 
     if @post.blank?
-      flash[:alert] = "投稿は削除されました"
+      flash[:alert] = '投稿は削除されました'
       redirect_to request.referer || meal_records_user_path(current_user)
     elsif current_user.present?
       @post.save_browsing_history(current_user)

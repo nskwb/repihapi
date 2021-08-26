@@ -19,12 +19,12 @@ RSpec.describe 'Posts', type: :request do
       context 'パラメータが妥当な場合' do
         it 'リクエストが成功すること' do
           post posts_url,
-              params: {
-                post:
-                  attributes_for(:post, image: image)
-                  .merge(ingredients_attributes: [attributes_for(:ingredient)])
-                  .merge(recipes_attributes: [attributes_for(:recipe)])
-                }
+               params: {
+                 post:
+                   attributes_for(:post, image: image)
+                     .merge(ingredients_attributes: [attributes_for(:ingredient)])
+                     .merge(recipes_attributes: [attributes_for(:recipe)])
+               }
 
           expect(response).to have_http_status(302)
         end

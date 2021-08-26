@@ -20,6 +20,6 @@
   </div>
   <div class="text-center">
     <%= link_to "ログインする", new_user_session_path, class: "inline-block btn mt-4"%>
-    <%= link_to "ゲストログインはこちら", users_guest_sign_in_path, class:"inline-block btn"%>
+    <%= link_to "ゲストログインはこちら", users_guest_sign_in_path, method: :post, class:"inline-block btn"%>
   </div>
 <% end %>

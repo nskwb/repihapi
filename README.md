@@ -1,4 +1,4 @@
-# レシピ投稿＋栄養素管理＋食事記録アプリ　REPIHAPI 
+# レシピ投稿＋栄養管理＋食事記録アプリ　REPIHAPI 
 <img width="1429" alt="トップページ2" src="https://user-images.githubusercontent.com/85467321/130827904-8ad09271-c453-4201-9ed1-b5a26c2c4ba6.png">
 
 ## URL

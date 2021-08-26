@@ -18,10 +18,12 @@
             お手伝いをします。
           </p>
         </div>
-        <div class="links mt-6 mx-auto">
-          <%= link_to 'サインアップ', new_user_registration_path, class: "inline-block py-3 px-4 text-white text-lg text-center border border-solid bg-orange-500 border-orange-400 rounded hover:bg-orange-600" %>
-          <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "inline-block py-3 px-4 text-white text-lg text-center border border-solid bg-green-500 border-green-500 rounded hover:bg-green-600" %>
-        </div>
+        <% unless user_signed_in? %>
+          <div class="links mt-6 mx-auto">
+            <%= link_to 'サインアップ', new_user_registration_path, class: "inline-block py-3 px-4 text-white text-lg text-center border border-solid bg-orange-500 border-orange-400 rounded hover:bg-orange-600" %>
+            <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "inline-block py-3 px-4 text-white text-lg text-center border border-solid bg-green-500 border-green-500 rounded hover:bg-green-600" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

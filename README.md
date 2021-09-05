@@ -81,7 +81,9 @@ GitHubではissueの立ち上げ、プルリクエスト、mainブランチへ�
 ### (4)食事記録機能のDB設計
 記録をする機能で重要なことは、記録時の情報が変更・改ざんされないこと、削除されないことだと考えました。そのため、食事記録機能のDBテーブルは、正規化を行ったユーザーID・投稿のID・記録時刻の3つのみを保存するような一般的な設計ではなく、ユーザーIDと記録時刻に加え、記録時の投稿の名前や栄養素、カロリーの情報を保存するな設計にしました。こうすることで、投稿の情報に変更があった場合でも、記録当時の投稿の情報を参照できるようになり、
 記録の役割を果たすことができます。
-![食事記録のDB設計 (1)](https://user-images.githubusercontent.com/85467321/131302781-5b7c189d-c54d-4be8-8034-ef310fa85cb1.png)
+![食事記録のDB設計 (1)](https://user-images.githubusercontent.com/85467321/132132273-8caa66dd-1717-4464-ae4d-bda10629318e.jpg)
+![食事記録のDB設計 (2)](https://user-images.githubusercontent.com/85467321/132132306-32f509ac-baf6-4d56-bdcd-9d33fcc7f644.jpg)
+![食事記録のDB設計 (3)](https://user-images.githubusercontent.com/85467321/132132324-4814bd3b-29bc-4e7f-8349-46c5995a6d56.jpg)
 
 ## インフラ構成図
 ![AWS構成図 (4)](https://user-images.githubusercontent.com/85467321/130824222-54bc2992-1030-4fc3-8c4d-d2d0af0fbaec.png)
